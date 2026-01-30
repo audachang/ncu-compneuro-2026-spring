@@ -1,0 +1,11 @@
+
+/textbook/
+/materials/
+weekly_contents.md
+*.pdf
+*.log
+*.tmp
+*.aux
+*.out
+__pycache__/
+.ipynb_checkpoints/

@@ -1,0 +1,63 @@
+\documentclass[12pt, a4paper]{article}
+
+% 字型設定
+\usepackage{fontspec}
+
+% 中文支援
+\usepackage{xeCJK}
+\usepackage{xeCJKfntef}
+\setCJKmainfont[AutoFakeBold=true, AutoFakeSlant=true]{kaiu.ttf}
+\setCJKsansfont[AutoFakeBold=true, AutoFakeSlant=true]{kaiu.ttf}
+\setCJKmonofont[AutoFakeBold=true, AutoFakeSlant=true]{kaiu.ttf}
+
+% 頁面設置
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+% 基本套件
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+
+% Define Module Colors
+\definecolor{mod1}{RGB}{230, 240, 255} % Light Blue
+\definecolor{mod2}{RGB}{230, 255, 230} % Light Green
+\definecolor{mod3}{RGB}{255, 245, 230} % Light Orange
+\definecolor{mod4}{RGB}{245, 230, 255} % Light Purple
+\definecolor{mod5}{RGB}{245, 245, 245} % Light Gray
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage{float}
+% \usepackage{pdfpages} % Removed because it requires pdflscape which is missing
+% \usepackage[document]{ragged2e} % Removed because package missing locally
+\usepackage{titlesec}
+
+\setlength{\parskip}{1em}
+
+% 設定超連結顏色
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+% 設定標題樣式
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\begin{document}
+\raggedright
+
+\input{sections/basic-info-schedule}
+\input{sections/course-resources}
+\input{sections/grading-policy}
+\input{sections/contents}
+
+\end{document}

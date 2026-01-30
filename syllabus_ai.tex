@@ -1,0 +1,51 @@
+\documentclass[12pt, a4paper]{article}
+
+% 字型設定
+\usepackage{fontspec}
+
+% 中文支援
+\usepackage{xeCJK}
+\usepackage{xeCJKfntef}
+\setCJKmainfont[AutoFakeBold=true, AutoFakeSlant=true]{kaiu.ttf}
+\setCJKsansfont[AutoFakeBold=true, AutoFakeSlant=true]{kaiu.ttf}
+\setCJKmonofont[AutoFakeBold=true, AutoFakeSlant=true]{kaiu.ttf}
+
+% 頁面設置
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+% 基本套件
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage{float}
+% \usepackage{pdfpages} % Removed because it requires pdflscape which is missing
+% \usepackage[document]{ragged2e} % Removed because package missing locally
+\usepackage{titlesec}
+
+\setlength{\parskip}{1em}
+
+% 設定超連結顏色
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+% 設定標題樣式
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\begin{document}
+\raggedright
+
+\input{sections/03_syllabus_ai}
+
+\end{document}

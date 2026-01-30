@@ -1,0 +1,262 @@
+\section{Weekly Content Details}
+
+\subsection*{Module 1: Experimental Programming \& Data Science}
+\noindent\textbf{Focus}: \textit{From Hypothesis to Data—Mastering the Python ecosystem to build robust behavioral experiments, ensure reproducibility, and visualize scientific results.}
+
+\vspace{0.3cm}
+
+\noindent\textbf{Week 1: Orientation, Python Environment Setup \& Basic Libraries}
+\begin{itemize}
+    \item \textbf{Date}: 2026/02/26
+    \item \textbf{Topic}: \textbf{Setting the Stage for Scientific Computing}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{The Stack}: VS Code, Anaconda/Miniconda, and managing Virtual Environments (\texttt{conda}/\texttt{venv}).
+        \item \textbf{Python Refresher}: Mutable vs. Immutable types, List Comprehensions, and Modular design.
+        \item \textbf{Scientific Libs}: Introduction to \textbf{NumPy} for high-performance array manipulation (essential for coordinate systems, timing, and randomization).
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Lecture}: The "Reproducibility Crisis" and how code provides the solution.
+        \item \textbf{Lab Activity (Install-Fest)}: Ensure every student has a working local environment.
+        \item \textbf{Homework}: "Hello Data"—Write a script that generates a synthetic dataset of reaction times using NumPy.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 2: PsychoPy Coder \& Stimulus Presentation}
+\begin{itemize}
+    \item \textbf{Date}: 2026/03/05
+    \item \textbf{Topic}: \textbf{Drawing to the Screen (Beyond the GUI)}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{The Window}: \texttt{visual.Window}, units (\texttt{norm}, \texttt{pix}, \texttt{deg}), and frame buffering (\texttt{win.flip()}).
+        \item \textbf{Stimuli}: Programmatically creating \texttt{TextStim}, \texttt{ImageStim}, and \texttt{GratingStim} (Gabor patches).
+        \item \textbf{Timing}: Understanding refresh rates (Hz), frame-based timing, and precision.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Live Coding}: Build a script from scratch that displays a fixation cross followed by a drifting Gabor patch.
+        \item \textbf{Lab}: Modify the script to change the orientation of the grating dynamically based on a frame counter.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 3: Interaction \& The Event Loop}
+\begin{itemize}
+    \item \textbf{Date}: 2026/03/12
+    \item \textbf{Topic}: \textbf{The Game Loop of Research}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Input}: Polling (\texttt{defaultKeyboard.getKeys()}) vs. Blocking (\texttt{event.waitKeys()}).
+        \item \textbf{Architecture}: Implementing the Trial $\rightarrow$ Block $\rightarrow$ Experiment hierarchy.
+        \item \textbf{Data Logging}: Using \texttt{pandas} or PsychoPy’s \texttt{ExperimentHandler} to save trial-by-trial data to CSV.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Lab Activity (The Stroop Task)}: Build a complete interactive task where participants identify font colors of conflicting words.
+        \item \textbf{Crucial Step}: Students must run the task on themselves to generate real data for Week 5.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 4: PsychoPy Builder, Online Paradigms \& Adaptive Design}
+\begin{itemize}
+    \item \textbf{Date}: 2026/03/19
+    \item \textbf{Topic}: \textbf{Rapid Prototyping \& Web Deployment}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Builder GUI}: Routines, Loops, and injecting Custom Code components.
+        \item \textbf{Pavlovia}: Converting Python experiments to PsychoJS for online data collection.
+        \item \textbf{Adaptive Design}: Introduction to \textbf{Staircase procedures} (e.g., Up/Down method) for finding sensory thresholds.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Demo}: Recreate the Week 3 manual code using the Builder GUI in 15 minutes.
+        \item \textbf{Workshop}: Push a simple experiment to Pavlovia and collect data from a peer.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 5: Statistical Analysis \& Data Visualization}
+\begin{itemize}
+    \item \textbf{Date}: 2026/03/26
+    \item \textbf{Topic}: \textbf{From Raw Logs to Insights}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Data Cleaning}: Using \textbf{Pandas} to filter outliers, group data, and handle missing values.
+        \item \textbf{Visualization}: \textbf{Seaborn} and \textbf{Matplotlib} for Violin plots, Scatter plots, and Error bars.
+        \item \textbf{Stats}: T-tests and correlations using \texttt{scipy.stats}.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Data Dive}: Analyze the \textbf{Stroop Task data} generated in Week 3.
+        \item \textbf{Deliverable}: A script that produces a publication-quality figure showing the "Stroop Effect" (RT difference).
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 6: Example Designs}
+\begin{itemize}
+    \item \textbf{Date}: 2026/04/02
+    \item \textbf{Topic}: \textbf{Deconstructing Classic Paradigms}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Paradigm 1}: Posner Cueing Task (Attentional Orienting).
+        \item \textbf{Paradigm 2}: n-Back Task (Working Memory).
+        \item \textbf{Logic}: Blocked vs. Interleaved designs; Counterbalancing conditions programmatically.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Group Analysis}: Students break down the logic of these tasks and write the "pseudocode" structure before implementation.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 7: Coding with AI Helpers \& Sustainable Programming Practices}
+\begin{itemize}
+    \item \textbf{Date}: 2026/04/09
+    \item \textbf{Topic}: \textbf{Modern Coding Workflows}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{AI Tools}: Prompt Engineering for GitHub Copilot/ChatGPT (e.g., "Explain this bug," "Refactor for speed").
+        \item \textbf{Clean Code}: Modular functions, docstrings, and PEP8 standards.
+        \item \textbf{Version Control}: Basics of \textbf{Git} (\texttt{init}, \texttt{commit}, \texttt{push}) and GitHub.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Hackathon ("Refactor Day")}: Students are given a messy, broken script and must use AI tools to fix, comment, and optimize it.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 8: Midterm Project Presentation}
+\begin{itemize}
+    \item \textbf{Date}: 2026/04/16
+    \item \textbf{Activity}: \textbf{Seminar \& Demo}
+    \item \textbf{Requirements}:
+    \begin{enumerate}
+        \item A fully functional Python/PsychoPy experiment.
+        \item Automatic data logging.
+        \item A visualization of pilot data.
+        \item A clean GitHub repository link.
+    \end{enumerate}
+\end{itemize}
+
+\subsection*{Module 2: Machine Learning \& AI Applications}
+
+\noindent\textbf{Focus}: \textit{Transitioning from analyzing past data to predicting future outcomes using Machine Learning, Deep Learning, and LLMs.}
+
+\vspace{0.3cm}
+
+\noindent\textbf{Week 9: Machine Learning Foundations}
+\begin{itemize}
+    \item \textbf{Date}: 2026/04/23
+    \item \textbf{Topic}: \textbf{Concepts \& Pipelines}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Concepts}: Supervised vs. Unsupervised learning; Features ($X$) and Labels ($y$).
+        \item \textbf{The Pipeline}: Data preprocessing (Scaling/Normalization), One-Hot Encoding, and Train/Test splits.
+        \item \textbf{Library}: Introduction to \texttt{scikit-learn}.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Lab}: Preprocessing a behavioral dataset to prepare it for ML (e.g., converting subject IDs to categorical codes).
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 10: Basic ML Algorithms: Regression \& Classification}
+\begin{itemize}
+    \item \textbf{Date}: 2026/04/30
+    \item \textbf{Topic}: \textbf{Predictive Modeling}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Regression}: Linear Regression (Predicting continuous variables like RT).
+        \item \textbf{Classification}: Logistic Regression and SVM (Predicting binary outcomes like Error/Correct).
+        \item \textbf{Evaluation}: Accuracy, Precision, Recall, Confusion Matrix.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Challenge}: Train a model to predict if a subject will make an error on the \textit{next} trial based on their RT in the \textit{previous} trial.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 11: Advanced ML Algorithms}
+\begin{itemize}
+    \item \textbf{Date}: 2026/05/07
+    \item \textbf{Topic}: \textbf{Complexity \& Unsupervised Learning}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Ensembles}: Random Forests and Gradient Boosting (XGBoost).
+        \item \textbf{Dimensionality Reduction}: \textbf{PCA} (Principal Component Analysis) for high-dimensional data (e.g., surveys/pixels).
+        \item \textbf{Clustering}: K-Means.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Lab}: Use PCA to visualize a high-dimensional dataset in 2D space, then apply K-Means to identify clusters of participants.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 12: GPU Acceleration Tools}
+\begin{itemize}
+    \item \textbf{Date}: 2026/05/14
+    \item \textbf{Topic}: \textbf{High-Performance Computing}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Hardware}: CPU vs. GPU architecture differences.
+        \item \textbf{Tools}: Google Colab (Cloud GPUs), \textbf{CuPy} (NumPy on GPU), and \textbf{PyTorch Tensors}.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Benchmark Lab}: Write a script that performs massive matrix multiplication. Measure and compare execution time on CPU (NumPy) vs. GPU (PyTorch).
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 13: Deep Learning}
+\begin{itemize}
+    \item \textbf{Date}: 2026/05/21
+    \item \textbf{Topic}: \textbf{Neural Networks}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Basics}: Neurons, Layers, Weights, Biases, Activation Functions (ReLU).
+        \item \textbf{Training}: Backpropagation and Optimizers (Adam).
+        \item \textbf{Implementation}: Building a Multi-Layer Perceptron (MLP) in PyTorch.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Lab}: "Hello World" of Deep Learning—Training a network to classify handwritten digits (MNIST) or behavioral patterns.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 14: Large Language Model (LLM)}
+\begin{itemize}
+    \item \textbf{Date}: 2026/05/28
+    \item \textbf{Topic}: \textbf{NLP in Research}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Theory}: Transformer Architecture overview (Attention mechanism).
+        \item \textbf{Tools}: Hugging Face \texttt{transformers} library.
+        \item \textbf{Application}: Using LLMs to generate stimuli text or analyze qualitative survey responses.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Workshop}: Build a pipeline that uses a pre-trained BERT model to perform Sentiment Analysis on a text dataset.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 15: ML \& AI Capstone Studio}
+\begin{itemize}
+    \item \textbf{Date}: 2026/06/04
+    \item \textbf{Activity}: \textbf{Guided Development / Hackathon}
+    \item \textbf{Details}:
+    \begin{itemize}
+        \item Students work on their final projects in class.
+        \item Instructor acts as a technical consultant (debugging code, refining models).
+        \item \textbf{Peer Review}: Students pair up to code-review their analysis pipelines.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 16: Final Poster Presentation}
+\begin{itemize}
+    \item \textbf{Date}: 2026/06/11
+    \item \textbf{Activity}: \textbf{Symposium}
+    \item \textbf{Deliverables}:
+    \begin{enumerate}
+        \item \textbf{Scientific Poster}: Introduction, Methods (Code/Algo), Results (Vis/Stats), Conclusion.
+        \item \textbf{Code Repository}: A public GitHub link allowing others to reproduce the results.
+    \end{enumerate}
+\end{itemize}
+
