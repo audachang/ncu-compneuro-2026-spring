@@ -1,6 +1,7 @@
 
 /textbook/
 /materials/
+/sections/
 weekly_contents.md
 *.pdf
 *.log
