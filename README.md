@@ -1,151 +1,79 @@
-# 電腦硬體與程式語言在行為科學實驗與大數據分析之應用
-# The Applications of Computer Hardware and Programming Languages in Behavioral Experiments and Big-Data
+# NS5116 Computational Neuroscience — Spring 2026
 
-## Basic Information
-|                    |                                                                                          |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| **Term**           | Spring 2026                                                                              |
-| **Course Code**    | NS5116                                                                                   |
-| **Classroom**      | S5-607-1                                                                                 |
-| **Credit Hours**   | 3.0                                                                                      |
-| **Class Schedule** | Thursdays : 9:00 AM – 12:00 PM                                                           |
-| **Course Teacher** | Erik Chang 張智宏                                                                        |
-| **Teacher Email**  | audachang@gmail.com                                                                      |
-| **Contact Number** | 03-4227151#65209                                                                         |
-| **Office**         | Building: Science 5, Teacher Room: 601                                                   |
-| **Office Hours**   | by appointment                                                                           |
-| **Online Course**  | [https://ncueeclass.ncu.edu.tw/course/32506](https://ncueeclass.ncu.edu.tw/course/32506) |
+> **Teacher:** Erik Chang (張佑達) | **Code:** NS5116 | **Credits:** 3
+> **Time:** Thursdays 13:30–16:20 | **Room:** TBA | **Term:** Spring 2026
+
+## Course Overview
+
+A 16-week practical coding course for graduate students. No prior programming experience required.
+
+- **Part 1 (Weeks 1–8) — Manual Python:** Build programming fundamentals from scratch.
+  **Milestone:** Deploy a working online cognitive experiment to Pavlovia.
+- **Part 2 (Weeks 9–16) — Vibe Coding & Agentic Programming:** Use AI coding tools (Claude Code) to build real applications.
+  **Milestone:** Present a live web app using Taiwan government open data.
 
 ---
 
-## Course Materials by Week
+## Weekly Schedule
 
-### Week 01: Orientation Python Environment Setup And Basic Libraries
-**Folder:** `/week-01-orientation_python_environment_setup_and_basic_libraries`
+### Part 1: Manual Python (Weeks 1–8)
 
-| File                                      | Description            |
-| ----------------------------------------- | ---------------------- |
-| `Karpathy_2026_Claude_Coding_Notes.html`  | File                   |
-| `Karpathy_2026_Claude_Coding_Notes.qmd`   | File                   |
-| `Karpathy_2026_Claude_Coding_Notes_files` | File                   |
-| `week-01-README.md`                       | Markdown Documentation |
-| `week-01-environment_setup_guide.ipynb`   | Jupyter Notebook       |
+| Week | Topic | Tools |
+|------|-------|-------|
+| [01](week-01-python_setup_and_basic_syntax/) | Environment setup, variables, types, operators | Anaconda, VS Code, Jupyter |
+| [02](week-02-control_flow_and_functions/) | if/else, for/while loops, functions, scope, debugging | Python |
+| [03](week-03-data_structures_and_file_io/) | Lists, dicts, tuples, sets; CSV & text file I/O | Python |
+| [04](week-04-numpy_and_data_manipulation/) | NumPy arrays, indexing, vectorized operations | NumPy |
+| [05](week-05-data_visualization_with_matplotlib/) | Line/scatter/bar/histogram plots, subplots, annotations | Matplotlib |
+| [06](week-06-psychopy_basics_stimuli_and_windows/) | PsychoPy install, Window, visual stimuli, clocks, input | PsychoPy |
+| [07](week-07-psychopy_experiment_design/) | Event loop, trial structure, response recording, data saving | PsychoPy, Pavlovia |
+| **[08](week-08-midterm_online_experiment_on_pavlovia/)** | **MILESTONE: Deploy cognitive experiment to Pavlovia** | PsychoPy, Pavlovia |
 
-### Week 02: Psychopy Coder And Stimulus Presentation
-**Folder:** `/week-02-psychopy_coder_and_stimulus_presentation`
+### Part 2: Vibe Coding & Agentic Programming (Weeks 9–16)
 
-| File                                                         | Description      |
-| ------------------------------------------------------------ | ---------------- |
-| `week_02_the_precise_stimulus_psychopy_basics_content.ipynb` | Jupyter Notebook |
+| Week | Topic | Tools |
+|------|-------|-------|
+| [09](week-09-intro_to_vibe_coding_and_claude_code/) | Vibe/agentic coding concepts; Claude Code CLI setup; prompting | Claude Code |
+| [10](week-10-agentic_workflows_and_github/) | Multi-step task delegation, git commits, GitHub Actions | Claude Code, GitHub |
+| [11](week-11-web_app_development_with_streamlit/) | Streamlit app; layout, widgets, charts; deploy to Streamlit Cloud | Streamlit |
+| [12](week-12-open_data_apis_and_data_engineering/) | Taiwan gov open data portal (data.gov.tw), API calls, data cleaning | pandas, requests |
+| [13](week-13-interactive_dashboards_and_storytelling/) | Interactive charts, narrative data storytelling | Plotly, Altair |
+| [14](week-14-ai_features_with_claude_api/) | Anthropic SDK; add AI features; responsible AI | Anthropic SDK |
+| [15](week-15-final_project_workshop/) | Peer code review; polish UI/UX; documentation; rehearsal | Claude Code |
+| **[16](week-16-final_project_presentation/)** | **MILESTONE: Present online app using Taiwan open data** | All |
 
-### Week 03: Interaction And The Event Loop
-**Folder:** `/week-03-interaction_and_the_event_loop`
+---
 
-| File                                                   | Description      |
-| ------------------------------------------------------ | ---------------- |
-| `week_03_interaction_and_the_event_loop_content.ipynb` | Jupyter Notebook |
+## Grading
 
-### Week 04: Psychopy Builder Online Paradigms And Adaptive Design
-**Folder:** `/week-04-psychopy_builder_online_paradigms_and_adaptive_design`
+| Component | Weight |
+|-----------|--------|
+| Weekly assignments (Weeks 1–7, 9–14) | 30% |
+| Midterm project — Pavlovia experiment (Week 8) | 30% |
+| Final project — Taiwan open data web app (Week 16) | 35% |
+| Participation & peer review | 5% |
 
-| File                                                           | Description      |
-| -------------------------------------------------------------- | ---------------- |
-| `week_04_advanced_paradigms_online_and_adaptive_content.ipynb` | Jupyter Notebook |
+## Prerequisites
 
-### Week 05: Statistical Analysis And Data Visualization
-**Folder:** `/week-05-statistical_analysis_and_data_visualization`
+- Basic computer skills; no prior programming experience required
+- Bring a laptop to every class
 
-| File                                                           | Description      |
-| -------------------------------------------------------------- | ---------------- |
-| `week_05_intro_to_neural_data_bids_and_fmriprep_content.ipynb` | Jupyter Notebook |
+## Accounts to Create Before Class
 
-### Week 06: Example Designs
-**Folder:** `/week-06-example_designs`
+| Service | Purpose | Cost |
+|---------|---------|------|
+| [GitHub](https://github.com/) | Version control | Free |
+| [Pavlovia](https://pavlovia.org/) | Online experiment hosting | Free for students |
+| [Streamlit Cloud](https://streamlit.io/cloud) | Web app hosting | Free |
 
-| File                                                      | Description      |
-| --------------------------------------------------------- | ---------------- |
-| `week_06_signal_extraction_masking_and_roi_content.ipynb` | Jupyter Notebook |
+## Repository Structure
 
-### Week 07: Coding With Ai Helpers And Sustainable Programming Practices
-**Folder:** `/week-07-coding_with_ai_helpers_and_sustainable_programming_practices`
+```
+week-NN-topic-name/
+├── README.md              ← Week overview, objectives, assignment
+└── week-NN-starter.ipynb  ← Starter notebook to fill in
+```
 
-| File                                                      | Description      |
-| --------------------------------------------------------- | ---------------- |
-| `week_07_connectivity_and_network_analysis_content.ipynb` | Jupyter Notebook |
+## License
 
-### Week 08: Midterm Project Presentation
-**Folder:** `/week-08-midterm_project_presentation`
-
-| File                                    | Description      |
-| --------------------------------------- | ---------------- |
-| `week_08_midterm_project_content.ipynb` | Jupyter Notebook |
-
-### Week 09: Machine Learning Foundations
-**Folder:** `/week-09-machine_learning_foundations`
-
-| File                                           | Description      |
-| ---------------------------------------------- | ---------------- |
-| `01_the_machine_learning_landscape.ipynb`      | Jupyter Notebook |
-| `02_end_to_end_machine_learning_project.ipynb` | Jupyter Notebook |
-| `03_classification.ipynb`                      | Jupyter Notebook |
-
-### Week 10: Basic Ml Algorithms Regression And Classification
-**Folder:** `/week-10-basic_ml_algorithms_regression_and_classification`
-
-| File                               | Description      |
-| ---------------------------------- | ---------------- |
-| `04_training_linear_models.ipynb`  | Jupyter Notebook |
-| `05_support_vector_machines.ipynb` | Jupyter Notebook |
-
-### Week 11: Advanced Ml Algorithms
-**Folder:** `/week-11-advanced_ml_algorithms`
-
-| File                                            | Description      |
-| ----------------------------------------------- | ---------------- |
-| `06_decision_trees.ipynb`                       | Jupyter Notebook |
-| `07_ensemble_learning_and_random_forests.ipynb` | Jupyter Notebook |
-| `08_dimensionality_reduction.ipynb`             | Jupyter Notebook |
-| `09_unsupervised_learning.ipynb`                | Jupyter Notebook |
-
-### Week 12: Gpu Acceleration Tools
-**Folder:** `/week-12-gpu_acceleration_tools`
-
-| File                                                  | Description      |
-| ----------------------------------------------------- | ---------------- |
-| `12_custom_models_and_training_with_tensorflow.ipynb` | Jupyter Notebook |
-| `19_training_and_deploying_at_scale.ipynb`            | Jupyter Notebook |
-
-### Week 13: Deep Learning
-**Folder:** `/week-13-deep_learning`
-
-| File                                     | Description      |
-| ---------------------------------------- | ---------------- |
-| `10_neural_nets_with_keras.ipynb`        | Jupyter Notebook |
-| `11_training_deep_neural_networks.ipynb` | Jupyter Notebook |
-
-### Week 14: Large Language Model
-**Folder:** `/week-14-large_language_model`
-
-| File                                   | Description      |
-| -------------------------------------- | ---------------- |
-| `16_nlp_with_rnns_and_attention.ipynb` | Jupyter Notebook |
-
-### Week 15: Ml And Ai Capstone Studio
-**Folder:** `/week-15-ml_and_ai_capstone_studio`
-
-| File                                           | Description      |
-| ---------------------------------------------- | ---------------- |
-| `02_end_to_end_machine_learning_project.ipynb` | Jupyter Notebook |
-
-### Week 16: Final Poster Presentation
-**Folder:** `/week-16-final_poster_presentation`
-
-| File                                           | Description      |
-| ---------------------------------------------- | ---------------- |
-| `week_16_final_project_showcase_content.ipynb` | Jupyter Notebook |
-
-## Licensing
-
-- The source code in this repository is licensed under the MIT License.
-- The lecture slides, notes, and documentation are licensed under the Creative Commons Attribution 4.0 International License.
-
+Code: [MIT License](LICENSE) | Materials: [CC BY 4.0](LICENSE-DOCS)
