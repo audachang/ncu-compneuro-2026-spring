@@ -27,7 +27,7 @@ A 16-week practical coding course for graduate students. No prior programming ex
 |------|------|-------|-------|
 | [01](week-01-python_setup_and_basic_syntax/) | 2026-02-26 | Environment setup, variables, types, operators | Anaconda, VS Code, Jupyter |
 | [02](week-02-control_flow_and_functions/) | 2026-03-05 | if/else, for/while loops, functions, scope, debugging | Python |
-| [03](week-03-data_structures_and_file_io/) | 2026-03-12 | Lists, dicts, tuples, sets; CSV & text file I/O | Python |
+| [03](week-03-data_structures_and_file_io/) | 2026-03-12 | Lists, dicts, tuples, sets; CSV & text file I/O (pre-recorded)| Python |
 | [04](week-04-numpy_and_data_manipulation/) | 2026-03-19 | NumPy arrays, indexing, vectorized operations | NumPy |
 | [05](week-05-data_visualization_with_matplotlib/) | 2026-03-26 | Line/scatter/bar/histogram plots, subplots, annotations | Matplotlib |
 | [06](week-06-psychopy_basics_stimuli_and_windows/) | 2026-04-02 | PsychoPy install, Window, visual stimuli, clocks, input | PsychoPy |
@@ -44,8 +44,8 @@ A 16-week practical coding course for graduate students. No prior programming ex
 | [12](week-12-open_data_apis_and_data_engineering/) | 2026-05-14 | Taiwan gov open data portal (data.gov.tw), API calls, data cleaning | pandas, requests |
 | [13](week-13-interactive_dashboards_and_storytelling/) | 2026-05-21 | Interactive charts, narrative data storytelling | Plotly, Altair |
 | [14](week-14-ai_features_with_claude_api/) | 2026-05-28 | Anthropic SDK; add AI features; responsible AI | Anthropic SDK |
-| [15](week-15-final_project_workshop/) | 2026-06-04 | Peer code review; polish UI/UX; documentation; rehearsal | Claude Code |
-| **[16](week-16-final_project_presentation/)** | 2026-06-11 | **MILESTONE: Present online app using Taiwan open data** | All |
+| [15](week-15-final_project_workshop/) | 2026-06-04 | Peer code review; polish UI/UX; documentation; rehearsal (pre-recorded )| Claude Code |
+| **[16](week-16-final_project_presentation/)** | 2026-06-18* | **MILESTONE: Present online app using Taiwan open data** | All |
 
 ---
 
