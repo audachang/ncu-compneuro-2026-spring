@@ -2,7 +2,7 @@
 ## The Applications of Computer Hardware and Programming Languages in Behavioral Experiments and Big-Data — Spring 2026
 
 > **Teacher:** Erik Chang (張智宏) | **Code:** NS5116 | **Credits:** 3
-> **Time:** Thursdays 13:30–16:20 | **Room:** TBA | **Term:** Spring 2026
+> **Time:** Thursdays 9:00AM ~ 12:00PM | **Room:** TBA | **Term:** Spring 2026
 
 ## Course Overview
 
