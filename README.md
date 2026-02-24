@@ -23,29 +23,29 @@ A 16-week practical coding course for graduate students. No prior programming ex
 
 ### Part 1: Manual Python (Weeks 1–8)
 
-| Week | Topic | Tools |
-|------|-------|-------|
-| [01](week-01-python_setup_and_basic_syntax/) | Environment setup, variables, types, operators | Anaconda, VS Code, Jupyter |
-| [02](week-02-control_flow_and_functions/) | if/else, for/while loops, functions, scope, debugging | Python |
-| [03](week-03-data_structures_and_file_io/) | Lists, dicts, tuples, sets; CSV & text file I/O | Python |
-| [04](week-04-numpy_and_data_manipulation/) | NumPy arrays, indexing, vectorized operations | NumPy |
-| [05](week-05-data_visualization_with_matplotlib/) | Line/scatter/bar/histogram plots, subplots, annotations | Matplotlib |
-| [06](week-06-psychopy_basics_stimuli_and_windows/) | PsychoPy install, Window, visual stimuli, clocks, input | PsychoPy |
-| [07](week-07-psychopy_experiment_design/) | Event loop, trial structure, response recording, data saving | PsychoPy, Pavlovia |
-| **[08](week-08-midterm_online_experiment_on_pavlovia/)** | **MILESTONE: Deploy cognitive experiment to Pavlovia** | PsychoPy, Pavlovia |
+| Week | Date | Topic | Tools |
+|------|------|-------|-------|
+| [01](week-01-python_setup_and_basic_syntax/) | 2026-02-26 | Environment setup, variables, types, operators | Anaconda, VS Code, Jupyter |
+| [02](week-02-control_flow_and_functions/) | 2026-03-05 | if/else, for/while loops, functions, scope, debugging | Python |
+| [03](week-03-data_structures_and_file_io/) | 2026-03-12 | Lists, dicts, tuples, sets; CSV & text file I/O | Python |
+| [04](week-04-numpy_and_data_manipulation/) | 2026-03-19 | NumPy arrays, indexing, vectorized operations | NumPy |
+| [05](week-05-data_visualization_with_matplotlib/) | 2026-03-26 | Line/scatter/bar/histogram plots, subplots, annotations | Matplotlib |
+| [06](week-06-psychopy_basics_stimuli_and_windows/) | 2026-04-02 | PsychoPy install, Window, visual stimuli, clocks, input | PsychoPy |
+| [07](week-07-psychopy_experiment_design/) | 2026-04-09 | Event loop, trial structure, response recording, data saving | PsychoPy, Pavlovia |
+| **[08](week-08-midterm_online_experiment_on_pavlovia/)** | 2026-04-16 | **MILESTONE: Deploy cognitive experiment to Pavlovia** | PsychoPy, Pavlovia |
 
 ### Part 2: Vibe Coding & Agentic Programming (Weeks 9–16)
 
-| Week | Topic | Tools |
-|------|-------|-------|
-| [09](week-09-intro_to_vibe_coding_and_claude_code/) | Vibe/agentic coding concepts; Claude Code CLI setup; prompting | Claude Code |
-| [10](week-10-agentic_workflows_and_github/) | Multi-step task delegation, git commits, GitHub Actions | Claude Code, GitHub |
-| [11](week-11-web_app_development_with_streamlit/) | Streamlit app; layout, widgets, charts; deploy to Streamlit Cloud | Streamlit |
-| [12](week-12-open_data_apis_and_data_engineering/) | Taiwan gov open data portal (data.gov.tw), API calls, data cleaning | pandas, requests |
-| [13](week-13-interactive_dashboards_and_storytelling/) | Interactive charts, narrative data storytelling | Plotly, Altair |
-| [14](week-14-ai_features_with_claude_api/) | Anthropic SDK; add AI features; responsible AI | Anthropic SDK |
-| [15](week-15-final_project_workshop/) | Peer code review; polish UI/UX; documentation; rehearsal | Claude Code |
-| **[16](week-16-final_project_presentation/)** | **MILESTONE: Present online app using Taiwan open data** | All |
+| Week | Date | Topic | Tools |
+|------|------|-------|-------|
+| [09](week-09-intro_to_vibe_coding_and_claude_code/) | 2026-04-23 | Vibe/agentic coding concepts; Claude Code CLI setup; prompting | Claude Code |
+| [10](week-10-agentic_workflows_and_github/) | 2026-04-30 | Multi-step task delegation, git commits, GitHub Actions | Claude Code, GitHub |
+| [11](week-11-web_app_development_with_streamlit/) | 2026-05-07 | Streamlit app; layout, widgets, charts; deploy to Streamlit Cloud | Streamlit |
+| [12](week-12-open_data_apis_and_data_engineering/) | 2026-05-14 | Taiwan gov open data portal (data.gov.tw), API calls, data cleaning | pandas, requests |
+| [13](week-13-interactive_dashboards_and_storytelling/) | 2026-05-21 | Interactive charts, narrative data storytelling | Plotly, Altair |
+| [14](week-14-ai_features_with_claude_api/) | 2026-05-28 | Anthropic SDK; add AI features; responsible AI | Anthropic SDK |
+| [15](week-15-final_project_workshop/) | 2026-06-04 | Peer code review; polish UI/UX; documentation; rehearsal | Claude Code |
+| **[16](week-16-final_project_presentation/)** | 2026-06-11 | **MILESTONE: Present online app using Taiwan open data** | All |
 
 ---
 
