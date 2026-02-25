@@ -75,9 +75,21 @@ A 16-week practical coding course for graduate students. No prior programming ex
 
 ```
 week-NN-topic-name/
-├── README.md              ← Week overview, objectives, assignment
-└── week-NN-starter.ipynb  ← Starter notebook to fill in
+├── README.md                  ← Week overview, objectives, assignment
+└── *.ipynb                    ← Jupyter notebooks for the week
 ```
+
+### Supplementary Materials
+
+| Notebook | Weeks | Content |
+|----------|-------|---------|
+| `lpthw_ex00-10.ipynb` | Week 01 | 笨方法學 Python — Ex 0–10: 安裝、print、變數、字串 |
+| `lpthw_ex11-22_27-36.ipynb` | Week 02 | 笨方法學 Python — Ex 11–22, 27–36: 輸入、函式、條件、迴圈 |
+| `lpthw_ex15-17_37-39.ipynb` | Week 03 | 笨方法學 Python — Ex 15–17, 37–39: 檔案 I/O、串列、字典 |
+| `lpthw_ex40-45.ipynb` | Week 04 | 笨方法學 Python — Ex 40–45: 模組、類別、物件導向 |
+| `lpthw_ex46-52.ipynb` | Week 09 | 笨方法學 Python — Ex 46–52: 專案架構、測試、Flask 網頁 |
+
+> Source: [笨方法學 Python (Learn Python the Hard Way CN)](https://flyouting.gitbooks.io/learn-python-the-hard-way-cn/content/introduction.html)
 
 ## License
 
