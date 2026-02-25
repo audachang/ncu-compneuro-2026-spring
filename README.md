@@ -8,7 +8,7 @@
 本課程的目標在於將研究生從程式設計的門外漢轉化為具備「AI 協作開發」能力的跨領域研究者。透過從底層 Python 語法到高階 AI 代理工具的學習，本課程指出了現代行為科學研究者的必備技能：不僅要能設計嚴謹的認知實驗，更要具備處理大數據並將其轉化為互動式網頁應用的能力。最終，學生將能靈活運用 AI 工具解決研究中的技術瓶頸，並在行為科學與大數據分析的交界處實現創新。
 
 ## Course Overview
-這門課程 NS5116 電腦硬體與程式語言在行為科學實驗與大數據分析之應用 是一門為研究生量身打造的實戰型編碼課。課程設計分為兩大階段：前半段聚焦於 「手動 Python」 (Manual Python)，旨在幫助零基礎學生建立紮實的程式邏輯與數據處理能力，並透過 PsychoPy 實作心理學實驗，最終部署至 Pavlovia 雲端平台；後半段則進入 「氛圍編碼與代理人編碼」 (Vibe Coding & Agentic Programming)，教導學生利用 AI 輔助開發工具（如 Claude Code）快速構建功能完整的 Streamlit 網頁應用，並結合 台灣政府開放資料 API 進行大數據敘事。
+這門課程 NS5116 電腦硬體與程式語言在行為科學實驗與大數據分析之應用 是一門為行為社會科學領域研究生量身打造的實戰型編碼課。課程設計分為兩大階段：前半段聚焦於 「手動 Python」 (Manual Python)，旨在幫助零基礎學生建立紮實的程式邏輯與數據處理能力，並透過 PsychoPy 實作心理學實驗，最終部署至 Pavlovia 雲端平台；後半段則進入 「氛圍編碼與代理人編碼」 (Vibe Coding & Agentic Programming)，教導學生利用 AI 輔助開發工具（如 Claude Code）快速構建功能完整的 Streamlit 網頁應用，並結合 台灣政府開放資料 API 進行大數據敘事。
 
 A 16-week practical coding course for graduate students. No prior programming experience required.
 
