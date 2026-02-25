@@ -65,7 +65,7 @@ Launch JupyterLab:
 jupyter lab
 ```
 
-Or open VS Code, select the `compneuro` kernel, and open `week-01-starter.ipynb`.
+Or open VS Code, select the `compneuro` kernel, and open `lpthw_ex00-10.ipynb` or `week-01-environment_setup_guide.ipynb`.
 
 ### 2. Jupyter Notebook Orientation (15 min)
 - Code cells vs. Markdown cells
@@ -125,7 +125,9 @@ import antigravity
 
 ## Assignment
 
-Complete `week-01-starter.ipynb`. Fill in every cell marked `# YOUR CODE HERE`.
+Work through [`lpthw_ex00-10.ipynb`](lpthw_ex00-10.ipynb) — type every code cell by hand and complete all Study Drills.
+
+Then create a new notebook `week-01-assignment.ipynb` and write a script that:
 
 Submit by pushing to your own GitHub repository (instructions will be given in class).
 

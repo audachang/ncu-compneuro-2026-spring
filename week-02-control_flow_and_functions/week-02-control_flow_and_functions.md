@@ -188,7 +188,9 @@ These concepts map directly to experiment programming:
 
 ## Assignment
 
-Complete `week-02-starter.ipynb`. Fill in every cell marked `# YOUR CODE HERE`.
+Work through [`lpthw_ex11-22_27-36.ipynb`](lpthw_ex11-22_27-36.ipynb) for hands-on practice.
+
+Then create a new notebook `week-02-assignment.ipynb` and:
 
 Key exercises:
 - Classify a list of reaction times as fast / normal / slow

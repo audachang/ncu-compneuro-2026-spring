@@ -195,7 +195,9 @@ with open("results.csv", "r") as f:
 
 ## Assignment
 
-Complete `week-03-starter.ipynb`. Fill in every cell marked `# YOUR CODE HERE`.
+Work through [`lpthw_ex15-17_37-39.ipynb`](lpthw_ex15-17_37-39.ipynb) for hands-on file and data structure practice.
+
+Then create a new notebook `week-03-assignment.ipynb` and:
 
 Key exercises:
 - Build a list-of-dicts from raw trial data

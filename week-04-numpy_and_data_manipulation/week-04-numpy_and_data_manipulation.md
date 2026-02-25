@@ -212,7 +212,9 @@ rts = df["rt_ms"].to_numpy()   # extract one column as a NumPy array
 
 ## Assignment
 
-Complete `week-04-starter.ipynb`. Fill in every cell marked `# YOUR CODE HERE`.
+Review [`lpthw_ex40-45.ipynb`](lpthw_ex40-45.ipynb) for OOP background (NumPy arrays are objects too).
+
+Then create a new notebook `week-04-assignment.ipynb` and:
 
 Key exercises:
 - Create and inspect arrays of simulated reaction time data

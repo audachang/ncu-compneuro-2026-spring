@@ -218,7 +218,7 @@ Use `bbox_inches="tight"` to prevent labels from being cut off.
 
 ## Assignment
 
-Complete `week-05-starter.ipynb`. Fill in every cell marked `# YOUR CODE HERE`.
+Create a new notebook `week-05-assignment.ipynb` and:
 
 Key exercises:
 - Plot RT over trials with a mean reference line
