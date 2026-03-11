@@ -10,3 +10,9 @@ weekly_contents.md
 *.out
 __pycache__/
 .ipynb_checkpoints/
+/term_project/
+/homeworks/
+.venv/
+/Context/
+/Instructions/
+/general/

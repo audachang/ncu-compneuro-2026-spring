@@ -62,6 +62,69 @@ np.random.seed(42)
 rts_sim = np.random.normal(loc=400, scale=80, size=100)  # 100 simulated RTs
 ```
 
+#### Real Python: arange vs linspace vs range
+
+Understanding when to use each sequence-generation function is key:
+
+- **`np.arange(start, stop, step)`**: Use when you know the **step size**. Like Python's `range()`, but for NumPy arrays. Returns integers by default; use `dtype=float` if you want floats.
+  ```python
+  np.arange(0, 10, 2)      # [0, 2, 4, 6, 8]
+  np.arange(0, 1, 0.1)     # [0.0, 0.1, 0.2, ..., 0.9]
+  ```
+
+- **`np.linspace(start, stop, num)`**: Use when you know how many **points** you want, evenly spaced. Perfect for plotting.
+  ```python
+  np.linspace(0, 1, 5)     # exactly 5 points from 0 to 1
+  # Output: [0.  , 0.25, 0.5 , 0.75, 1.  ]
+  ```
+
+- **Python `range()`**: Use for *integer-only* loops in `for` statements. Doesn't create a NumPy array.
+  ```python
+  for i in range(5):
+      print(i)  # 0, 1, 2, 3, 4
+  ```
+
+In experiment code, use `np.linspace` when creating stimulus timings or axis labels, and `np.arange` for trial indexing.
+
+#### Real Python: Array dtype and Type Promotion
+
+When you create an array, NumPy infers the **dtype** (data type):
+
+```python
+np.array([1, 2, 3])        # int64 (on most systems)
+np.array([1.0, 2.0, 3.0])  # float64
+np.array([1, 2.0, 3])      # float64 (mixed types promote to float)
+
+# Explicit dtype
+np.array([1, 2, 3], dtype=float)   # force float64
+np.array([1, 2, 3], dtype=int32)   # force 32-bit int
+```
+
+**Why it matters:** If you mix integers and floats, NumPy silently converts everything to float, which uses more memory and might not be what you want.
+
+#### Real Python: zeros, ones, empty, and Initialization
+
+- **`np.zeros(shape)`**: Initialize with zeros. Safe; always use if you're unsure.
+  ```python
+  np.zeros((3, 4))  # 3×4 matrix of zeros
+  ```
+
+- **`np.ones(shape)`**: Initialize with ones.
+  ```python
+  np.ones(5)        # [1., 1., 1., 1., 1.]
+  ```
+
+- **`np.empty(shape)`**: Allocate memory but don't initialize. *Faster* because it skips the initialization step, but contains garbage values. Only use when you will immediately fill every element:
+  ```python
+  output = np.empty(1000)
+  for i in range(1000):
+      output[i] = compute(i)  # fills immediately
+  ```
+
+  **Never read from `np.empty` without filling it first!**
+
+📖 [NumPy Array Creation](https://numpy.org/doc/stable/reference/routines.array-creation.html) · [NumPy arange: How to Use np.arange()](https://realpython.com/how-to-use-numpy-arange/)
+
 ---
 
 ### 2. Array Properties (10 min)
@@ -120,6 +183,62 @@ np.sqrt(rts)
 np.abs(rts - 400)
 ```
 
+#### Real Python: Broadcasting — Operating on Different Shapes
+
+NumPy's **broadcasting** allows operations between arrays of different shapes, as long as they are compatible. This eliminates the need for loops:
+
+```python
+rts = np.array([[320, 415, 280],    # subject 1: 3 trials
+                [390, 425, 310]])    # subject 2: 3 trials
+                # shape: (2, 3)
+
+baseline = np.array([350, 400, 290])  # per-trial baseline
+                # shape: (3,)
+
+# Broadcasting: baseline stretches to match rts rows
+centered = rts - baseline
+# Equivalent to:
+# centered[0] = [320-350, 415-400, 280-290] = [-30, 15, -10]
+# centered[1] = [390-350, 425-400, 310-290] = [40, 25, 20]
+```
+
+**Broadcasting rules** (compared from right to left):
+- If arrays have different numbers of dimensions, pad the smaller with ones on the left.
+- Dimensions are compatible if they are equal *or* one of them is 1 (the size-1 dimension stretches).
+
+```python
+# shape (2, 3) minus shape (3,) broadcasts as:
+# (2, 3) minus (1, 3) after padding → (2, 3) minus (2, 3)
+```
+
+#### Real Python: Universal Functions (ufuncs) — Vectorized Operations
+
+NumPy's **ufuncs** (universal functions) are compiled C implementations that operate element-wise. They're *much* faster than Python loops:
+
+```python
+# Instead of:
+result = []
+for rt in rts:
+    result.append(np.log(rt))
+
+# Use the ufunc (compiled, fast):
+result = np.log(rts)
+```
+
+Common ufuncs:
+- Arithmetic: `np.add`, `np.subtract`, `np.multiply`, `np.divide`
+- Math: `np.log`, `np.exp`, `np.sqrt`, `np.abs`, `np.sin`, `np.cos`
+- Comparison: `np.less`, `np.greater`, `np.equal`
+
+Ufuncs also support **output arrays** to avoid allocating new memory:
+
+```python
+output = np.empty_like(rts)
+np.log(rts, out=output)  # result stored in output, no new allocation
+```
+
+📖 [NumPy Array Programming](https://realpython.com/numpy-array-programming/) · [NumPy Ufuncs](https://numpy.org/doc/stable/reference/ufuncs.html)
+
 ---
 
 ### 5. Boolean Masking (20 min)
@@ -146,6 +265,54 @@ std  = rts.std()
 clean = rts[np.abs(rts - mean) < 2.5 * std]   # remove values > 2.5 SD from mean
 ```
 
+#### Real Python: np.where — Vectorized if/else
+
+`np.where(condition, value_if_true, value_if_false)` is a vectorized version of `if/else` that returns values based on a condition:
+
+```python
+rts = np.array([320, 415, 280, 510, 390])
+labels = np.where(rts > 400, "slow", "fast")
+# Output: array(['fast', 'slow', 'fast', 'slow', 'fast'], dtype='<U4')
+
+# You can also use arrays as the values:
+rts_categorized = np.where(rts > 400, "outlier", "normal")
+
+# Or perform different computations:
+rts_adjusted = np.where(rts > 1000, rts - 100, rts)  # subtract 100 from slow RTs
+```
+
+#### Real Python: argmax, argmin — Finding Indices
+
+`np.argmax()` and `np.argmin()` return the **index** (not the value) of the maximum or minimum:
+
+```python
+rts = np.array([320, 415, 280, 510, 390])
+
+slowest_trial = rts.argmax()    # 3 (index of 510)
+rts[slowest_trial]              # 510
+
+fastest_trial = rts.argmin()    # 2 (index of 280)
+rts[fastest_trial]              # 280
+
+# Useful for finding the outlier:
+outlier_idx = np.argmax(np.abs(rts - rts.mean()))  # furthest from mean
+```
+
+#### Real Python: Fancy Indexing — Selecting by Indices
+
+Index with an integer array to select multiple elements:
+
+```python
+indices = np.array([0, 2, 4])
+rts[indices]                    # [320, 280, 390] — trials 0, 2, 4
+
+# Useful for reordering:
+sorted_indices = np.argsort(rts)  # indices that would sort the array
+sorted_rts = rts[sorted_indices]
+```
+
+📖 [NumPy Boolean Indexing and Masking](https://numpy.org/doc/stable/user/basics.indexing.html#boolean-indexing-through-a-mask) · [NumPy where()](https://numpy.org/doc/stable/reference/generated/numpy.where.html)
+
 ---
 
 ### 6. Descriptive Statistics (10 min)
@@ -169,6 +336,45 @@ data = np.random.normal(400, 80, size=(3, 10))
 data.mean(axis=1)   # mean RT per subject (3 values)
 data.mean(axis=0)   # mean RT per trial position (10 values)
 ```
+
+#### Real Python: np.random — Seeding and Modern RNG
+
+NumPy's random number generation has two interfaces:
+
+**Old API (still works but less thread-safe):**
+```python
+np.random.seed(42)
+rts = np.random.normal(loc=400, scale=80, size=100)
+```
+
+**New API (recommended for reproducibility and thread-safety):**
+```python
+rng = np.random.default_rng(42)
+rts = rng.normal(loc=400, scale=80, size=100)
+```
+
+The new API returns a **Generator** object with the same methods, so the code looks the same but is more robust.
+
+#### Real Python: percentile vs quantile
+
+Both do the same thing but with different conventions:
+- **`np.percentile(a, q)`**: `q` is in range 0–100
+- **`np.quantile(a, q)`**: `q` is in range 0–1
+
+```python
+rts = np.array([320, 415, 280, 510, 390])
+
+np.percentile(rts, 50)   # median (50th percentile)
+np.quantile(rts, 0.5)    # same (0.5 quantile)
+
+# Both are equivalent:
+np.percentile(rts, [25, 50, 75])  # quartiles in percentile form
+np.quantile(rts, [0.25, 0.5, 0.75])  # quartiles in quantile form
+```
+
+Use whichever mental model matches your field (psychology/neuroscience often uses percentiles, statistics often uses quantiles).
+
+📖 [NumPy Statistics Functions](https://numpy.org/doc/stable/reference/routines.statistics.html) · [NumPy Random Number Generator](https://realpython.com/numpy-random-number-generator/)
 
 ---
 
@@ -228,9 +434,20 @@ Submit by pushing to your GitHub repository before Week 05.
 
 ## Resources
 
+### Official Documentation
 - [NumPy Quickstart](https://numpy.org/doc/stable/user/quickstart.html)
 - [NumPy Indexing](https://numpy.org/doc/stable/user/basics.indexing.html)
 - [NumPy for MATLAB users](https://numpy.org/doc/stable/user/numpy-for-matlab-users.html)
+
+### Real Python — Array Creation & Indexing
+- [NumPy arange: How to Use np.arange()](https://realpython.com/how-to-use-numpy-arange/)
+
+### Real Python — Vectorization & Operations
+- [Array Programming with NumPy](https://realpython.com/numpy-array-programming/)
+- [NumPy Array Example: From Basic to Advanced](https://realpython.com/numpy-example/)
+
+### Real Python — Random Numbers
+- [NumPy Random Number Generator](https://realpython.com/numpy-random-number-generator/)
 
 ---
 

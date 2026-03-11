@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>week-03-functions_data_structures_and_file_io</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="week-03-functions_data_structures_and_file_io_files/libs/clipboard/clipboard.min.js"></script>
+<script src="week-03-functions_data_structures_and_file_io_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="week-03-functions_data_structures_and_file_io_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="week-03-functions_data_structures_and_file_io_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="week-03-functions_data_structures_and_file_io_files/libs/quarto-html/popper.min.js"></script>
+<script src="week-03-functions_data_structures_and_file_io_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="week-03-functions_data_structures_and_file_io_files/libs/quarto-html/anchor.min.js"></script>
+<link href="week-03-functions_data_structures_and_file_io_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="week-03-functions_data_structures_and_file_io_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="week-03-functions_data_structures_and_file_io_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="week-03-functions_data_structures_and_file_io_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="week-03-functions_data_structures_and_file_io_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="week-03-functions-data-structures-file-io" class="level1">
+<h1>Week 03: Functions, Data Structures &amp; File I/O</h1>
+<blockquote class="blockquote">
+<p><strong>Course:</strong> NS5116 Computational Neuroscience — Spring 2026 <strong>Week:</strong> 3 of 16 | <strong>Date:</strong> 2026-03-12 | <strong>Room:</strong> TBA</p>
+</blockquote>
+<hr>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this week you will be able to:</p>
+<ol type="1">
+<li>Define reusable functions with <code>def</code>, parameters, and <code>return</code></li>
+<li>Set default parameter values in function definitions</li>
+<li>Explain the difference between local and global scope</li>
+<li>Create and manipulate Python lists using indexing, slicing, and common methods</li>
+<li>Build and query dictionaries to store key-value data</li>
+<li>Explain when to use a tuple vs.&nbsp;a list</li>
+<li>Use sets to find unique values and compute intersections</li>
+<li>Read and write plain text files with <code>open()</code></li>
+<li>Parse and write CSV files using the <code>csv</code> module</li>
+<li>Represent a single experiment trial as a dictionary</li>
+</ol>
+<hr>
+</section>
+<section id="video" class="level2">
+<h2 class="anchored" data-anchor-id="video">Video</h2>
+<p>📺 <a href="https://youtu.be/6D4scknsEJs">Week 03 Lecture</a></p>
+<hr>
+</section>
+<section id="in-class-topics" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-topics">In-Class Topics</h2>
+<section id="functions-30-min" class="level3">
+<h3 class="anchored" data-anchor-id="functions-30-min">1. Functions (30 min)</h3>
+<p>Defining a function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>greet(<span class="st">"Erik"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With a return value:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_rt(rt_list):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(rt_list) <span class="op">/</span> <span class="bu">len</span>(rt_list)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> mean_rt([<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>, <span class="dv">510</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean RT: </span><span class="sc">{</span>avg<span class="sc">:.1f}</span><span class="ss"> ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Default parameter values:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_rt(rt, threshold<span class="op">=</span><span class="dv">500</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rt <span class="op">&lt;</span> threshold:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"fast"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"slow"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>classify_rt(<span class="dv">420</span>)                    <span class="co"># uses default threshold=500</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>classify_rt(<span class="dv">420</span>, threshold<span class="op">=</span><span class="dv">400</span>)     <span class="co"># overrides default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="real-python-docstrings" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-docstrings">Real Python: Docstrings</h4>
+<p>Every function should have a <em>docstring</em> — a string literal immediately after <code>def</code> that documents what the function does, what it accepts, and what it returns:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_rt(rt_list):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return the arithmetic mean of a list of reaction times.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">        rt_list (list[float]): Reaction times in milliseconds.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">        float: The mean reaction time.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Raises:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">        ZeroDivisionError: If rt_list is empty.</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(rt_list) <span class="op">/</span> <span class="bu">len</span>(rt_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Access it with <code>help(mean_rt)</code> or <code>mean_rt.__doc__</code>.</p>
+</section>
+<section id="real-python-returning-multiple-values" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-returning-multiple-values">Real Python: Returning Multiple Values</h4>
+<p>Python functions can return multiple values packaged as a tuple — the caller can unpack them directly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rt_stats(rt_list):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return mean, minimum, and maximum reaction time."""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(rt_list) <span class="op">/</span> <span class="bu">len</span>(rt_list), <span class="bu">min</span>(rt_list), <span class="bu">max</span>(rt_list)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mean, lo, hi <span class="op">=</span> rt_stats([<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>, <span class="dv">510</span>])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean: </span><span class="sc">{</span>mean<span class="sc">:.1f}</span><span class="ss">, Range: </span><span class="sc">{</span>lo<span class="sc">}</span><span class="ss">–</span><span class="sc">{</span>hi<span class="sc">}</span><span class="ss"> ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-args-accept-any-number-of-positional-arguments" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-args-accept-any-number-of-positional-arguments">Real Python: <code>*args</code> — Accept Any Number of Positional Arguments</h4>
+<p>Prefix a parameter with <code>*</code> to receive extra positional arguments as a tuple:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_rts(<span class="op">*</span>rts):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Sum any number of reaction times."""</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(rts)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>add_rts(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>)   <span class="co"># rts = (100, 200, 300)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-mutable-default-argument-gotcha" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-mutable-default-argument-gotcha">Real Python: Mutable Default Argument Gotcha</h4>
+<p><strong>Never use a mutable object (list, dict) as a default argument.</strong> The default is created once when <code>def</code> is executed and shared across all calls:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">BUG</span><span class="co"> — the list persists between calls!</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> record(rt, history<span class="op">=</span>[]):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    history.append(rt)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> history</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>record(<span class="dv">320</span>)  <span class="co"># [320]</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>record(<span class="dv">415</span>)  <span class="co"># [320, 415]  ← unexpected!</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix — use None as the sentinel</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> record(rt, history<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> history <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        history <span class="op">=</span> []</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    history.append(rt)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> history</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>📖 <a href="https://realpython.com/defining-your-own-python-function/">Defining Your Own Python Function</a> · <a href="https://realpython.com/python-return-statement/">The <code>return</code> Statement</a> · <a href="https://realpython.com/python-optional-arguments/">Optional Arguments</a> · <a href="https://realpython.com/python-kwargs-and-args/"><code>*args</code> and <code>**kwargs</code></a> · <a href="https://realpython.com/how-to-write-docstrings-in-python/">How to Write Docstrings</a></p>
+<hr>
+</section>
+</section>
+<section id="scope-10-min" class="level3">
+<h3 class="anchored" data-anchor-id="scope-10-min">2. Scope (10 min)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span>  <span class="co"># global variable</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> show():</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="dv">99</span>  <span class="co"># local variable — does NOT change the global x</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>show()    <span class="co"># prints 99</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)  <span class="co"># prints 10  (global unchanged)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Rule of thumb:</strong> Functions should receive data through parameters and return results with <code>return</code>. Avoid relying on global variables inside functions.</p>
+</blockquote>
+<section id="real-python-the-legb-rule" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-the-legb-rule">Real Python: The LEGB Rule</h4>
+<p>Python resolves names in a specific order — <strong>L E G B</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 37%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scope</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>L</strong>ocal</td>
+<td>Inside the current function</td>
+<td>Variables defined with <code>=</code> inside <code>def</code></td>
+</tr>
+<tr class="even">
+<td><strong>E</strong>nclosing</td>
+<td>In any enclosing <code>def</code> (closures)</td>
+<td>Outer function’s variables</td>
+</tr>
+<tr class="odd">
+<td><strong>G</strong>lobal</td>
+<td>At module (file) level</td>
+<td>Variables defined at the top of the script</td>
+</tr>
+<tr class="even">
+<td><strong>B</strong>uilt-in</td>
+<td>Python’s built-in namespace</td>
+<td><code>len</code>, <code>print</code>, <code>range</code>, <code>sum</code></td>
+</tr>
+</tbody>
+</table>
+<p>Python searches from L → E → G → B and uses the first match it finds.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> <span class="st">"global"</span>           <span class="co"># G</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> outer():</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> <span class="st">"enclosing"</span>    <span class="co"># E</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> inner():</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> <span class="st">"local"</span>    <span class="co"># L</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(value)       <span class="co"># prints "local"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    inner()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(value)           <span class="co"># prints "enclosing"</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>outer()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(value)               <span class="co"># prints "global"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-global-and-nonlocal" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-global-and-nonlocal">Real Python: <code>global</code> and <code>nonlocal</code></h4>
+<p>Use these sparingly — they are usually a sign that the design could be improved:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> increment():</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> count    <span class="co"># explicitly refer to the module-level variable</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>increment()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count)  <span class="co"># 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>nonlocal</code> does the same for the enclosing (E) scope inside nested functions.</p>
+<p>📖 <a href="https://realpython.com/python-scope-legb-rule/">Python Scope and the LEGB Rule</a></p>
+<hr>
+</section>
+</section>
+<section id="lists-25-min" class="level3">
+<h3 class="anchored" data-anchor-id="lists-25-min">3. Lists (25 min)</h3>
+<p>A list holds an ordered sequence of values:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rts <span class="op">=</span> [<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>, <span class="dv">510</span>, <span class="dv">390</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Indexing and slicing:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rts[<span class="dv">0</span>]      <span class="co"># 320  (first element)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>rts[<span class="op">-</span><span class="dv">1</span>]     <span class="co"># 390  (last element)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>rts[<span class="dv">1</span>:<span class="dv">3</span>]    <span class="co"># [415, 280]  (index 1 up to but not including 3)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Common methods:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>rts.append(<span class="dv">450</span>)         <span class="co"># add to the end</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>rts.sort()              <span class="co"># sort in place</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>rts.pop()               <span class="co"># remove and return the last element</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rts)                <span class="co"># number of elements</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">min</span>(rts), <span class="bu">max</span>(rts)      <span class="co"># minimum and maximum</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(rts) <span class="op">/</span> <span class="bu">len</span>(rts)     <span class="co"># mean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>List comprehension — a compact <code>for</code> loop:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only RTs within the valid range</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>valid <span class="op">=</span> [rt <span class="cf">for</span> rt <span class="kw">in</span> rts <span class="cf">if</span> <span class="dv">100</span> <span class="op">&lt;=</span> rt <span class="op">&lt;=</span> <span class="dv">1000</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="real-python-sort-vs-sorted" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-sort-vs-sorted">Real Python: <code>sort()</code> vs <code>sorted()</code></h4>
+<p><code>list.sort()</code> sorts <em>in place</em> and returns <code>None</code>; <code>sorted()</code> returns a new sorted list and leaves the original unchanged:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rts <span class="op">=</span> [<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>, <span class="dv">510</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sorted_copy <span class="op">=</span> <span class="bu">sorted</span>(rts)   <span class="co"># [280, 320, 415, 510] — original unchanged</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>rts.sort()                  <span class="co"># modifies rts in place</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort descending</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(rts, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by a custom key — e.g. absolute distance from 400 ms</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>rts.sort(key<span class="op">=</span><span class="kw">lambda</span> rt: <span class="bu">abs</span>(rt <span class="op">-</span> <span class="dv">400</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-list-comprehensions-in-depth" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-list-comprehensions-in-depth">Real Python: List Comprehensions in Depth</h4>
+<p>A list comprehension has the form <code>[expression for item in iterable if condition]</code>. The <code>if</code> part is optional:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rts <span class="op">=</span> [<span class="dv">320</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">415</span>, <span class="dv">1200</span>, <span class="dv">280</span>, <span class="dv">510</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Map: convert to seconds</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>rts_sec <span class="op">=</span> [rt <span class="op">/</span> <span class="dv">1000</span> <span class="cf">for</span> rt <span class="kw">in</span> rts]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter: keep valid RTs only</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>valid    <span class="op">=</span> [rt <span class="cf">for</span> rt <span class="kw">in</span> rts <span class="cf">if</span> <span class="dv">100</span> <span class="op">&lt;=</span> rt <span class="op">&lt;=</span> <span class="dv">1000</span>]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Map + filter together</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>valid_sec <span class="op">=</span> [rt <span class="op">/</span> <span class="dv">1000</span> <span class="cf">for</span> rt <span class="kw">in</span> rts <span class="cf">if</span> <span class="dv">100</span> <span class="op">&lt;=</span> rt <span class="op">&lt;=</span> <span class="dv">1000</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>When to prefer a regular loop over a comprehension (from Real Python best practices):</strong></p>
+<ul>
+<li>The comprehension spans multiple lines with complex logic → use a <code>for</code> loop</li>
+<li>You need side effects (e.g., <code>print</code>) inside the loop → use a <code>for</code> loop</li>
+<li>Keep comprehensions flat: avoid deeply nested ones</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Avoid — hard to read</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> [[row[i] <span class="cf">for</span> row <span class="kw">in</span> matrix] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Prefer — explicit loop for complex nesting</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>transposed <span class="op">=</span> []</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    transposed.append([row[i] <span class="cf">for</span> row <span class="kw">in</span> matrix])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>📖 <a href="https://realpython.com/python-list/">Python’s <code>list</code> Data Type</a> · <a href="https://realpython.com/list-comprehension-python/">When to Use a List Comprehension</a> · <a href="https://realpython.com/ref/best-practices/comprehensions/">Comprehensions Best Practices</a></p>
+<hr>
+</section>
+</section>
+<section id="dictionaries-25-min" class="level3">
+<h3 class="anchored" data-anchor-id="dictionaries-25-min">4. Dictionaries (25 min)</h3>
+<p>A dictionary maps keys to values — ideal for labelled data:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>trial <span class="op">=</span> {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"subject_id"</span>: <span class="st">"P01"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"condition"</span>: <span class="st">"congruent"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rt_ms"</span>: <span class="dv">412</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"correct"</span>: <span class="va">True</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Accessing values:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>trial[<span class="st">"rt_ms"</span>]              <span class="co"># 412</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>trial.get(<span class="st">"accuracy"</span>, <span class="va">None</span>) <span class="co"># None (key doesn't exist — no error)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Adding and updating:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>trial[<span class="st">"block"</span>] <span class="op">=</span> <span class="dv">2</span>          <span class="co"># add new key</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>trial[<span class="st">"rt_ms"</span>] <span class="op">=</span> <span class="dv">398</span>        <span class="co"># update existing key</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Iterating:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> trial.items():</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>List of dicts — standard format for experiment data:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> [</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">1</span>, <span class="st">"rt"</span>: <span class="dv">320</span>, <span class="st">"correct"</span>: <span class="va">True</span>},</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">2</span>, <span class="st">"rt"</span>: <span class="dv">510</span>, <span class="st">"correct"</span>: <span class="va">False</span>},</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">3</span>, <span class="st">"rt"</span>: <span class="dv">390</span>, <span class="st">"correct"</span>: <span class="va">True</span>},</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean RT across correct trials only</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>correct_rts <span class="op">=</span> [r[<span class="st">"rt"</span>] <span class="cf">for</span> r <span class="kw">in</span> results <span class="cf">if</span> r[<span class="st">"correct"</span>]]</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>mean_rt <span class="op">=</span> <span class="bu">sum</span>(correct_rts) <span class="op">/</span> <span class="bu">len</span>(correct_rts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="real-python-dict.get-and-dict.setdefault" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-dict.get-and-dict.setdefault">Real Python: <code>dict.get()</code> and <code>dict.setdefault()</code></h4>
+<p><code>dict.get(key, default)</code> returns a fallback value when the key is missing — no <code>KeyError</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>trial <span class="op">=</span> {<span class="st">"rt_ms"</span>: <span class="dv">412</span>, <span class="st">"correct"</span>: <span class="va">True</span>}</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> trial.get(<span class="st">"accuracy"</span>, <span class="va">None</span>)   <span class="co"># None — key missing, no crash</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>block    <span class="op">=</span> trial.get(<span class="st">"block"</span>, <span class="dv">1</span>)         <span class="co"># 1   — sensible default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>dict.setdefault(key, default)</code> goes one step further: it <em>also inserts</em> the default if the key is absent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>trial.setdefault(<span class="st">"notes"</span>, <span class="st">""</span>)   <span class="co"># adds "notes": "" if not present</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-dictionary-comprehensions" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-dictionary-comprehensions">Real Python: Dictionary Comprehensions</h4>
+<p>Like list comprehensions, but produce a dict:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>subjects <span class="op">=</span> [<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>mean_rts <span class="op">=</span> [<span class="fl">342.1</span>, <span class="fl">419.6</span>, <span class="fl">378.0</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a lookup dict from two lists</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>rt_lookup <span class="op">=</span> {subj: rt <span class="cf">for</span> subj, rt <span class="kw">in</span> <span class="bu">zip</span>(subjects, mean_rts)}</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># {"P01": 342.1, "P02": 419.6, "P03": 378.0}</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Invert a dict (swap keys and values)</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>inverted <span class="op">=</span> {v: k <span class="cf">for</span> k, v <span class="kw">in</span> rt_lookup.items()}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-collections.defaultdict-for-grouping" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-collections.defaultdict-for-grouping">Real Python: <code>collections.defaultdict</code> for Grouping</h4>
+<p>When grouping data (e.g., all trials per condition), <code>defaultdict</code> eliminates the boilerplate of checking whether a key exists:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> [</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"condition"</span>: <span class="st">"congruent"</span>,   <span class="st">"rt"</span>: <span class="dv">320</span>},</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"condition"</span>: <span class="st">"incongruent"</span>, <span class="st">"rt"</span>: <span class="dv">510</span>},</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"condition"</span>: <span class="st">"congruent"</span>,   <span class="st">"rt"</span>: <span class="dv">390</span>},</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Without defaultdict — requires key existence check</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>by_condition <span class="op">=</span> {}</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> results:</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    cond <span class="op">=</span> r[<span class="st">"condition"</span>]</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> cond <span class="kw">not</span> <span class="kw">in</span> by_condition:</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>        by_condition[cond] <span class="op">=</span> []</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    by_condition[cond].append(r[<span class="st">"rt"</span>])</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co"># With defaultdict — cleaner</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>by_condition <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> results:</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    by_condition[r[<span class="st">"condition"</span>]].append(r[<span class="st">"rt"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>📖 <a href="https://realpython.com/python-dicts/">Dictionaries in Python</a> · <a href="https://realpython.com/python-dictionary-comprehension/">Python Dictionary Comprehensions</a> · <a href="https://realpython.com/python-defaultdict/">Using <code>defaultdict</code></a></p>
+<hr>
+</section>
+</section>
+<section id="tuples-and-sets-15-min" class="level3">
+<h3 class="anchored" data-anchor-id="tuples-and-sets-15-min">5. Tuples and Sets (15 min)</h3>
+<p><strong>Tuples</strong> — like lists but immutable (cannot be changed after creation):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)   <span class="co"># screen resolution — should not change</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> coords           <span class="co"># unpacking</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use tuples for fixed structured data (coordinates, RGB colours, etc.).</p>
+<p><strong>Sets</strong> — unordered collections with no duplicates:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>subjects_a <span class="op">=</span> {<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>}</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>subjects_b <span class="op">=</span> {<span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P04"</span>}</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>subjects_a <span class="op">&amp;</span> subjects_b   <span class="co"># intersection: {"P02", "P03"}</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>subjects_a <span class="op">|</span> subjects_b   <span class="co"># union: {"P01", "P02", "P03", "P04"}</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>subjects_a <span class="op">-</span> subjects_b   <span class="co"># difference: {"P01"}</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicates from a list</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>conditions <span class="op">=</span> [<span class="st">"cong"</span>, <span class="st">"incong"</span>, <span class="st">"cong"</span>, <span class="st">"cong"</span>, <span class="st">"incong"</span>]</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>unique <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(conditions))  <span class="co"># ["cong", "incong"]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="real-python-lists-vs-tuples-when-to-choose-which" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-lists-vs-tuples-when-to-choose-which">Real Python: Lists vs Tuples — When to Choose Which</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 44%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Characteristic</th>
+<th><code>list</code></th>
+<th><code>tuple</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mutability</td>
+<td>Mutable — can add, remove, change elements</td>
+<td>Immutable — fixed after creation</td>
+</tr>
+<tr class="even">
+<td>Typical use</td>
+<td>Homogeneous sequences that grow/shrink</td>
+<td>Fixed records with heterogeneous fields</td>
+</tr>
+<tr class="odd">
+<td>Example</td>
+<td>All RTs from one block</td>
+<td><code>(subject_id, session, rt_ms)</code></td>
+</tr>
+<tr class="even">
+<td>As dict key?</td>
+<td>❌ Not allowed (unhashable)</td>
+<td>✅ Allowed (hashable)</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tuple as a dict key — useful for condition x block lookups</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>lookup <span class="op">=</span> {}</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>lookup[(<span class="st">"congruent"</span>, <span class="dv">1</span>)] <span class="op">=</span> [<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>]</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>lookup[(<span class="st">"incongruent"</span>, <span class="dv">1</span>)] <span class="op">=</span> [<span class="dv">510</span>, <span class="dv">488</span>, <span class="dv">530</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-namedtuple-self-documenting-tuples" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-namedtuple-self-documenting-tuples">Real Python: <code>namedtuple</code> — Self-Documenting Tuples</h4>
+<p><code>collections.namedtuple</code> gives fields readable names without the overhead of a full class:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> namedtuple</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>Trial <span class="op">=</span> namedtuple(<span class="st">"Trial"</span>, [<span class="st">"subject"</span>, <span class="st">"condition"</span>, <span class="st">"rt_ms"</span>, <span class="st">"correct"</span>])</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> Trial(<span class="st">"P01"</span>, <span class="st">"congruent"</span>, <span class="dv">412</span>, <span class="va">True</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t.rt_ms)      <span class="co"># 412</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t.correct)    <span class="co"># True</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Still works as a regular tuple:</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>subject, condition, rt_ms, correct <span class="op">=</span> t</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-set-operations-and-frozenset" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-set-operations-and-frozenset">Real Python: Set Operations and <code>frozenset</code></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>completed_day1 <span class="op">=</span> {<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P04"</span>}</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>completed_day2 <span class="op">=</span> {<span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P05"</span>}</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Subjects who completed both sessions</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>both <span class="op">=</span> completed_day1 <span class="op">&amp;</span> completed_day2    <span class="co"># {"P02", "P03"}</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Subjects who dropped out after day 1</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>dropped <span class="op">=</span> completed_day1 <span class="op">-</span> completed_day2  <span class="co"># {"P01", "P04"}</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Is day2 a subset of day1?</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>completed_day2.issubset(completed_day1)    <span class="co"># False — P05 not in day1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A <code>frozenset</code> is an immutable set — it can be used as a dictionary key or stored inside another set:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store a combination of conditions as a frozenset key</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>combo_rts <span class="op">=</span> {}</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>combo_rts[<span class="bu">frozenset</span>([<span class="st">"congruent"</span>, <span class="st">"high_load"</span>])] <span class="op">=</span> [<span class="dv">340</span>, <span class="dv">365</span>, <span class="dv">320</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>📖 <a href="https://realpython.com/python-tuple/">Python’s <code>tuple</code> Data Type</a> · <a href="https://realpython.com/python-lists-tuples/">Lists vs Tuples in Python</a> · <a href="https://realpython.com/python-sets/">Sets in Python</a> · <a href="https://realpython.com/python-data-structures/">Common Python Data Structures</a></p>
+<hr>
+</section>
+</section>
+<section id="file-io-text-files-15-min" class="level3">
+<h3 class="anchored" data-anchor-id="file-io-text-files-15-min">6. File I/O — Text Files (15 min)</h3>
+<p><strong>Writing a text file:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 1: RT=320ms</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 2: RT=415ms</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Reading a text file:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line.strip())   <span class="co"># strip() removes trailing newline</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Always use <code>with open(...)</code></strong> — it automatically closes the file even if an error occurs.</p>
+</blockquote>
+<section id="real-python-file-open-modes" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-file-open-modes">Real Python: File Open Modes</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>"r"</code></td>
+<td>Read text (default) — error if file missing</td>
+</tr>
+<tr class="even">
+<td><code>"w"</code></td>
+<td>Write text — creates or <strong>overwrites</strong></td>
+</tr>
+<tr class="odd">
+<td><code>"a"</code></td>
+<td>Append text — adds to end, creates if missing</td>
+</tr>
+<tr class="even">
+<td><code>"x"</code></td>
+<td>Exclusive create — error if file exists</td>
+</tr>
+<tr class="odd">
+<td><code>"rb"</code> / <code>"wb"</code></td>
+<td>Read/Write binary (for images, pickled data, etc.)</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Append a new line to an existing log</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> f:</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 3: RT=390ms</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-reading-strategies" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-reading-strategies">Real Python: Reading Strategies</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the whole file as one string</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> f.read()</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all lines into a list</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> f.readlines()     <span class="co"># each element includes the "\n"</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate line by line — memory-efficient for large files</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:            <span class="co"># preferred for large files</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        process(line.strip())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-specifying-encoding" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-specifying-encoding">Real Python: Specifying Encoding</h4>
+<p>Always specify <code>encoding="utf-8"</code> when text might contain non-ASCII characters:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Réaction: 420 ms</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>📖 <a href="https://realpython.com/read-write-files-python/">Reading and Writing Files in Python</a> · <a href="https://realpython.com/working-with-files-in-python/">Working With Files in Python</a></p>
+<hr>
+</section>
+</section>
+<section id="csv-files-20-min" class="level3">
+<h3 class="anchored" data-anchor-id="csv-files-20-min">7. CSV Files (20 min)</h3>
+<p>CSV (comma-separated values) is the standard format for behavioural data.</p>
+<p><strong>Writing CSV:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>fieldnames <span class="op">=</span> [<span class="st">"trial"</span>, <span class="st">"condition"</span>, <span class="st">"rt_ms"</span>, <span class="st">"correct"</span>]</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">1</span>, <span class="st">"condition"</span>: <span class="st">"congruent"</span>,   <span class="st">"rt_ms"</span>: <span class="dv">320</span>, <span class="st">"correct"</span>: <span class="va">True</span>},</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">2</span>, <span class="st">"condition"</span>: <span class="st">"incongruent"</span>, <span class="st">"rt_ms"</span>: <span class="dv">510</span>, <span class="st">"correct"</span>: <span class="va">False</span>},</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>) <span class="im">as</span> f:</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>fieldnames)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    writer.writeheader()</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>    writer.writerows(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Reading CSV:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(row[<span class="st">"condition"</span>], row[<span class="st">"rt_ms"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="real-python-why-newline-when-opening-for-csv" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-why-newline-when-opening-for-csv">Real Python: Why <code>newline=""</code> When Opening for CSV</h4>
+<p>On Windows, opening a file in text mode adds an extra <code>\r</code> to each line, causing double-blank-lines in the output. Passing <code>newline=""</code> hands newline control entirely to the <code>csv</code> module, which handles it correctly on all platforms:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always open CSV files with newline="" on write</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>fieldnames)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-dictreader-key-points" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-dictreader-key-points">Real Python: <code>DictReader</code> Key Points</h4>
+<ul>
+<li>The first row of the CSV is automatically used as field names (the dict keys)</li>
+<li>Every subsequent row becomes an <code>OrderedDict</code> (behaves like a regular dict)</li>
+<li>All values are read as <strong>strings</strong> — convert explicitly where needed:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>) <span class="im">as</span> f:</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> []</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>        data.append({</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"trial"</span>:   <span class="bu">int</span>(row[<span class="st">"trial"</span>]),</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"rt_ms"</span>:   <span class="bu">float</span>(row[<span class="st">"rt_ms"</span>]),</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"correct"</span>: row[<span class="st">"correct"</span>] <span class="op">==</span> <span class="st">"True"</span>,   <span class="co"># str → bool</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>        })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-dictwriter-key-points" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-dictwriter-key-points">Real Python: <code>DictWriter</code> Key Points</h4>
+<ul>
+<li><code>fieldnames</code> is <strong>required</strong> and sets the column order</li>
+<li><code>writeheader()</code> writes the first row; call it before any data rows</li>
+<li>Use <code>extrasaction="ignore"</code> if your dicts have extra keys you don’t want in the file:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>[<span class="st">"trial"</span>, <span class="st">"rt_ms"</span>], extrasaction<span class="op">=</span><span class="st">"ignore"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-python-non-standard-delimiters" class="level4">
+<h4 class="anchored" data-anchor-id="real-python-non-standard-delimiters">Real Python: Non-Standard Delimiters</h4>
+<p><code>csv.reader</code> / <code>csv.writer</code> accept a <code>delimiter</code> argument for TSV (tab-separated) and other formats:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a tab-separated file</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.tsv"</span>) <span class="im">as</span> f:</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f, delimiter<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>📖 <a href="https://realpython.com/python-csv/">Reading and Writing CSV Files in Python</a> · <a href="https://realpython.com/ref/stdlib/csv/">csv Standard Library Reference</a></p>
+<hr>
+</section>
+</section>
+</section>
+<section id="neuroscience-connection" class="level2">
+<h2 class="anchored" data-anchor-id="neuroscience-connection">Neuroscience Connection</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 78%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Experiment use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Function + docstring</td>
+<td>Encapsulate a scoring algorithm and document its contract</td>
+</tr>
+<tr class="even">
+<td>Default parameter</td>
+<td><code>threshold=500</code> that callers can override without breaking existing code</td>
+</tr>
+<tr class="odd">
+<td>List</td>
+<td>Store all reaction times from a block</td>
+</tr>
+<tr class="even">
+<td>List comprehension</td>
+<td>Filter valid trials or convert units in one line</td>
+</tr>
+<tr class="odd">
+<td>Dictionary</td>
+<td>Represent one trial with labelled fields</td>
+</tr>
+<tr class="even">
+<td><code>defaultdict</code></td>
+<td>Group trials by condition without boilerplate</td>
+</tr>
+<tr class="odd">
+<td>List of dicts</td>
+<td>Full experiment dataset — one dict per trial</td>
+</tr>
+<tr class="even">
+<td>Tuple</td>
+<td>Fixed stimulus parameters (position, colour, duration)</td>
+</tr>
+<tr class="odd">
+<td><code>namedtuple</code></td>
+<td>Readable trial records that unpack like tuples</td>
+</tr>
+<tr class="even">
+<td>Set</td>
+<td>Find which subjects completed all sessions</td>
+</tr>
+<tr class="odd">
+<td>CSV file</td>
+<td>Save and reload experiment results; compatible with R, MATLAB, Excel</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="tools-this-week" class="level2">
+<h2 class="anchored" data-anchor-id="tools-this-week">Tools This Week</h2>
+<ul>
+<li>Python standard library: <code>csv</code>, <code>collections</code>, built-in <code>open()</code></li>
+<li>No additional packages needed beyond Week 01 setup</li>
+</ul>
+<hr>
+</section>
+<section id="assignment" class="level2">
+<h2 class="anchored" data-anchor-id="assignment">Assignment</h2>
+<p>Work through <a href="lpthw_ex15-17_37-39.ipynb"><code>lpthw_ex15-17_37-39.ipynb</code></a> for hands-on file and data structure practice.</p>
+<p>Then create a new notebook <code>week-03-assignment.ipynb</code> and:</p>
+<p>Key exercises: - Build a list-of-dicts from raw trial data - Compute accuracy and mean RT per condition using loops and list comprehensions - Write the results to a CSV file, then read it back and verify the values</p>
+<p>Submit by pushing to your GitHub repository before Week 04.</p>
+<hr>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<section id="official-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="official-documentation">Official Documentation</h3>
+<ul>
+<li><a href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions">Python Functions</a></li>
+<li><a href="https://docs.python.org/3/reference/executionmodel.html#naming-and-binding">Python Scope</a></li>
+<li><a href="https://docs.python.org/3/tutorial/datastructures.html">Python Data Structures</a></li>
+<li><a href="https://docs.python.org/3/library/csv.html">Python <code>csv</code> module</a></li>
+<li><a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Reading and Writing Files</a></li>
+</ul>
+</section>
+<section id="real-python-functions-scope" class="level3">
+<h3 class="anchored" data-anchor-id="real-python-functions-scope">Real Python — Functions &amp; Scope</h3>
+<ul>
+<li><a href="https://realpython.com/defining-your-own-python-function/">Defining Your Own Python Function</a></li>
+<li><a href="https://realpython.com/python-return-statement/">The Python <code>return</code> Statement: Usage and Best Practices</a></li>
+<li><a href="https://realpython.com/python-optional-arguments/">Using Python Optional Arguments When Defining Functions</a></li>
+<li><a href="https://realpython.com/python-kwargs-and-args/">Python <code>args</code> and <code>kwargs</code>: Demystified</a></li>
+<li><a href="https://realpython.com/how-to-write-docstrings-in-python/">How to Write Docstrings in Python</a></li>
+<li><a href="https://realpython.com/python-scope-legb-rule/">Python Scope and the LEGB Rule: Resolving Names in Your Code</a></li>
+</ul>
+</section>
+<section id="real-python-lists" class="level3">
+<h3 class="anchored" data-anchor-id="real-python-lists">Real Python — Lists</h3>
+<ul>
+<li><a href="https://realpython.com/python-list/">Python’s <code>list</code> Data Type: A Deep Dive With Examples</a></li>
+<li><a href="https://realpython.com/list-comprehension-python/">When to Use a List Comprehension in Python</a></li>
+<li><a href="https://realpython.com/ref/best-practices/comprehensions/">Comprehensions Best Practices</a></li>
+<li><a href="https://realpython.com/python-enumerate/">Python <code>enumerate()</code>: Simplify Loops That Need Counters</a></li>
+</ul>
+</section>
+<section id="real-python-dictionaries" class="level3">
+<h3 class="anchored" data-anchor-id="real-python-dictionaries">Real Python — Dictionaries</h3>
+<ul>
+<li><a href="https://realpython.com/python-dicts/">Dictionaries in Python</a></li>
+<li><a href="https://realpython.com/python-dictionary-comprehension/">Python Dictionary Comprehensions</a></li>
+<li><a href="https://realpython.com/python-defaultdict/">Using the Python <code>defaultdict</code> Type for Handling Missing Keys</a></li>
+<li><a href="https://realpython.com/python-data-structures/">Common Python Data Structures (Guide)</a></li>
+</ul>
+</section>
+<section id="real-python-tuples-sets" class="level3">
+<h3 class="anchored" data-anchor-id="real-python-tuples-sets">Real Python — Tuples &amp; Sets</h3>
+<ul>
+<li><a href="https://realpython.com/python-tuple/">Python’s <code>tuple</code> Data Type: A Deep Dive With Examples</a></li>
+<li><a href="https://realpython.com/python-lists-tuples/">Lists vs Tuples in Python</a></li>
+<li><a href="https://realpython.com/python-sets/">Sets in Python</a></li>
+</ul>
+</section>
+<section id="real-python-file-io" class="level3">
+<h3 class="anchored" data-anchor-id="real-python-file-io">Real Python — File I/O</h3>
+<ul>
+<li><a href="https://realpython.com/read-write-files-python/">Reading and Writing Files in Python (Guide)</a></li>
+<li><a href="https://realpython.com/working-with-files-in-python/">Working With Files in Python</a></li>
+</ul>
+</section>
+<section id="real-python-csv" class="level3">
+<h3 class="anchored" data-anchor-id="real-python-csv">Real Python — CSV</h3>
+<ul>
+<li><a href="https://realpython.com/python-csv/">Reading and Writing CSV Files in Python</a></li>
+<li><a href="https://realpython.com/courses/reading-and-writing-csv-files/">Reading and Writing CSV Files (Course)</a></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="what-comes-next" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-next">What Comes Next</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 94%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>04</td>
+<td>NumPy — faster, more powerful than lists for numerical data</td>
+</tr>
+<tr class="even">
+<td>05</td>
+<td>Matplotlib — visualize your CSV data</td>
+</tr>
+<tr class="odd">
+<td>06</td>
+<td>PsychoPy — write data in CSV format directly from an experiment</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

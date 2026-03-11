@@ -43,6 +43,24 @@ plt.show()
 
 Always use the object-oriented interface when making multi-panel figures.
 
+#### Real Python: Figure and Axes Architecture
+
+A `Figure` is the entire canvas. An `Axes` is one individual plot within the canvas. A `Figure` can have one or many `Axes`.
+
+The **object-oriented (OO) approach** is preferred for anything beyond a single quick plot. It makes multi-panel figures, loop-based figure generation, and saving to files much cleaner.
+
+`plt.subplots()` is the recommended entry point — it creates a `Figure` and one or more `Axes` in one call:
+
+```python
+fig, ax = plt.subplots()              # 1 panel
+fig, axes = plt.subplots(2, 3)        # 2 rows × 3 cols → axes[row, col]
+fig, (ax1, ax2) = plt.subplots(1, 2)  # unpack directly
+```
+
+The stateful `plt.plot()` approach works for simple one-off plots in a notebook, but avoid it in scripts and functions — it is harder to predict which figure is "active".
+
+📖 [Python Plotting With Matplotlib (Guide)](https://realpython.com/python-matplotlib-guide/)
+
 ---
 
 ### 2. Line Plot (15 min)
@@ -67,6 +85,30 @@ plt.tight_layout()
 plt.show()
 ```
 
+#### Real Python: Customizing Line Styles and Colors
+
+```python
+# Color: named, hex, RGB tuple, grayscale string
+ax.plot(x, y, color="steelblue")
+ax.plot(x, y, color="#4C72B0")
+ax.plot(x, y, color=(0.2, 0.4, 0.8))
+ax.plot(x, y, color="0.5")   # 50% grey
+
+# Line style
+ax.plot(x, y, linestyle="--")   # dashed
+ax.plot(x, y, linestyle=":")    # dotted
+ax.plot(x, y, linestyle="-.")   # dash-dot
+
+# Markers
+ax.plot(x, y, marker="o", markersize=5)   # circles at each data point
+ax.plot(x, y, marker="s")                 # squares
+
+# Combined shorthand
+ax.plot(x, y, "b--o")   # blue, dashed, with circle markers
+```
+
+📖 [Python Plotting With Matplotlib (Guide)](https://realpython.com/python-matplotlib-guide/)
+
 ---
 
 ### 3. Scatter Plot (15 min)
@@ -87,6 +129,25 @@ plt.show()
 ```
 
 `s` controls marker size; `alpha` controls transparency (0 = invisible, 1 = opaque).
+
+#### Real Python: Encoding a Third Variable with Color or Size
+
+Use the `c` parameter to color points by a third variable, making scatter plots show three dimensions at once:
+
+```python
+rng = np.random.default_rng(0)
+mean_rt  = rng.normal(400, 80, 20)
+accuracy = rng.uniform(0.6, 1.0, 20)
+n_trials = rng.integers(10, 60, 20)   # 3rd variable: number of trials
+
+sc = ax.scatter(mean_rt, accuracy,
+                c=n_trials,          # color encodes trial count
+                cmap="viridis",      # perceptually uniform colormap
+                s=60, alpha=0.8)
+fig.colorbar(sc, ax=ax, label="Number of trials")
+```
+
+Avoid using both `c` and `s` simultaneously to encode two variables — the figure becomes unreadable.
 
 ---
 
@@ -133,6 +194,21 @@ plt.show()
 
 Choose `bins` based on your data size — typically 15–30 bins for 100–500 data points.
 
+#### Real Python: Choosing Bins and Showing Density
+
+- **Too few bins** → hides the shape of the distribution. **Too many bins** → noisy, shows sampling artifacts.
+- `bins="auto"` lets matplotlib choose (uses Sturges' or Freedman-Diaconis rule). `bins=np.arange(100, 1000, 50)` gives exact bin edges.
+- To compare two distributions on the same plot, use `alpha` and `density=True` (normalizes area to 1):
+
+```python
+fig, ax = plt.subplots()
+ax.hist(rts_congruent,   bins=20, density=True, alpha=0.6, label="Congruent",   color="steelblue")
+ax.hist(rts_incongruent, bins=20, density=True, alpha=0.6, label="Incongruent", color="coral")
+ax.set_xlabel("RT (ms)")
+ax.set_ylabel("Probability density")
+ax.legend()
+```
+
 ---
 
 ### 6. Multi-panel Figures with `subplots()` (20 min)
@@ -161,6 +237,24 @@ plt.tight_layout()
 plt.show()
 ```
 
+#### Real Python: Shared Axes and Figure-Level Labels
+
+```python
+# Share y-axis across columns so comparison is fair
+fig, axes = plt.subplots(1, 2, figsize=(9, 4), sharey=True)
+
+# Add a figure-level title above all panels
+fig.suptitle("Posner Task Summary", fontsize=14, fontweight="bold")
+
+# Add a single x-label spanning both panels
+fig.supxlabel("Reaction time (ms)")
+
+plt.tight_layout()
+```
+
+- `sharex=True` / `sharey=True` links axis limits across panels — essential for fair comparisons.
+- `plt.tight_layout()` adjusts spacing automatically. If suptitle gets clipped, add `rect=[0, 0, 1, 0.95]`.
+
 ---
 
 ### 7. Annotations and Saving (10 min)
@@ -182,6 +276,25 @@ fig.savefig("summary_figure.pdf", bbox_inches="tight")   # vector format for pap
 ```
 
 Use `bbox_inches="tight"` to prevent labels from being cut off.
+
+#### Real Python: Publication-Quality Figures
+
+```python
+# Use a style sheet for a cleaner look
+plt.style.use("seaborn-v0_8-whitegrid")
+
+# Vector format (PDF/SVG) for papers; PNG for slides
+fig.savefig("results.pdf", dpi=300, bbox_inches="tight")
+fig.savefig("results.svg", bbox_inches="tight")   # editable in Inkscape
+
+# Set figure dimensions for a specific journal column width (e.g., 3.5 inches)
+fig, ax = plt.subplots(figsize=(3.5, 2.8))   # single-column figure
+```
+
+- Always use `bbox_inches="tight"` to prevent labels from being cut off.
+- Call `fig.savefig()` on the **Figure object**, not `plt.savefig()` — this guarantees you save the right figure.
+
+📖 [Python Plotting With Matplotlib (Guide)](https://realpython.com/python-matplotlib-guide/)
 
 ---
 
@@ -232,10 +345,21 @@ Submit by pushing to your GitHub repository before Week 06.
 
 ## Resources
 
+### Official Documentation
 - [Matplotlib Tutorials](https://matplotlib.org/stable/tutorials/index.html)
 - [Matplotlib Cheat Sheet](https://matplotlib.org/cheatsheets/)
 - [Choosing a chart type](https://matplotlib.org/stable/gallery/index.html)
 - [Scientific visualization best practices](https://www.nature.com/articles/s41551-021-00779-8)
+
+### Real Python — Matplotlib Fundamentals
+- [Python Plotting With Matplotlib (Guide)](https://realpython.com/python-matplotlib-guide/)
+
+### Real Python — Plot Types & Customization
+- [Matplotlib Scatter Plots: How to Visualize Relationships](https://realpython.com/mpl-scatter/)
+- [Matplotlib Bar Charts: How to Visualize Categorical Data](https://realpython.com/mpl-bar-chart/)
+
+### Real Python — Visualization Best Practices
+- [Effective Data Visualization in Python](https://realpython.com/python-matplotlib-guide/)
 
 ---
 
