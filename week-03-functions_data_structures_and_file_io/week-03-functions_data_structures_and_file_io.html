@@ -113,8 +113,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="in-class-topics" class="level2">
 <h2 class="anchored" data-anchor-id="in-class-topics">In-Class Topics</h2>
-<section id="functions-30-min" class="level3">
-<h3 class="anchored" data-anchor-id="functions-30-min">1. Functions (30 min)</h3>
+<section id="functions" class="level3">
+<h3 class="anchored" data-anchor-id="functions">1. Functions</h3>
 <p>Defining a function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
@@ -135,8 +135,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>classify_rt(<span class="dv">420</span>)                    <span class="co"># uses default threshold=500</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>classify_rt(<span class="dv">420</span>, threshold<span class="op">=</span><span class="dv">400</span>)     <span class="co"># overrides default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="real-python-docstrings" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-docstrings">Real Python: Docstrings</h4>
+<section id="docstrings" class="level4">
+<h4 class="anchored" data-anchor-id="docstrings">Docstrings</h4>
 <p>Every function should have a <em>docstring</em> — a string literal immediately after <code>def</code> that documents what the function does, what it accepts, and what it returns:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_rt(rt_list):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return the arithmetic mean of a list of reaction times.</span></span>
@@ -153,8 +153,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(rt_list) <span class="op">/</span> <span class="bu">len</span>(rt_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Access it with <code>help(mean_rt)</code> or <code>mean_rt.__doc__</code>.</p>
 </section>
-<section id="real-python-returning-multiple-values" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-returning-multiple-values">Real Python: Returning Multiple Values</h4>
+<section id="returning-multiple-values" class="level4">
+<h4 class="anchored" data-anchor-id="returning-multiple-values">Returning Multiple Values</h4>
 <p>Python functions can return multiple values packaged as a tuple — the caller can unpack them directly:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rt_stats(rt_list):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return mean, minimum, and maximum reaction time."""</span></span>
@@ -163,8 +163,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mean, lo, hi <span class="op">=</span> rt_stats([<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>, <span class="dv">510</span>])</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean: </span><span class="sc">{</span>mean<span class="sc">:.1f}</span><span class="ss">, Range: </span><span class="sc">{</span>lo<span class="sc">}</span><span class="ss">–</span><span class="sc">{</span>hi<span class="sc">}</span><span class="ss"> ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-args-accept-any-number-of-positional-arguments" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-args-accept-any-number-of-positional-arguments">Real Python: <code>*args</code> — Accept Any Number of Positional Arguments</h4>
+<section id="args-accept-any-number-of-positional-arguments" class="level4">
+<h4 class="anchored" data-anchor-id="args-accept-any-number-of-positional-arguments"><code>*args</code> — Accept Any Number of Positional Arguments</h4>
 <p>Prefix a parameter with <code>*</code> to receive extra positional arguments as a tuple:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_rts(<span class="op">*</span>rts):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Sum any number of reaction times."""</span></span>
@@ -172,8 +172,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>add_rts(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>)   <span class="co"># rts = (100, 200, 300)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-mutable-default-argument-gotcha" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-mutable-default-argument-gotcha">Real Python: Mutable Default Argument Gotcha</h4>
+<section id="mutable-default-argument-gotcha" class="level4">
+<h4 class="anchored" data-anchor-id="mutable-default-argument-gotcha">Mutable Default Argument Gotcha</h4>
 <p><strong>Never use a mutable object (list, dict) as a default argument.</strong> The default is created once when <code>def</code> is executed and shared across all calls:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">BUG</span><span class="co"> — the list persists between calls!</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> record(rt, history<span class="op">=</span>[]):</span>
@@ -193,8 +193,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="scope-10-min" class="level3">
-<h3 class="anchored" data-anchor-id="scope-10-min">2. Scope (10 min)</h3>
+<section id="scope" class="level3">
+<h3 class="anchored" data-anchor-id="scope">2. Scope</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span>  <span class="co"># global variable</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> show():</span>
@@ -206,8 +206,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>Rule of thumb:</strong> Functions should receive data through parameters and return results with <code>return</code>. Avoid relying on global variables inside functions.</p>
 </blockquote>
-<section id="real-python-the-legb-rule" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-the-legb-rule">Real Python: The LEGB Rule</h4>
+<section id="the-legb-rule" class="level4">
+<h4 class="anchored" data-anchor-id="the-legb-rule">The LEGB Rule</h4>
 <p>Python resolves names in a specific order — <strong>L E G B</strong>:</p>
 <table class="caption-top table">
 <colgroup>
@@ -261,8 +261,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>outer()</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(value)               <span class="co"># prints "global"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-global-and-nonlocal" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-global-and-nonlocal">Real Python: <code>global</code> and <code>nonlocal</code></h4>
+<section id="global-and-nonlocal" class="level4">
+<h4 class="anchored" data-anchor-id="global-and-nonlocal"><code>global</code> and <code>nonlocal</code></h4>
 <p>Use these sparingly — they are usually a sign that the design could be improved:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -277,8 +277,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="lists-25-min" class="level3">
-<h3 class="anchored" data-anchor-id="lists-25-min">3. Lists (25 min)</h3>
+<section id="lists" class="level3">
+<h3 class="anchored" data-anchor-id="lists">3. Lists</h3>
 <p>A list holds an ordered sequence of values:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rts <span class="op">=</span> [<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>, <span class="dv">510</span>, <span class="dv">390</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Indexing and slicing:</strong></p>
@@ -295,8 +295,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>List comprehension — a compact <code>for</code> loop:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only RTs within the valid range</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>valid <span class="op">=</span> [rt <span class="cf">for</span> rt <span class="kw">in</span> rts <span class="cf">if</span> <span class="dv">100</span> <span class="op">&lt;=</span> rt <span class="op">&lt;=</span> <span class="dv">1000</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="real-python-sort-vs-sorted" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-sort-vs-sorted">Real Python: <code>sort()</code> vs <code>sorted()</code></h4>
+<section id="sort-vs-sorted" class="level4">
+<h4 class="anchored" data-anchor-id="sort-vs-sorted"><code>sort()</code> vs <code>sorted()</code></h4>
 <p><code>list.sort()</code> sorts <em>in place</em> and returns <code>None</code>; <code>sorted()</code> returns a new sorted list and leaves the original unchanged:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rts <span class="op">=</span> [<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>, <span class="dv">510</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -309,8 +309,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by a custom key — e.g. absolute distance from 400 ms</span></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>rts.sort(key<span class="op">=</span><span class="kw">lambda</span> rt: <span class="bu">abs</span>(rt <span class="op">-</span> <span class="dv">400</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-list-comprehensions-in-depth" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-list-comprehensions-in-depth">Real Python: List Comprehensions in Depth</h4>
+<section id="list-comprehensions-in-depth" class="level4">
+<h4 class="anchored" data-anchor-id="list-comprehensions-in-depth">List Comprehensions in Depth</h4>
 <p>A list comprehension has the form <code>[expression for item in iterable if condition]</code>. The <code>if</code> part is optional:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rts <span class="op">=</span> [<span class="dv">320</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">415</span>, <span class="dv">1200</span>, <span class="dv">280</span>, <span class="dv">510</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -322,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Map + filter together</span></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>valid_sec <span class="op">=</span> [rt <span class="op">/</span> <span class="dv">1000</span> <span class="cf">for</span> rt <span class="kw">in</span> rts <span class="cf">if</span> <span class="dv">100</span> <span class="op">&lt;=</span> rt <span class="op">&lt;=</span> <span class="dv">1000</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>When to prefer a regular loop over a comprehension (from Real Python best practices):</strong></p>
+<p><strong>When to prefer a regular loop over a comprehension (best practices):</strong></p>
 <ul>
 <li>The comprehension spans multiple lines with complex logic → use a <code>for</code> loop</li>
 <li>You need side effects (e.g., <code>print</code>) inside the loop → use a <code>for</code> loop</li>
@@ -339,8 +339,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="dictionaries-25-min" class="level3">
-<h3 class="anchored" data-anchor-id="dictionaries-25-min">4. Dictionaries (25 min)</h3>
+<section id="dictionaries" class="level3">
+<h3 class="anchored" data-anchor-id="dictionaries">4. Dictionaries</h3>
+<p>📺 <a href="https://youtu.be/A1dz_WPWO90">Introduction to Dictionaries</a></p>
 <p>A dictionary maps keys to values — ideal for labelled data:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>trial <span class="op">=</span> {</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"subject_id"</span>: <span class="st">"P01"</span>,</span>
@@ -367,8 +368,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean RT across correct trials only</span></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>correct_rts <span class="op">=</span> [r[<span class="st">"rt"</span>] <span class="cf">for</span> r <span class="kw">in</span> results <span class="cf">if</span> r[<span class="st">"correct"</span>]]</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>mean_rt <span class="op">=</span> <span class="bu">sum</span>(correct_rts) <span class="op">/</span> <span class="bu">len</span>(correct_rts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="real-python-dict.get-and-dict.setdefault" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-dict.get-and-dict.setdefault">Real Python: <code>dict.get()</code> and <code>dict.setdefault()</code></h4>
+<section id="dict.get-and-dict.setdefault" class="level4">
+<h4 class="anchored" data-anchor-id="dict.get-and-dict.setdefault"><code>dict.get()</code> and <code>dict.setdefault()</code></h4>
 <p><code>dict.get(key, default)</code> returns a fallback value when the key is missing — no <code>KeyError</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>trial <span class="op">=</span> {<span class="st">"rt_ms"</span>: <span class="dv">412</span>, <span class="st">"correct"</span>: <span class="va">True</span>}</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -377,8 +378,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>dict.setdefault(key, default)</code> goes one step further: it <em>also inserts</em> the default if the key is absent:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>trial.setdefault(<span class="st">"notes"</span>, <span class="st">""</span>)   <span class="co"># adds "notes": "" if not present</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-dictionary-comprehensions" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-dictionary-comprehensions">Real Python: Dictionary Comprehensions</h4>
+<section id="dictionary-comprehensions" class="level4">
+<h4 class="anchored" data-anchor-id="dictionary-comprehensions">Dictionary Comprehensions</h4>
 <p>Like list comprehensions, but produce a dict:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>subjects <span class="op">=</span> [<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>mean_rts <span class="op">=</span> [<span class="fl">342.1</span>, <span class="fl">419.6</span>, <span class="fl">378.0</span>]</span>
@@ -390,8 +391,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Invert a dict (swap keys and values)</span></span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>inverted <span class="op">=</span> {v: k <span class="cf">for</span> k, v <span class="kw">in</span> rt_lookup.items()}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-collections.defaultdict-for-grouping" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-collections.defaultdict-for-grouping">Real Python: <code>collections.defaultdict</code> for Grouping</h4>
+<section id="collections.defaultdict-for-grouping" class="level4">
+<h4 class="anchored" data-anchor-id="collections.defaultdict-for-grouping"><code>collections.defaultdict</code> for Grouping</h4>
 <p>When grouping data (e.g., all trials per condition), <code>defaultdict</code> eliminates the boilerplate of checking whether a key exists:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -417,8 +418,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="tuples-and-sets-15-min" class="level3">
-<h3 class="anchored" data-anchor-id="tuples-and-sets-15-min">5. Tuples and Sets (15 min)</h3>
+<section id="tuples-and-sets" class="level3">
+<h3 class="anchored" data-anchor-id="tuples-and-sets">5. Tuples and Sets</h3>
+<p>📺 <a href="https://youtu.be/dEqjv0PNnzM">Python 集合入門</a></p>
 <p><strong>Tuples</strong> — like lists but immutable (cannot be changed after creation):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> (<span class="dv">1920</span>, <span class="dv">1080</span>)   <span class="co"># screen resolution — should not change</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> coords           <span class="co"># unpacking</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -434,8 +436,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicates from a list</span></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>conditions <span class="op">=</span> [<span class="st">"cong"</span>, <span class="st">"incong"</span>, <span class="st">"cong"</span>, <span class="st">"cong"</span>, <span class="st">"incong"</span>]</span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>unique <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(conditions))  <span class="co"># ["cong", "incong"]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="real-python-lists-vs-tuples-when-to-choose-which" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-lists-vs-tuples-when-to-choose-which">Real Python: Lists vs Tuples — When to Choose Which</h4>
+<section id="lists-vs-tuples-when-to-choose-which" class="level4">
+<h4 class="anchored" data-anchor-id="lists-vs-tuples-when-to-choose-which">Lists vs Tuples — When to Choose Which</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
@@ -477,8 +479,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>lookup[(<span class="st">"congruent"</span>, <span class="dv">1</span>)] <span class="op">=</span> [<span class="dv">320</span>, <span class="dv">415</span>, <span class="dv">280</span>]</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>lookup[(<span class="st">"incongruent"</span>, <span class="dv">1</span>)] <span class="op">=</span> [<span class="dv">510</span>, <span class="dv">488</span>, <span class="dv">530</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-namedtuple-self-documenting-tuples" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-namedtuple-self-documenting-tuples">Real Python: <code>namedtuple</code> — Self-Documenting Tuples</h4>
+<section id="namedtuple-self-documenting-tuples" class="level4">
+<h4 class="anchored" data-anchor-id="namedtuple-self-documenting-tuples"><code>namedtuple</code> — Self-Documenting Tuples</h4>
 <p><code>collections.namedtuple</code> gives fields readable names without the overhead of a full class:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> namedtuple</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -490,8 +492,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Still works as a regular tuple:</span></span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>subject, condition, rt_ms, correct <span class="op">=</span> t</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-set-operations-and-frozenset" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-set-operations-and-frozenset">Real Python: Set Operations and <code>frozenset</code></h4>
+<section id="set-operations-and-frozenset" class="level4">
+<h4 class="anchored" data-anchor-id="set-operations-and-frozenset">Set Operations and <code>frozenset</code></h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>completed_day1 <span class="op">=</span> {<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P04"</span>}</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>completed_day2 <span class="op">=</span> {<span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P05"</span>}</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -511,22 +513,150 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="file-io-text-files-15-min" class="level3">
-<h3 class="anchored" data-anchor-id="file-io-text-files-15-min">6. File I/O — Text Files (15 min)</h3>
-<p><strong>Writing a text file:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 1: RT=320ms</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 2: RT=415ms</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Reading a text file:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line.strip())   <span class="co"># strip() removes trailing newline</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="file-io-reading-and-writing-files-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="file-io-reading-and-writing-files-in-python">6. File I/O — Reading and Writing Files in Python</h3>
+<p>📺 <a href="https://youtu.be/vfmC5Ytb-Z8">Python 檔案 I/O：從概念到執行</a></p>
 <blockquote class="blockquote">
-<p><strong>Always use <code>with open(...)</code></strong> — it automatically closes the file even if an error occurs.</p>
+<p>📖 This section is based on <a href="https://realpython.com/read-write-files-python/">Reading and Writing Files in Python (Guide)</a>.</p>
 </blockquote>
-<section id="real-python-file-open-modes" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-file-open-modes">Real Python: File Open Modes</h4>
+<section id="what-is-a-file" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-a-file">6.1 What Is a File?</h4>
+<p>At its core, a file is a <strong>contiguous set of bytes</strong> used to store data. Every file on a modern file system is composed of three parts:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Header</strong></td>
+<td>Metadata — file name, size, type, etc.</td>
+</tr>
+<tr class="even">
+<td><strong>Data</strong></td>
+<td>The actual contents written by the creator</td>
+</tr>
+<tr class="odd">
+<td><strong>End of File (EOF)</strong></td>
+<td>A special marker indicating the end of the file</td>
+</tr>
+</tbody>
+</table>
+<p>What the data bytes represent depends on the <strong>format specification</strong>, which is typically indicated by the file extension (<code>.txt</code>, <code>.csv</code>, <code>.png</code>, …).</p>
+</section>
+<section id="file-paths" class="level4">
+<h4 class="anchored" data-anchor-id="file-paths">6.2 File Paths</h4>
+<p>A file path is a string that tells the operating system where to find a file. It has three parts:</p>
+<ol type="1">
+<li><strong>Folder path</strong> — separated by <code>/</code> (Unix/macOS) or <code>\</code> (Windows)</li>
+<li><strong>File name</strong> — the actual name</li>
+<li><strong>Extension</strong> — e.g.&nbsp;<code>.txt</code>, <code>.csv</code></li>
+</ol>
+<pre class="text"><code>project/
+│
+├── data/
+│   ├── raw/
+│   │   └── eeg_recording.csv     ← full path: data/raw/eeg_recording.csv
+│   └── processed/
+│       └── summary.txt
+│
+└── analysis.py                   ← current working directory is project/</code></pre>
+<ul>
+<li><strong>Absolute path:</strong> <code>C:\Users\lab\project\data\raw\eeg_recording.csv</code></li>
+<li><strong>Relative path:</strong> <code>data/raw/eeg_recording.csv</code> (from the <code>project/</code> folder)</li>
+<li><strong><code>..</code> moves up one directory:</strong> <code>../other_project/config.txt</code></li>
+</ul>
+</section>
+<section id="line-endings-and-character-encodings" class="level4">
+<h4 class="anchored" data-anchor-id="line-endings-and-character-encodings">6.3 Line Endings and Character Encodings</h4>
+<p><strong>Line endings</strong> differ across operating systems:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>OS</th>
+<th>Line ending</th>
+<th>Escape sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Windows</td>
+<td>CR+LF</td>
+<td><code>\r\n</code></td>
+</tr>
+<tr class="even">
+<td>Unix / macOS</td>
+<td>LF</td>
+<td><code>\n</code></td>
+</tr>
+</tbody>
+</table>
+<p>This can cause problems when a file created on Windows is opened on Unix (extra <code>\r</code> characters). Python’s text mode handles this automatically by converting all line endings to <code>\n</code> on read, but be aware of this when working with binary mode.</p>
+<p><strong>Character encodings</strong> translate byte values into human-readable characters:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 28%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Encoding</th>
+<th>Characters supported</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ASCII</td>
+<td>128 characters</td>
+<td>English letters, digits, basic punctuation</td>
+</tr>
+<tr class="even">
+<td>UTF-8</td>
+<td>1,114,112 characters</td>
+<td>Superset of ASCII; supports all languages</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Best practice:</strong> Always specify <code>encoding="utf-8"</code> when your text might contain non-ASCII characters (accented letters, Chinese/Japanese/Korean characters, etc.):</p>
+</blockquote>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"反應時間: 420 ms</span><span class="ch">\n</span><span class="st">"</span>)   <span class="co"># Chinese characters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opening-and-closing-a-file" class="level4">
+<h4 class="anchored" data-anchor-id="opening-and-closing-a-file">6.4 Opening and Closing a File</h4>
+<p>The built-in <code>open()</code> function returns a <strong>file object</strong>. You must always close this object when you are done.</p>
+<p><strong>Method 1 — <code>try</code> / <code>finally</code> (manual close):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>reader <span class="op">=</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> reader.read()</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(content)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    reader.close()     <span class="co"># guaranteed to run even if an error occurs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Method 2 — <code>with</code> statement (recommended):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> reader:</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> reader.read()</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(content)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># file is automatically closed when the block ends</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Always use <code>with open(...)</code></strong> — it is cleaner, safer, and automatically closes the file even if an error occurs.</p>
+</blockquote>
+</section>
+<section id="file-open-modes" class="level4">
+<h4 class="anchored" data-anchor-id="file-open-modes">6.5 File Open Modes</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Mode</th>
@@ -540,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><code>"w"</code></td>
-<td>Write text — creates or <strong>overwrites</strong></td>
+<td>Write text — creates file or <strong>overwrites</strong> existing content</td>
 </tr>
 <tr class="odd">
 <td><code>"a"</code></td>
@@ -548,103 +678,253 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><code>"x"</code></td>
-<td>Exclusive create — error if file exists</td>
+<td>Exclusive create — error if file already exists</td>
 </tr>
 <tr class="odd">
 <td><code>"rb"</code> / <code>"wb"</code></td>
-<td>Read/Write binary (for images, pickled data, etc.)</td>
+<td>Read / Write <strong>binary</strong> (images, pickled data, etc.)</td>
 </tr>
 </tbody>
 </table>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Append a new line to an existing log</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> f:</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 3: RT=390ms</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Each mode returns a different type of file object:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"r"</span>)     <span class="co"># TextIOWrapper (text mode)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"rb"</span>)    <span class="co"># BufferedReader (binary mode)</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"wb"</span>)    <span class="co"># BufferedWriter (binary mode)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-reading-strategies" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-reading-strategies">Real Python: Reading Strategies</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the whole file as one string</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> f.read()</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all lines into a list</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> f.readlines()     <span class="co"># each element includes the "\n"</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate line by line — memory-efficient for large files</span></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:            <span class="co"># preferred for large files</span></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        process(line.strip())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="writing-a-file" class="level4">
+<h4 class="anchored" data-anchor-id="writing-a-file">6.6 Writing a File</h4>
+<p>Use <code>.write()</code> to write a single string, or <code>.writelines()</code> to write a sequence of strings:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write experiment log</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 1: RT=320ms</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 2: RT=415ms</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Write multiple lines at once</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> [<span class="st">"Trial 1: RT=320ms</span><span class="ch">\n</span><span class="st">"</span>, <span class="st">"Trial 2: RT=415ms</span><span class="ch">\n</span><span class="st">"</span>, <span class="st">"Trial 3: RT=390ms</span><span class="ch">\n</span><span class="st">"</span>]</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    f.writelines(lines)     <span class="co"># note: does NOT add \n automatically</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Appending</strong> to an existing file (without overwriting):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> f:</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Trial 4: RT=450ms</span><span class="ch">\n</span><span class="st">"</span>)   <span class="co"># added to the end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-specifying-encoding" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-specifying-encoding">Real Python: Specifying Encoding</h4>
-<p>Always specify <code>encoding="utf-8"</code> when text might contain non-ASCII characters:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Réaction: 420 ms</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>📖 <a href="https://realpython.com/read-write-files-python/">Reading and Writing Files in Python</a> · <a href="https://realpython.com/working-with-files-in-python/">Working With Files in Python</a></p>
+<section id="reading-a-file-three-methods" class="level4">
+<h4 class="anchored" data-anchor-id="reading-a-file-three-methods">6.7 Reading a File — Three Methods</h4>
+<p>Python offers three methods for reading from a file object:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 37%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Returns</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.read()</code></td>
+<td>Entire file as one string</td>
+<td>Small files you need as a string</td>
+</tr>
+<tr class="even">
+<td><code>.readline()</code></td>
+<td>Next single line as a string</td>
+<td>Processing one line at a time</td>
+</tr>
+<tr class="odd">
+<td><code>.readlines()</code></td>
+<td>List of all lines</td>
+<td>When you need a list of lines</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Read the entire file at once</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> f.read()</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(content)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Read one line at a time with .readline()</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> f.readline()</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> line <span class="op">!=</span> <span class="st">""</span>:          <span class="co"># empty string signals EOF</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line, end<span class="op">=</span><span class="st">""</span>)    <span class="co"># end="" avoids double newlines</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>        line <span class="op">=</span> f.readline()</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Read all lines into a list</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> f.readlines()      <span class="co"># each element includes the "\n"</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(lines)</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ['Trial 1: RT=320ms\n', 'Trial 2: RT=415ms\n', ...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="iterating-over-each-line-the-pythonic-way" class="level4">
+<h4 class="anchored" data-anchor-id="iterating-over-each-line-the-pythonic-way">6.8 Iterating Over Each Line — The Pythonic Way</h4>
+<p>The <strong>most Pythonic</strong> (and memory-efficient) way to process a file line by line is to iterate directly over the file object — no need to call <code>.readlines()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"experiment_data.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:                 <span class="co"># file object is an iterator</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line.strip())        <span class="co"># strip() removes trailing \n</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is preferred over <code>.readlines()</code> for large files because it reads one line at a time instead of loading the entire file into memory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Practical example — extract RTs from a log file</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>rts <span class="op">=</span> []</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Each line: "Trial 1: RT=320ms"</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">"RT="</span> <span class="kw">in</span> line:</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>            rt_str <span class="op">=</span> line.split(<span class="st">"RT="</span>)[<span class="dv">1</span>].replace(<span class="st">"ms</span><span class="ch">\n</span><span class="st">"</span>, <span class="st">""</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>            rts.append(<span class="bu">int</span>(rt_str))</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean RT: </span><span class="sc">{</span><span class="bu">sum</span>(rts)<span class="op">/</span><span class="bu">len</span>(rts)<span class="sc">:.1f}</span><span class="ss"> ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="working-with-two-files-at-the-same-time" class="level4">
+<h4 class="anchored" data-anchor-id="working-with-two-files-at-the-same-time">6.9 Working With Two Files at the Same Time</h4>
+<p>You can open multiple files in a single <code>with</code> statement — useful for reading from one file and writing to another:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read raw data, write cleaned version</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"raw_log.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> reader, <span class="bu">open</span>(<span class="st">"clean_log.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> writer:</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> reader:</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>        cleaned <span class="op">=</span> line.strip().lower()</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        writer.write(cleaned <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse the lines of a file</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"log.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> reader, <span class="bu">open</span>(<span class="st">"log_reversed.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> writer:</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> reader.readlines()</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    writer.writelines(<span class="bu">reversed</span>(lines))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="working-with-bytes-binary-mode" class="level4">
+<h4 class="anchored" data-anchor-id="working-with-bytes-binary-mode">6.10 Working with Bytes (Binary Mode)</h4>
+<p>When working with non-text files (images, audio, pickled data), open in binary mode by adding <code>"b"</code> to the mode string. All read/write methods then work with <code>bytes</code> objects instead of strings:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the first 8 bytes of a PNG file header</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"brain_scan.png"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> f.read(<span class="dv">8</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(header)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># b'\x89PNG\r\n\x1a\n'  ← standard PNG magic bytes</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy a binary file</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"brain_scan.png"</span>, <span class="st">"rb"</span>) <span class="im">as</span> src, <span class="bu">open</span>(<span class="st">"backup.png"</span>, <span class="st">"wb"</span>) <span class="im">as</span> dst:</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    dst.write(src.read())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="common-libraries-for-other-file-formats" class="level4">
+<h4 class="anchored" data-anchor-id="common-libraries-for-other-file-formats">6.11 Common Libraries for Other File Formats</h4>
+<p>Don’t re-invent the wheel — Python’s standard library and PyPI have modules for many formats:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Module / Package</th>
+<th>File type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>csv</code></td>
+<td>CSV / TSV files</td>
+</tr>
+<tr class="even">
+<td><code>json</code></td>
+<td>JSON files</td>
+</tr>
+<tr class="odd">
+<td><code>pathlib</code></td>
+<td>Object-oriented file paths</td>
+</tr>
+<tr class="even">
+<td><code>zipfile</code></td>
+<td>ZIP archives</td>
+</tr>
+<tr class="odd">
+<td><code>tarfile</code></td>
+<td>Tar archives</td>
+</tr>
+<tr class="even">
+<td><code>wave</code></td>
+<td>WAV audio</td>
+</tr>
+<tr class="odd">
+<td><code>configparser</code></td>
+<td>INI config files</td>
+</tr>
+<tr class="even">
+<td><code>xml.etree</code></td>
+<td>XML files</td>
+</tr>
+<tr class="odd">
+<td><code>PyPDF2</code> <em>(PyPI)</em></td>
+<td>PDF documents</td>
+</tr>
+<tr class="even">
+<td><code>Pillow</code> <em>(PyPI)</em></td>
+<td>Image processing</td>
+</tr>
+<tr class="odd">
+<td><code>openpyxl</code> <em>(PyPI)</em></td>
+<td>Excel .xlsx files</td>
+</tr>
+</tbody>
+</table>
+<p>📖 <a href="https://realpython.com/read-write-files-python/">Reading and Writing Files in Python</a> · <a href="https://realpython.com/working-with-files-in-python/">Working With Files in Python</a> · <a href="https://realpython.com/why-close-file-python/">Why Is It Important to Close Files in Python?</a></p>
 <hr>
 </section>
 </section>
-<section id="csv-files-20-min" class="level3">
-<h3 class="anchored" data-anchor-id="csv-files-20-min">7. CSV Files (20 min)</h3>
+<section id="csv-files" class="level3">
+<h3 class="anchored" data-anchor-id="csv-files">7. CSV Files</h3>
 <p>CSV (comma-separated values) is the standard format for behavioural data.</p>
 <p><strong>Writing CSV:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>fieldnames <span class="op">=</span> [<span class="st">"trial"</span>, <span class="st">"condition"</span>, <span class="st">"rt_ms"</span>, <span class="st">"correct"</span>]</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">1</span>, <span class="st">"condition"</span>: <span class="st">"congruent"</span>,   <span class="st">"rt_ms"</span>: <span class="dv">320</span>, <span class="st">"correct"</span>: <span class="va">True</span>},</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">2</span>, <span class="st">"condition"</span>: <span class="st">"incongruent"</span>, <span class="st">"rt_ms"</span>: <span class="dv">510</span>, <span class="st">"correct"</span>: <span class="va">False</span>},</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>) <span class="im">as</span> f:</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>fieldnames)</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    writer.writeheader()</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>    writer.writerows(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>fieldnames <span class="op">=</span> [<span class="st">"trial"</span>, <span class="st">"condition"</span>, <span class="st">"rt_ms"</span>, <span class="st">"correct"</span>]</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">1</span>, <span class="st">"condition"</span>: <span class="st">"congruent"</span>,   <span class="st">"rt_ms"</span>: <span class="dv">320</span>, <span class="st">"correct"</span>: <span class="va">True</span>},</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"trial"</span>: <span class="dv">2</span>, <span class="st">"condition"</span>: <span class="st">"incongruent"</span>, <span class="st">"rt_ms"</span>: <span class="dv">510</span>, <span class="st">"correct"</span>: <span class="va">False</span>},</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>) <span class="im">as</span> f:</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>fieldnames)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    writer.writeheader()</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    writer.writerows(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Reading CSV:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(row[<span class="st">"condition"</span>], row[<span class="st">"rt_ms"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="real-python-why-newline-when-opening-for-csv" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-why-newline-when-opening-for-csv">Real Python: Why <code>newline=""</code> When Opening for CSV</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(row[<span class="st">"condition"</span>], row[<span class="st">"rt_ms"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="why-newline-when-opening-for-csv" class="level4">
+<h4 class="anchored" data-anchor-id="why-newline-when-opening-for-csv">Why <code>newline=""</code> When Opening for CSV</h4>
 <p>On Windows, opening a file in text mode adds an extra <code>\r</code> to each line, causing double-blank-lines in the output. Passing <code>newline=""</code> hands newline control entirely to the <code>csv</code> module, which handles it correctly on all platforms:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always open CSV files with newline="" on write</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>fieldnames)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always open CSV files with newline="" on write</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>fieldnames)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-dictreader-key-points" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-dictreader-key-points">Real Python: <code>DictReader</code> Key Points</h4>
+<section id="dictreader-key-points" class="level4">
+<h4 class="anchored" data-anchor-id="dictreader-key-points"><code>DictReader</code> Key Points</h4>
 <ul>
 <li>The first row of the CSV is automatically used as field names (the dict keys)</li>
 <li>Every subsequent row becomes an <code>OrderedDict</code> (behaves like a regular dict)</li>
 <li>All values are read as <strong>strings</strong> — convert explicitly where needed:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>) <span class="im">as</span> f:</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> []</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>        data.append({</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"trial"</span>:   <span class="bu">int</span>(row[<span class="st">"trial"</span>]),</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"rt_ms"</span>:   <span class="bu">float</span>(row[<span class="st">"rt_ms"</span>]),</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"correct"</span>: row[<span class="st">"correct"</span>] <span class="op">==</span> <span class="st">"True"</span>,   <span class="co"># str → bool</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>        })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"results.csv"</span>) <span class="im">as</span> f:</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> []</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>        data.append({</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"trial"</span>:   <span class="bu">int</span>(row[<span class="st">"trial"</span>]),</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"rt_ms"</span>:   <span class="bu">float</span>(row[<span class="st">"rt_ms"</span>]),</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"correct"</span>: row[<span class="st">"correct"</span>] <span class="op">==</span> <span class="st">"True"</span>,   <span class="co"># str → bool</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>        })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-dictwriter-key-points" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-dictwriter-key-points">Real Python: <code>DictWriter</code> Key Points</h4>
+<section id="dictwriter-key-points" class="level4">
+<h4 class="anchored" data-anchor-id="dictwriter-key-points"><code>DictWriter</code> Key Points</h4>
 <ul>
 <li><code>fieldnames</code> is <strong>required</strong> and sets the column order</li>
 <li><code>writeheader()</code> writes the first row; call it before any data rows</li>
 <li>Use <code>extrasaction="ignore"</code> if your dicts have extra keys you don’t want in the file:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>[<span class="st">"trial"</span>, <span class="st">"rt_ms"</span>], extrasaction<span class="op">=</span><span class="st">"ignore"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>writer <span class="op">=</span> csv.DictWriter(f, fieldnames<span class="op">=</span>[<span class="st">"trial"</span>, <span class="st">"rt_ms"</span>], extrasaction<span class="op">=</span><span class="st">"ignore"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="real-python-non-standard-delimiters" class="level4">
-<h4 class="anchored" data-anchor-id="real-python-non-standard-delimiters">Real Python: Non-Standard Delimiters</h4>
+<section id="non-standard-delimiters" class="level4">
+<h4 class="anchored" data-anchor-id="non-standard-delimiters">Non-Standard Delimiters</h4>
 <p><code>csv.reader</code> / <code>csv.writer</code> accept a <code>delimiter</code> argument for TSV (tab-separated) and other formats:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a tab-separated file</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.tsv"</span>) <span class="im">as</span> f:</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f, delimiter<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a tab-separated file</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.tsv"</span>) <span class="im">as</span> f:</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.DictReader(f, delimiter<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>📖 <a href="https://realpython.com/python-csv/">Reading and Writing CSV Files in Python</a> · <a href="https://realpython.com/ref/stdlib/csv/">csv Standard Library Reference</a></p>
 <hr>
 </section>
@@ -708,6 +988,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>CSV file</td>
 <td>Save and reload experiment results; compatible with R, MATLAB, Excel</td>
 </tr>
+<tr class="even">
+<td>File paths</td>
+<td>Organise raw vs processed data in a clear directory hierarchy</td>
+</tr>
+<tr class="odd">
+<td>Line endings</td>
+<td>Understand cross-platform issues when collaborators use Windows vs macOS</td>
+</tr>
+<tr class="even">
+<td>Binary mode</td>
+<td>Read/write neuroimaging data files (<code>.nii</code>, <code>.edf</code>, <code>.bdf</code>)</td>
+</tr>
 </tbody>
 </table>
 <hr>
@@ -740,8 +1032,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Reading and Writing Files</a></li>
 </ul>
 </section>
-<section id="real-python-functions-scope" class="level3">
-<h3 class="anchored" data-anchor-id="real-python-functions-scope">Real Python — Functions &amp; Scope</h3>
+<section id="functions-scope" class="level3">
+<h3 class="anchored" data-anchor-id="functions-scope">Functions &amp; Scope</h3>
 <ul>
 <li><a href="https://realpython.com/defining-your-own-python-function/">Defining Your Own Python Function</a></li>
 <li><a href="https://realpython.com/python-return-statement/">The Python <code>return</code> Statement: Usage and Best Practices</a></li>
@@ -751,8 +1043,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://realpython.com/python-scope-legb-rule/">Python Scope and the LEGB Rule: Resolving Names in Your Code</a></li>
 </ul>
 </section>
-<section id="real-python-lists" class="level3">
-<h3 class="anchored" data-anchor-id="real-python-lists">Real Python — Lists</h3>
+<section id="lists-1" class="level3">
+<h3 class="anchored" data-anchor-id="lists-1">Lists</h3>
 <ul>
 <li><a href="https://realpython.com/python-list/">Python’s <code>list</code> Data Type: A Deep Dive With Examples</a></li>
 <li><a href="https://realpython.com/list-comprehension-python/">When to Use a List Comprehension in Python</a></li>
@@ -760,8 +1052,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://realpython.com/python-enumerate/">Python <code>enumerate()</code>: Simplify Loops That Need Counters</a></li>
 </ul>
 </section>
-<section id="real-python-dictionaries" class="level3">
-<h3 class="anchored" data-anchor-id="real-python-dictionaries">Real Python — Dictionaries</h3>
+<section id="dictionaries-1" class="level3">
+<h3 class="anchored" data-anchor-id="dictionaries-1">Dictionaries</h3>
 <ul>
 <li><a href="https://realpython.com/python-dicts/">Dictionaries in Python</a></li>
 <li><a href="https://realpython.com/python-dictionary-comprehension/">Python Dictionary Comprehensions</a></li>
@@ -769,23 +1061,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://realpython.com/python-data-structures/">Common Python Data Structures (Guide)</a></li>
 </ul>
 </section>
-<section id="real-python-tuples-sets" class="level3">
-<h3 class="anchored" data-anchor-id="real-python-tuples-sets">Real Python — Tuples &amp; Sets</h3>
+<section id="tuples-sets" class="level3">
+<h3 class="anchored" data-anchor-id="tuples-sets">Tuples &amp; Sets</h3>
 <ul>
 <li><a href="https://realpython.com/python-tuple/">Python’s <code>tuple</code> Data Type: A Deep Dive With Examples</a></li>
 <li><a href="https://realpython.com/python-lists-tuples/">Lists vs Tuples in Python</a></li>
 <li><a href="https://realpython.com/python-sets/">Sets in Python</a></li>
 </ul>
 </section>
-<section id="real-python-file-io" class="level3">
-<h3 class="anchored" data-anchor-id="real-python-file-io">Real Python — File I/O</h3>
+<section id="file-io" class="level3">
+<h3 class="anchored" data-anchor-id="file-io">File I/O</h3>
 <ul>
 <li><a href="https://realpython.com/read-write-files-python/">Reading and Writing Files in Python (Guide)</a></li>
 <li><a href="https://realpython.com/working-with-files-in-python/">Working With Files in Python</a></li>
+<li><a href="https://realpython.com/why-close-file-python/">Why Is It Important to Close Files in Python?</a></li>
+<li><a href="https://realpython.com/python-with-statement/">Python <code>with</code> Statement</a></li>
 </ul>
 </section>
-<section id="real-python-csv" class="level3">
-<h3 class="anchored" data-anchor-id="real-python-csv">Real Python — CSV</h3>
+<section id="csv" class="level3">
+<h3 class="anchored" data-anchor-id="csv">CSV</h3>
 <ul>
 <li><a href="https://realpython.com/python-csv/">Reading and Writing CSV Files in Python</a></li>
 <li><a href="https://realpython.com/courses/reading-and-writing-csv-files/">Reading and Writing CSV Files (Course)</a></li>

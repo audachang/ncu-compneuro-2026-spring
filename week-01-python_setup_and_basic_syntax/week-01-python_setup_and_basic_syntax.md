@@ -560,15 +560,15 @@ rt_ms = 412.5
 
 These foundational concepts map directly to experiment programming:
 
-| Programming concept | Experiment use |
-|---------------------|-----------------|
-| `print()` | Log trial events and timestamps |
-| Variables | Store subject ID, condition labels, RT values |
-| Strings | Encode condition names, file paths, participant IDs |
-| F-strings | Format results for printing or file output (e.g., `f"Accuracy: {acc:.1%}"`) |
-| `int()` / `float()` | Parse RT from keyboard or file |
-| `input()` | Collect subject ID or response codes before running an experiment |
-| Comments | Explain parameter choices (e.g., RT thresholds, timing constants) |
+| Programming concept | Experiment use                                                              |
+| ------------------- | --------------------------------------------------------------------------- |
+| `print()`           | Log trial events and timestamps                                             |
+| Variables           | Store subject ID, condition labels, RT values                               |
+| Strings             | Encode condition names, file paths, participant IDs                         |
+| F-strings           | Format results for printing or file output (e.g., `f"Accuracy: {acc:.1%}"`) |
+| `int()` / `float()` | Parse RT from keyboard or file                                              |
+| `input()`           | Collect subject ID or response codes before running an experiment           |
+| Comments            | Explain parameter choices (e.g., RT thresholds, timing constants)           |
 
 ---
 
@@ -631,8 +631,8 @@ Submit by pushing to your GitHub repository before Week 02.
 
 ## What Comes Next
 
-| Week | Topic |
-|------|-------|
-| 02 | Control flow (`if`, `for`, `while`) and functions |
-| 03 | Data structures (lists, dicts, files) |
-| 04 | NumPy arrays — vectorized computation on large datasets |
+| Week | Topic                                                   |
+| ---- | ------------------------------------------------------- |
+| 02   | Control flow (`if`, `for`, `while`) and functions       |
+| 03   | Data structures (lists, dicts, files)                   |
+| 04   | NumPy arrays — vectorized computation on large datasets |

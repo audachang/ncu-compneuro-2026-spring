@@ -30,7 +30,7 @@ By the end of this week you will be able to:
 
 ## In-Class Topics
 
-### 1. Functions (30 min)
+### 1. Functions
 
 Defining a function:
 ```python
@@ -61,7 +61,7 @@ classify_rt(420)                    # uses default threshold=500
 classify_rt(420, threshold=400)     # overrides default
 ```
 
-#### Real Python: Docstrings
+#### Docstrings
 
 Every function should have a *docstring* — a string literal immediately after `def` that documents what the function does, what it accepts, and what it returns:
 
@@ -83,7 +83,7 @@ def mean_rt(rt_list):
 
 Access it with `help(mean_rt)` or `mean_rt.__doc__`.
 
-#### Real Python: Returning Multiple Values
+#### Returning Multiple Values
 
 Python functions can return multiple values packaged as a tuple — the caller can unpack them directly:
 
@@ -96,7 +96,7 @@ mean, lo, hi = rt_stats([320, 415, 280, 510])
 print(f"Mean: {mean:.1f}, Range: {lo}–{hi} ms")
 ```
 
-#### Real Python: `*args` — Accept Any Number of Positional Arguments
+#### `*args` — Accept Any Number of Positional Arguments
 
 Prefix a parameter with `*` to receive extra positional arguments as a tuple:
 
@@ -108,7 +108,7 @@ def add_rts(*rts):
 add_rts(100, 200, 300)   # rts = (100, 200, 300)
 ```
 
-#### Real Python: Mutable Default Argument Gotcha
+#### Mutable Default Argument Gotcha
 
 **Never use a mutable object (list, dict) as a default argument.** The default is created once when `def` is executed and shared across all calls:
 
@@ -133,7 +133,7 @@ def record(rt, history=None):
 
 ---
 
-### 2. Scope (10 min)
+### 2. Scope
 
 ```python
 x = 10  # global variable
@@ -149,7 +149,7 @@ print(x)  # prints 10  (global unchanged)
 > **Rule of thumb:** Functions should receive data through parameters and
 > return results with `return`. Avoid relying on global variables inside functions.
 
-#### Real Python: The LEGB Rule
+#### The LEGB Rule
 
 Python resolves names in a specific order — **L E G B**:
 
@@ -179,7 +179,7 @@ outer()
 print(value)               # prints "global"
 ```
 
-#### Real Python: `global` and `nonlocal`
+#### `global` and `nonlocal`
 
 Use these sparingly — they are usually a sign that the design could be improved:
 
@@ -200,7 +200,7 @@ print(count)  # 1
 
 ---
 
-### 3. Lists (25 min)
+### 3. Lists
 
 A list holds an ordered sequence of values:
 ```python
@@ -230,7 +230,7 @@ sum(rts) / len(rts)     # mean
 valid = [rt for rt in rts if 100 <= rt <= 1000]
 ```
 
-#### Real Python: `sort()` vs `sorted()`
+#### `sort()` vs `sorted()`
 
 `list.sort()` sorts *in place* and returns `None`; `sorted()` returns a new sorted list and leaves the original unchanged:
 
@@ -247,7 +247,7 @@ sorted(rts, reverse=True)
 rts.sort(key=lambda rt: abs(rt - 400))
 ```
 
-#### Real Python: List Comprehensions in Depth
+#### List Comprehensions in Depth
 
 A list comprehension has the form `[expression for item in iterable if condition]`. The `if` part is optional:
 
@@ -264,7 +264,7 @@ valid    = [rt for rt in rts if 100 <= rt <= 1000]
 valid_sec = [rt / 1000 for rt in rts if 100 <= rt <= 1000]
 ```
 
-**When to prefer a regular loop over a comprehension (from Real Python best practices):**
+**When to prefer a regular loop over a comprehension (best practices):**
 
 - The comprehension spans multiple lines with complex logic → use a `for` loop
 - You need side effects (e.g., `print`) inside the loop → use a `for` loop
@@ -284,7 +284,9 @@ for i in range(4):
 
 ---
 
-### 4. Dictionaries (25 min)
+### 4. Dictionaries
+
+📺 [Introduction to Dictionaries](https://youtu.be/A1dz_WPWO90)
 
 A dictionary maps keys to values — ideal for labelled data:
 ```python
@@ -327,7 +329,7 @@ correct_rts = [r["rt"] for r in results if r["correct"]]
 mean_rt = sum(correct_rts) / len(correct_rts)
 ```
 
-#### Real Python: `dict.get()` and `dict.setdefault()`
+#### `dict.get()` and `dict.setdefault()`
 
 `dict.get(key, default)` returns a fallback value when the key is missing — no `KeyError`:
 
@@ -344,7 +346,7 @@ block    = trial.get("block", 1)         # 1   — sensible default
 trial.setdefault("notes", "")   # adds "notes": "" if not present
 ```
 
-#### Real Python: Dictionary Comprehensions
+#### Dictionary Comprehensions
 
 Like list comprehensions, but produce a dict:
 
@@ -360,7 +362,7 @@ rt_lookup = {subj: rt for subj, rt in zip(subjects, mean_rts)}
 inverted = {v: k for k, v in rt_lookup.items()}
 ```
 
-#### Real Python: `collections.defaultdict` for Grouping
+#### `collections.defaultdict` for Grouping
 
 When grouping data (e.g., all trials per condition), `defaultdict` eliminates the boilerplate of checking whether a key exists:
 
@@ -391,7 +393,9 @@ for r in results:
 
 ---
 
-### 5. Tuples and Sets (15 min)
+### 5. Tuples and Sets
+
+📺 [Python 集合入門](https://youtu.be/dEqjv0PNnzM)
 
 **Tuples** — like lists but immutable (cannot be changed after creation):
 ```python
@@ -415,7 +419,7 @@ conditions = ["cong", "incong", "cong", "cong", "incong"]
 unique = list(set(conditions))  # ["cong", "incong"]
 ```
 
-#### Real Python: Lists vs Tuples — When to Choose Which
+#### Lists vs Tuples — When to Choose Which
 
 | Characteristic | `list`                                     | `tuple`                                 |
 | -------------- | ------------------------------------------ | --------------------------------------- |
@@ -431,7 +435,7 @@ lookup[("congruent", 1)] = [320, 415, 280]
 lookup[("incongruent", 1)] = [510, 488, 530]
 ```
 
-#### Real Python: `namedtuple` — Self-Documenting Tuples
+#### `namedtuple` — Self-Documenting Tuples
 
 `collections.namedtuple` gives fields readable names without the overhead of a full class:
 
@@ -447,7 +451,7 @@ print(t.correct)    # True
 subject, condition, rt_ms, correct = t
 ```
 
-#### Real Python: Set Operations and `frozenset`
+#### Set Operations and `frozenset`
 
 ```python
 completed_day1 = {"P01", "P02", "P03", "P04"}
@@ -475,71 +479,250 @@ combo_rts[frozenset(["congruent", "high_load"])] = [340, 365, 320]
 
 ---
 
-### 6. File I/O — Text Files (15 min)
+### 6. File I/O — Reading and Writing Files in Python
 
-**Writing a text file:**
-```python
-with open("log.txt", "w") as f:
-    f.write("Trial 1: RT=320ms\n")
-    f.write("Trial 2: RT=415ms\n")
+📺 [Python 檔案 I/O：從概念到執行](https://youtu.be/vfmC5Ytb-Z8)
+
+> 📖 This section is based on [Reading and Writing Files in Python (Guide)](https://realpython.com/read-write-files-python/).
+
+#### 6.1 What Is a File?
+
+At its core, a file is a **contiguous set of bytes** used to store data. Every file on a modern file system is composed of three parts:
+
+| Part                  | Description                                     |
+| --------------------- | ----------------------------------------------- |
+| **Header**            | Metadata — file name, size, type, etc.          |
+| **Data**              | The actual contents written by the creator      |
+| **End of File (EOF)** | A special marker indicating the end of the file |
+
+What the data bytes represent depends on the **format specification**, which is typically indicated by the file extension (`.txt`, `.csv`, `.png`, …).
+
+#### 6.2 File Paths
+
+A file path is a string that tells the operating system where to find a file. It has three parts:
+
+1. **Folder path** — separated by `/` (Unix/macOS) or `\` (Windows)
+2. **File name** — the actual name
+3. **Extension** — e.g. `.txt`, `.csv`
+
+```text
+project/
+│
+├── data/
+│   ├── raw/
+│   │   └── eeg_recording.csv     ← full path: data/raw/eeg_recording.csv
+│   └── processed/
+│       └── summary.txt
+│
+└── analysis.py                   ← current working directory is project/
 ```
 
-**Reading a text file:**
-```python
-with open("log.txt", "r") as f:
-    for line in f:
-        print(line.strip())   # strip() removes trailing newline
-```
+- **Absolute path:** `C:\Users\lab\project\data\raw\eeg_recording.csv`
+- **Relative path:** `data/raw/eeg_recording.csv` (from the `project/` folder)
+- **`..` moves up one directory:** `../other_project/config.txt`
 
-> **Always use `with open(...)`** — it automatically closes the file even if an error occurs.
+#### 6.3 Line Endings and Character Encodings
 
-#### Real Python: File Open Modes
+**Line endings** differ across operating systems:
 
-| Mode            | Meaning                                            |
-| --------------- | -------------------------------------------------- |
-| `"r"`           | Read text (default) — error if file missing        |
-| `"w"`           | Write text — creates or **overwrites**             |
-| `"a"`           | Append text — adds to end, creates if missing      |
-| `"x"`           | Exclusive create — error if file exists            |
-| `"rb"` / `"wb"` | Read/Write binary (for images, pickled data, etc.) |
+| OS           | Line ending | Escape sequence |
+| ------------ | ----------- | --------------- |
+| Windows      | CR+LF       | `\r\n`          |
+| Unix / macOS | LF          | `\n`            |
 
-```python
-# Append a new line to an existing log
-with open("log.txt", "a") as f:
-    f.write("Trial 3: RT=390ms\n")
-```
+This can cause problems when a file created on Windows is opened on Unix (extra `\r` characters). Python's text mode handles this automatically by converting all line endings to `\n` on read, but be aware of this when working with binary mode.
 
-#### Real Python: Reading Strategies
+**Character encodings** translate byte values into human-readable characters:
 
-```python
-# Read the whole file as one string
-with open("log.txt") as f:
-    content = f.read()
+| Encoding | Characters supported | Notes                                      |
+| -------- | -------------------- | ------------------------------------------ |
+| ASCII    | 128 characters       | English letters, digits, basic punctuation |
+| UTF-8    | 1,114,112 characters | Superset of ASCII; supports all languages  |
 
-# Read all lines into a list
-with open("log.txt") as f:
-    lines = f.readlines()     # each element includes the "\n"
-
-# Iterate line by line — memory-efficient for large files
-with open("log.txt") as f:
-    for line in f:            # preferred for large files
-        process(line.strip())
-```
-
-#### Real Python: Specifying Encoding
-
-Always specify `encoding="utf-8"` when text might contain non-ASCII characters:
+> **Best practice:** Always specify `encoding="utf-8"` when your text might contain non-ASCII characters (accented letters, Chinese/Japanese/Korean characters, etc.):
 
 ```python
 with open("notes.txt", "w", encoding="utf-8") as f:
-    f.write("Réaction: 420 ms\n")
+    f.write("反應時間: 420 ms\n")   # Chinese characters
 ```
 
-📖 [Reading and Writing Files in Python](https://realpython.com/read-write-files-python/) · [Working With Files in Python](https://realpython.com/working-with-files-in-python/)
+#### 6.4 Opening and Closing a File
+
+The built-in `open()` function returns a **file object**. You must always close this object when you are done.
+
+**Method 1 — `try` / `finally` (manual close):**
+```python
+reader = open("log.txt")
+try:
+    content = reader.read()
+    print(content)
+finally:
+    reader.close()     # guaranteed to run even if an error occurs
+```
+
+**Method 2 — `with` statement (recommended):**
+```python
+with open("log.txt") as reader:
+    content = reader.read()
+    print(content)
+# file is automatically closed when the block ends
+```
+
+> **Always use `with open(...)`** — it is cleaner, safer, and automatically closes the file even if an error occurs.
+
+#### 6.5 File Open Modes
+
+| Mode            | Meaning                                                      |
+| --------------- | ------------------------------------------------------------ |
+| `"r"`           | Read text (default) — error if file missing                  |
+| `"w"`           | Write text — creates file or **overwrites** existing content |
+| `"a"`           | Append text — adds to end, creates if missing                |
+| `"x"`           | Exclusive create — error if file already exists              |
+| `"rb"` / `"wb"` | Read / Write **binary** (images, pickled data, etc.)         |
+
+Each mode returns a different type of file object:
+
+```python
+>>> f = open("log.txt", "r")     # TextIOWrapper (text mode)
+>>> f = open("log.txt", "rb")    # BufferedReader (binary mode)
+>>> f = open("log.txt", "wb")    # BufferedWriter (binary mode)
+```
+
+#### 6.6 Writing a File
+
+Use `.write()` to write a single string, or `.writelines()` to write a sequence of strings:
+
+```python
+# Write experiment log
+with open("log.txt", "w") as f:
+    f.write("Trial 1: RT=320ms\n")
+    f.write("Trial 2: RT=415ms\n")
+
+# Write multiple lines at once
+lines = ["Trial 1: RT=320ms\n", "Trial 2: RT=415ms\n", "Trial 3: RT=390ms\n"]
+with open("log.txt", "w") as f:
+    f.writelines(lines)     # note: does NOT add \n automatically
+```
+
+**Appending** to an existing file (without overwriting):
+```python
+with open("log.txt", "a") as f:
+    f.write("Trial 4: RT=450ms\n")   # added to the end
+```
+
+#### 6.7 Reading a File — Three Methods
+
+Python offers three methods for reading from a file object:
+
+| Method         | Returns                      | Best for                         |
+| -------------- | ---------------------------- | -------------------------------- |
+| `.read()`      | Entire file as one string    | Small files you need as a string |
+| `.readline()`  | Next single line as a string | Processing one line at a time    |
+| `.readlines()` | List of all lines            | When you need a list of lines    |
+
+```python
+# 1. Read the entire file at once
+with open("log.txt") as f:
+    content = f.read()
+    print(content)
+
+# 2. Read one line at a time with .readline()
+with open("log.txt") as f:
+    line = f.readline()
+    while line != "":          # empty string signals EOF
+        print(line, end="")    # end="" avoids double newlines
+        line = f.readline()
+
+# 3. Read all lines into a list
+with open("log.txt") as f:
+    lines = f.readlines()      # each element includes the "\n"
+    print(lines)
+    # ['Trial 1: RT=320ms\n', 'Trial 2: RT=415ms\n', ...]
+```
+
+#### 6.8 Iterating Over Each Line — The Pythonic Way
+
+The **most Pythonic** (and memory-efficient) way to process a file line by line is to iterate directly over the file object — no need to call `.readlines()`:
+
+```python
+with open("experiment_data.txt") as f:
+    for line in f:                 # file object is an iterator
+        print(line.strip())        # strip() removes trailing \n
+```
+
+This is preferred over `.readlines()` for large files because it reads one line at a time instead of loading the entire file into memory.
+
+```python
+# Practical example — extract RTs from a log file
+rts = []
+with open("log.txt") as f:
+    for line in f:
+        # Each line: "Trial 1: RT=320ms"
+        if "RT=" in line:
+            rt_str = line.split("RT=")[1].replace("ms\n", "")
+            rts.append(int(rt_str))
+
+print(f"Mean RT: {sum(rts)/len(rts):.1f} ms")
+```
+
+#### 6.9 Working With Two Files at the Same Time
+
+You can open multiple files in a single `with` statement — useful for reading from one file and writing to another:
+
+```python
+# Read raw data, write cleaned version
+with open("raw_log.txt", "r") as reader, open("clean_log.txt", "w") as writer:
+    for line in reader:
+        cleaned = line.strip().lower()
+        writer.write(cleaned + "\n")
+```
+
+```python
+# Reverse the lines of a file
+with open("log.txt", "r") as reader, open("log_reversed.txt", "w") as writer:
+    lines = reader.readlines()
+    writer.writelines(reversed(lines))
+```
+
+#### 6.10 Working with Bytes (Binary Mode)
+
+When working with non-text files (images, audio, pickled data), open in binary mode by adding `"b"` to the mode string. All read/write methods then work with `bytes` objects instead of strings:
+
+```python
+# Read the first 8 bytes of a PNG file header
+with open("brain_scan.png", "rb") as f:
+    header = f.read(8)
+    print(header)
+    # b'\x89PNG\r\n\x1a\n'  ← standard PNG magic bytes
+
+# Copy a binary file
+with open("brain_scan.png", "rb") as src, open("backup.png", "wb") as dst:
+    dst.write(src.read())
+```
+
+#### 6.11 Common Libraries for Other File Formats
+
+Don't re-invent the wheel — Python's standard library and PyPI have modules for many formats:
+
+| Module / Package    | File type                  |
+| ------------------- | -------------------------- |
+| `csv`               | CSV / TSV files            |
+| `json`              | JSON files                 |
+| `pathlib`           | Object-oriented file paths |
+| `zipfile`           | ZIP archives               |
+| `tarfile`           | Tar archives               |
+| `wave`              | WAV audio                  |
+| `configparser`      | INI config files           |
+| `xml.etree`         | XML files                  |
+| `PyPDF2` *(PyPI)*   | PDF documents              |
+| `Pillow` *(PyPI)*   | Image processing           |
+| `openpyxl` *(PyPI)* | Excel .xlsx files          |
+
+📖 [Reading and Writing Files in Python](https://realpython.com/read-write-files-python/) · [Working With Files in Python](https://realpython.com/working-with-files-in-python/) · [Why Is It Important to Close Files in Python?](https://realpython.com/why-close-file-python/)
 
 ---
 
-### 7. CSV Files (20 min)
+### 7. CSV Files
 
 CSV (comma-separated values) is the standard format for behavioural data.
 
@@ -567,7 +750,7 @@ with open("results.csv", "r") as f:
         print(row["condition"], row["rt_ms"])
 ```
 
-#### Real Python: Why `newline=""` When Opening for CSV
+#### Why `newline=""` When Opening for CSV
 
 On Windows, opening a file in text mode adds an extra `\r` to each line, causing double-blank-lines in the output. Passing `newline=""` hands newline control entirely to the `csv` module, which handles it correctly on all platforms:
 
@@ -578,7 +761,7 @@ with open("results.csv", "w", newline="", encoding="utf-8") as f:
     ...
 ```
 
-#### Real Python: `DictReader` Key Points
+#### `DictReader` Key Points
 
 - The first row of the CSV is automatically used as field names (the dict keys)
 - Every subsequent row becomes an `OrderedDict` (behaves like a regular dict)
@@ -596,7 +779,7 @@ with open("results.csv") as f:
         })
 ```
 
-#### Real Python: `DictWriter` Key Points
+#### `DictWriter` Key Points
 
 - `fieldnames` is **required** and sets the column order
 - `writeheader()` writes the first row; call it before any data rows
@@ -606,7 +789,7 @@ with open("results.csv") as f:
 writer = csv.DictWriter(f, fieldnames=["trial", "rt_ms"], extrasaction="ignore")
 ```
 
-#### Real Python: Non-Standard Delimiters
+#### Non-Standard Delimiters
 
 `csv.reader` / `csv.writer` accept a `delimiter` argument for TSV (tab-separated) and other formats:
 
@@ -635,6 +818,9 @@ with open("data.tsv") as f:
 | `namedtuple`         | Readable trial records that unpack like tuples                           |
 | Set                  | Find which subjects completed all sessions                               |
 | CSV file             | Save and reload experiment results; compatible with R, MATLAB, Excel     |
+| File paths           | Organise raw vs processed data in a clear directory hierarchy            |
+| Line endings         | Understand cross-platform issues when collaborators use Windows vs macOS |
+| Binary mode          | Read/write neuroimaging data files (`.nii`, `.edf`, `.bdf`)              |
 
 ---
 
@@ -669,7 +855,7 @@ Submit by pushing to your GitHub repository before Week 04.
 - [Python `csv` module](https://docs.python.org/3/library/csv.html)
 - [Reading and Writing Files](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files)
 
-### Real Python — Functions & Scope
+### Functions & Scope
 - [Defining Your Own Python Function](https://realpython.com/defining-your-own-python-function/)
 - [The Python `return` Statement: Usage and Best Practices](https://realpython.com/python-return-statement/)
 - [Using Python Optional Arguments When Defining Functions](https://realpython.com/python-optional-arguments/)
@@ -677,28 +863,30 @@ Submit by pushing to your GitHub repository before Week 04.
 - [How to Write Docstrings in Python](https://realpython.com/how-to-write-docstrings-in-python/)
 - [Python Scope and the LEGB Rule: Resolving Names in Your Code](https://realpython.com/python-scope-legb-rule/)
 
-### Real Python — Lists
+### Lists
 - [Python's `list` Data Type: A Deep Dive With Examples](https://realpython.com/python-list/)
 - [When to Use a List Comprehension in Python](https://realpython.com/list-comprehension-python/)
 - [Comprehensions Best Practices](https://realpython.com/ref/best-practices/comprehensions/)
 - [Python `enumerate()`: Simplify Loops That Need Counters](https://realpython.com/python-enumerate/)
 
-### Real Python — Dictionaries
+### Dictionaries
 - [Dictionaries in Python](https://realpython.com/python-dicts/)
 - [Python Dictionary Comprehensions](https://realpython.com/python-dictionary-comprehension/)
 - [Using the Python `defaultdict` Type for Handling Missing Keys](https://realpython.com/python-defaultdict/)
 - [Common Python Data Structures (Guide)](https://realpython.com/python-data-structures/)
 
-### Real Python — Tuples & Sets
+### Tuples & Sets
 - [Python's `tuple` Data Type: A Deep Dive With Examples](https://realpython.com/python-tuple/)
 - [Lists vs Tuples in Python](https://realpython.com/python-lists-tuples/)
 - [Sets in Python](https://realpython.com/python-sets/)
 
-### Real Python — File I/O
+### File I/O
 - [Reading and Writing Files in Python (Guide)](https://realpython.com/read-write-files-python/)
 - [Working With Files in Python](https://realpython.com/working-with-files-in-python/)
+- [Why Is It Important to Close Files in Python?](https://realpython.com/why-close-file-python/)
+- [Python `with` Statement](https://realpython.com/python-with-statement/)
 
-### Real Python — CSV
+### CSV
 - [Reading and Writing CSV Files in Python](https://realpython.com/python-csv/)
 - [Reading and Writing CSV Files (Course)](https://realpython.com/courses/reading-and-writing-csv-files/)
 
