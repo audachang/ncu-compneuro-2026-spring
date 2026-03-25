@@ -265,24 +265,24 @@ By generating the structural matrix programmatically, we unlock the full power o
 
 ## Neuroscience Connection
 
-| Design element | Scientific rationale |
-|---------------|---------------------|
-| Participant info dialog | Records demographic metadata; required for IRB-approved studies |
-| Randomized trial order | Controls for order effects and learning across trials |
-| Fixed SOA cue-target structure | Controls temporal expectancy; produces clean RT separation |
-| Block structure with rest | Reduces fatigue effects; enables practice and fatigue analysis |
-| CSV with condition columns | Enables per-condition RT and accuracy analysis in Python or R |
+| Design element                 | Scientific rationale                                            |
+| ------------------------------ | --------------------------------------------------------------- |
+| Participant info dialog        | Records demographic metadata; required for IRB-approved studies |
+| Randomized trial order         | Controls for order effects and learning across trials           |
+| Fixed SOA cue-target structure | Controls temporal expectancy; produces clean RT separation      |
+| Block structure with rest      | Reduces fatigue effects; enables practice and fatigue analysis  |
+| CSV with condition columns     | Enables per-condition RT and accuracy analysis in Python or R   |
 
 ---
 
 ## Tools This Week
 
-| Tool | Purpose | Install |
-|------|---------|---------|
-| PsychoPy | Experiment presentation | `pip install psychopy` (from Week 04) |
-| `psychopy.gui` | Participant info dialog | included with psychopy |
-| pandas | Save results to CSV | `pip install pandas` |
-| `itertools` | Structural matrix generation | Built-in Python library |
+| Tool           | Purpose                      | Install                               |
+| -------------- | ---------------------------- | ------------------------------------- |
+| PsychoPy       | Experiment presentation      | `pip install psychopy` (from Week 04) |
+| `psychopy.gui` | Participant info dialog      | included with psychopy                |
+| pandas         | Save results to CSV          | `pip install pandas`                  |
+| `itertools`    | Structural matrix generation | Built-in Python library               |
 
 ---
 
@@ -316,8 +316,8 @@ Submit `week-05-posner-task.py` and one example CSV file from `data/` before Wee
 
 ## What Comes Next
 
-| Week | Topic |
-|------|-------|
-| 06 | NumPy arrays, indexing, vectorized operations |
-| 07 | Data Visualization with Matplotlib |
-| 08 | **Midterm:** Upload experiment to Pavlovia, run an online pilot, present results |
+| Week | Topic                                                                            |
+| ---- | -------------------------------------------------------------------------------- |
+| 06   | NumPy arrays, indexing, vectorized operations                                    |
+| 07   | Data Visualization with Matplotlib                                               |
+| 08   | **Midterm:** Upload experiment to Pavlovia, run an online pilot, present results |
