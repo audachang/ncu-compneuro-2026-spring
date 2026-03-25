@@ -15,7 +15,7 @@ By the end of this week you will be able to:
 4. Record reaction time by resetting `core.Clock` at stimulus onset
 5. Store trial data as a list of dicts and save to CSV with pandas
 6. Implement block structure with rest screens between blocks
-7. Complete the Pavlovia preparation checklist and push your experiment to GitLab
+7. Generate full factorial trial conditions procedurally using `itertools` in Python
 
 ---
 
@@ -223,27 +223,43 @@ Always save to a dedicated `data/` subdirectory. Never write data files to the r
 
 ---
 
-### 7. Pavlovia Preparation Checklist (20 min)
+### 7. Advanced Sequence Generation and Counterbalancing (20 min)
 
-Pavlovia runs PsychoPy experiments in a browser via PsychoJS. Before uploading:
+When designing complex experiments in Coder, hardcoding every condition becomes impractical. Instead, we can procedurally generate full factorial designs using Python's `itertools` module. This allows you to scale up variables easily without making copy-paste errors.
 
+```python
+import itertools
+import random
+
+# Define independent variables
+cues = ["left", "right"]
+targets = ["left", "right"]
+soas = [0.1, 0.3, 0.5]  # Stimulus onset asynchronies in seconds
+
+# Generate all 2 x 2 x 3 = 12 unique combinations
+all_combinations = list(itertools.product(cues, targets, soas))
+
+# Build a list of condition dictionaries
+conditions = []
+for cue, target, soa in all_combinations:
+    # Programmatically determine validity
+    validity = "valid" if cue == target else "invalid"
+    
+    conditions.append({
+        "cue": cue,
+        "target": target,
+        "soa": soa,
+        "validity": validity
+    })
+
+# If we want unequal probing (e.g., 80% valid, 20% invalid), we can filter or duplicate certain dicts here.
+# For a raw uniform distribution:
+n_reps = 5
+trial_list = conditions * n_reps
+random.shuffle(trial_list)
 ```
-Pavlovia Preparation Checklist
--------------------------------
-[ ] Experiment runs end-to-end without errors in PsychoPy Coder
-[ ] All file paths are relative (no /Users/name/... absolute paths)
-[ ] No imports that PsychoJS does not support (avoid pandas — use JSON)
-[ ] Participant info dialog confirmed working
-[ ] Data saved using psychopy.data.ExperimentHandler (Pavlovia-compatible)
-[ ] All stimulus files (images, audio) are inside the experiment folder
-[ ] GitLab repository created at pavlovia.org
-[ ] Experiment pushed: git add . && git commit -m "init" && git push
-[ ] Experiment status set to "Piloting" on the Pavlovia dashboard
-[ ] Pilot URL tested in Chrome and Firefox
-[ ] CSV data file appears in the Pavlovia data folder after pilot run
-```
 
-For this week's assignment, pandas is fine (local runs only). You will switch to `psychopy.data.ExperimentHandler` in Week 08 for online deployment.
+By generating the structural matrix programmatically, we unlock the full power of Coder over Builder. We can instantly add a third cue type simply by adding a string to the `cues` list, and the entire design expands dynamically.
 
 ---
 
@@ -263,17 +279,16 @@ For this week's assignment, pandas is fine (local runs only). You will switch to
 
 | Tool | Purpose | Install |
 |------|---------|---------|
-| PsychoPy | Experiment presentation | `pip install psychopy` (from Week 06) |
+| PsychoPy | Experiment presentation | `pip install psychopy` (from Week 04) |
 | `psychopy.gui` | Participant info dialog | included with psychopy |
 | pandas | Save results to CSV | `pip install pandas` |
-| git | Version control and Pavlovia upload | [git-scm.com](https://git-scm.com) |
-| GitLab (Pavlovia) | Host experiments online | [pavlovia.org](https://pavlovia.org) |
+| `itertools` | Structural matrix generation | Built-in Python library |
 
 ---
 
 ## Assignment
 
-Extend your Week 06 script into a complete Posner spatial-cueing experiment (`week-07-posner-task.py`):
+Extend your Week 04 script into a complete Posner spatial-cueing experiment (`week-05-posner-task.py`):
 
 1. Show a participant info dialog collecting Subject ID, Age, and Session number.
 2. Display a written instructions screen and wait for SPACE.
@@ -286,7 +301,7 @@ Extend your Week 06 script into a complete Posner spatial-cueing experiment (`we
    - Required columns: `subject_id`, `session`, `block`, `trial_num`, `cue`, `target`, `validity`, `response`, `rt`, `correct`
 5. Print mean RT and accuracy per validity condition (valid vs. invalid) to the terminal.
 
-Submit `week-07-posner-task.py` and one example CSV file from `data/` to your GitHub repository before Week 08.
+Submit `week-05-posner-task.py` and one example CSV file from `data/` before Week 06.
 
 ---
 
@@ -294,8 +309,7 @@ Submit `week-07-posner-task.py` and one example CSV file from `data/` to your Gi
 
 - [PsychoPy gui module](https://www.psychopy.org/api/gui.html)
 - [PsychoPy data module](https://www.psychopy.org/api/data.html)
-- [Pavlovia documentation](https://pavlovia.org/docs/home)
-- [PsychoJS compatibility list](https://psychopy.org/online/psycojsCode.html)
+- [Python itertools module](https://docs.python.org/3/library/itertools.html)
 - [Posner (1980) — original spatial cueing paradigm](https://doi.org/10.1080/00335558008248231)
 
 ---
@@ -304,6 +318,6 @@ Submit `week-07-posner-task.py` and one example CSV file from `data/` to your Gi
 
 | Week | Topic |
 |------|-------|
+| 06 | NumPy arrays, indexing, vectorized operations |
+| 07 | Data Visualization with Matplotlib |
 | 08 | **Midterm:** Upload experiment to Pavlovia, run an online pilot, present results |
-| 09 | Vibe Coding — switch from manual coding to AI-assisted development with Claude Code |
-| 10 | Agentic workflows, GitHub Actions CI, automated testing with pytest |
