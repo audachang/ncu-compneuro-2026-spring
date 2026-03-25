@@ -45,33 +45,36 @@
 
 | File | Description |
 |------|-------------|
+| `Week4_20260319_PsychoPyIntro.pdf` | PDF Document |
 | `Week4_20260319_PsychoPyIntro.pptx` | File |
+| `Week4_20260319_PsychoPyIntro_II.pdf` | PDF Document |
 | `Week4_20260319_PsychoPyIntro_II.pptx` | File |
-| `week-06-psychopy_basics_stimuli_and_windows.md` | Markdown Documentation |
+| `convert_pptx_to_pdf.ps1` | File |
+| `week-04-psychopy_basics_stimuli_and_windows.md` | Markdown Documentation |
 
-### Week 05: Numpy And Data Manipulation
-**Folder:** `/week-05-numpy_and_data_manipulation`
+### Week 05: Psychopy Experiment Design
+**Folder:** `/week-05-psychopy_experiment_design`
+
+| File | Description |
+|------|-------------|
+| `week-05-psychopy_experiment_design.md` | Markdown Documentation |
+| `week-05-puzzles.ipynb` | Jupyter Notebook |
+
+### Week 06: Numpy And Data Manipulation
+**Folder:** `/week-06-numpy_and_data_manipulation`
 
 | File | Description |
 |------|-------------|
 | `lpthw_ex40-45.ipynb` | Jupyter Notebook |
-| `week-04-numpy_and_data_manipulation.md` | Markdown Documentation |
-| `week-04-puzzles.ipynb` | Jupyter Notebook |
+| `week-06-numpy_and_data_manipulation.md` | Markdown Documentation |
+| `week-06-puzzles.ipynb` | Jupyter Notebook |
 
-### Week 06: Data Visualization With Matplotlib
-**Folder:** `/week-06-data_visualization_with_matplotlib`
-
-| File | Description |
-|------|-------------|
-| `week-05-data_visualization_with_matplotlib.md` | Markdown Documentation |
-| `week-05-puzzles.ipynb` | Jupyter Notebook |
-
-### Week 07: Psychopy Experiment Design
-**Folder:** `/week-07-psychopy_experiment_design`
+### Week 07: Data Visualization With Matplotlib
+**Folder:** `/week-07-data_visualization_with_matplotlib`
 
 | File | Description |
 |------|-------------|
-| `week-07-psychopy_experiment_design.md` | Markdown Documentation |
+| `week-07-data_visualization_with_matplotlib.md` | Markdown Documentation |
 | `week-07-puzzles.ipynb` | Jupyter Notebook |
 
 ### Week 08: Midterm Online Experiment On Pavlovia

@@ -1,7 +1,7 @@
-# Week 05: Data Visualization with Matplotlib
+# Week 07: Data Visualization with Matplotlib
 
 > **Course:** NS5116 Computational Neuroscience — Spring 2026
-> **Week:** 5 of 16 | **Date:** 2026-03-26 | **Room:** TBA
+> **Week:** 7 of 16 | **Date:** 2026-04-09 | **Room:** TBA
 
 ---
 
@@ -300,38 +300,38 @@ fig, ax = plt.subplots(figsize=(3.5, 2.8))   # single-column figure
 
 ## Choosing the Right Plot
 
-| Data type | Recommended plot |
-|-----------|-----------------|
-| Variable over time / trials | Line plot |
-| Relationship between two variables | Scatter plot |
-| Mean comparison across groups | Bar plot with error bars |
-| Distribution of one variable | Histogram |
-| Multiple comparisons at once | Multi-panel figure |
+| Data type                          | Recommended plot         |
+| ---------------------------------- | ------------------------ |
+| Variable over time / trials        | Line plot                |
+| Relationship between two variables | Scatter plot             |
+| Mean comparison across groups      | Bar plot with error bars |
+| Distribution of one variable       | Histogram                |
+| Multiple comparisons at once       | Multi-panel figure       |
 
 ---
 
 ## Neuroscience Connection
 
-| Plot | Typical use in neuroscience |
-|------|-----------------------------|
-| Line | EEG/ERP time series, learning curves |
-| Scatter | RT vs. accuracy, neural firing rate vs. stimulus intensity |
-| Bar | Mean RT or accuracy by condition with SEM |
-| Histogram | RT or signal amplitude distributions |
-| Multi-panel | Publication figure summarizing an experiment |
+| Plot        | Typical use in neuroscience                                |
+| ----------- | ---------------------------------------------------------- |
+| Line        | EEG/ERP time series, learning curves                       |
+| Scatter     | RT vs. accuracy, neural firing rate vs. stimulus intensity |
+| Bar         | Mean RT or accuracy by condition with SEM                  |
+| Histogram   | RT or signal amplitude distributions                       |
+| Multi-panel | Publication figure summarizing an experiment               |
 
 ---
 
 ## Tools This Week
 
 - `matplotlib` — already installed (`pip install matplotlib` in Week 01)
-- `numpy` — from Week 04
+- `numpy` — from Week 06
 
 ---
 
 ## Assignment
 
-Create a new notebook `week-05-assignment.ipynb` and:
+Create a new notebook `week-07-assignment.ipynb` and:
 
 Key exercises:
 - Plot RT over trials with a mean reference line
@@ -339,7 +339,7 @@ Key exercises:
 - Create a 2×2 summary figure (line, histogram, bar, scatter) using `subplots()`
 - Save the figure to PNG
 
-Submit by pushing to your GitHub repository before Week 06.
+Submit by pushing to your GitHub repository before Week 08.
 
 ---
 
@@ -365,8 +365,6 @@ Submit by pushing to your GitHub repository before Week 06.
 
 ## What Comes Next
 
-| Week | Topic |
-|------|-------|
-| 06 | PsychoPy basics — display stimuli in a window |
-| 07 | PsychoPy experiment design — trial loops, data saving |
-| 08 | **Midterm:** Deploy a full experiment to Pavlovia |
+| Week | Topic                                                 |
+| ---- | ----------------------------------------------------- |
+| 08   | **Midterm:** Deploy a full experiment to Pavlovia     |

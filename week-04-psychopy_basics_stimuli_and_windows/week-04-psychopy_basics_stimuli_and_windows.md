@@ -259,21 +259,29 @@ Dropped frames (duration > 1.5× expected) indicate that the GPU or CPU cannot k
 
 ## Assignment
 
-Write a standalone PsychoPy script (`week-06-attention-cue.py`) that implements the following sequence:
+Create a new folder in your repository named `week-04-homework`. Save your answers as separate python scripts (`ex1.py`, `ex2.py`, etc.).
 
-1. Show a welcome message; wait for SPACE to begin.
-2. Run 10 trials. On each trial:
-   - Show a fixation cross for 500 ms.
-   - Show a spatial cue (a small rectangle on the left or right) for 100 ms.
-   - Show a blank screen for 400 ms (SOA = 500 ms).
-   - Show a target (`"*"`) at a random location (left or right) for 200 ms.
-   - Collect a left/right arrow key response with a 1500 ms deadline; record RT.
-   - Show a blank inter-trial interval of 500 ms.
-3. After all trials, print mean RT and accuracy to the terminal.
+**Exercise 1: Dynamic Countdown (Intermediate)**
+Instead of just showing static text, create a countdown. Open an 800x600 window. Use `core.wait()` and a loop to display "3", "2", "1", and then "Welcome to PsychoPy!". Each number should be on screen for 1 second. After "Welcome to PsychoPy!" appears, wait for the 'space' key to close the window.
 
-Cue validity should be 80% (cue correctly predicts target side 8 of 10 trials). Randomize trial order with `random.shuffle()`.
+**Exercise 2: Continuous Rotation (Advanced)**
+Create a script that opens a window and draws a polygon (like a triangle or hexagon). Use a `while` loop to continuously rotate the shape by 1 degree per frame (`ori += 1`). On each frame, call `win.flip()`. Add a non-blocking keyboard check (`event.getKeys()`): the loop should keep running and spinning the shape until the user presses the 'escape' key.
 
-Submit `week-06-attention-cue.py` by pushing to your GitHub repository before Week 07.
+**Exercise 3: Dual Image Manipulation (Advanced)**
+Load two *different* JPG images. Display them side-by-side (adjust their `pos` attributes). Use a `while` loop to check for key presses continually without blocking.
+- If 'left' is pressed, toggle a mask (e.g., `'gauss'` vs `None`) on the left image.
+- If 'right' is pressed, change the contrast of the right image (e.g., toggle between `1` and `-1`).
+- If 'escape' is pressed, exit the loop and close the window.
+
+**Exercise 4: Mini-RT Experiment (Advanced)**
+Create a mini-block of 5 trials using a `for` loop. For each trial:
+- Draw a fixation cross for 500 ms.
+- Show a blank screen for a random duration between 200 ms and 500 ms (use the `random.uniform()` or `random.randint()` function).
+- Display a target (e.g., the word "GO") randomly on either the left or the right side of the screen.
+- Wait for a key press and record the reaction time (RT) using a `core.Clock()`.
+Once all 5 trials are completed, calculate the average RT and print it to the terminal.
+
+Submit your scripts by pushing to your GitHub repository before Week 05.
 
 ---
 

@@ -1,7 +1,7 @@
-# Week 04: NumPy & Data Manipulation
+# Week 06: NumPy & Data Manipulation
 
 > **Course:** NS5116 Computational Neuroscience — Spring 2026
-> **Week:** 4 of 16 | **Date:** 2026-03-19 | **Room:** TBA
+> **Week:** 6 of 16 | **Date:** 2026-04-02 | **Room:** TBA
 
 ---
 
@@ -420,7 +420,7 @@ rts = df["rt_ms"].to_numpy()   # extract one column as a NumPy array
 
 Review [`lpthw_ex40-45.ipynb`](lpthw_ex40-45.ipynb) for OOP background (NumPy arrays are objects too).
 
-Then create a new notebook `week-04-assignment.ipynb` and:
+Then create a new notebook `week-06-assignment.ipynb` and:
 
 Key exercises:
 - Create and inspect arrays of simulated reaction time data
@@ -428,7 +428,7 @@ Key exercises:
 - Use boolean masking to remove outlier trials
 - Compute per-condition mean and standard deviation on a 2D array
 
-Submit by pushing to your GitHub repository before Week 05.
+Submit by pushing to your GitHub repository before Week 07.
 
 ---
 
@@ -455,6 +455,6 @@ Submit by pushing to your GitHub repository before Week 05.
 
 | Week | Topic |
 |------|-------|
-| 05 | Matplotlib — plot the distributions and statistics you computed this week |
-| 06 | PsychoPy — `numpy` is used internally by PsychoPy for timing |
+| 07 | Matplotlib — plot the distributions and statistics you computed this week |
+| 08 | **Midterm:** Deploy a full experiment to Pavlovia |
 | 12 | pandas — tabular data with column names (builds on NumPy) |

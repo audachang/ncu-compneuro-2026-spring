@@ -1,7 +1,7 @@
-# Week 07: PsychoPy Experiment Design
+# Week 05: PsychoPy Experiment Design
 
 > **Course:** NS5116 Programming & AI Applications in Behavioral Science — Spring 2026
-> **Week:** 7 of 16 | **Date:** 2026-04-09 | **Room:** TBA
+> **Week:** 5 of 16 | **Date:** 2026-03-26 | **Room:** TBA
 
 ---
 
