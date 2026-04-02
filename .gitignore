@@ -4,6 +4,7 @@
 /sections/
 weekly_contents.md
 *.pdf
+!syllabus_*.pdf
 *.log
 *.tmp
 *.aux
@@ -16,3 +17,4 @@ __pycache__/
 /Context/
 /Instructions/
 /general/
+/week-06-numpy_and_data_manipulation/demo/
