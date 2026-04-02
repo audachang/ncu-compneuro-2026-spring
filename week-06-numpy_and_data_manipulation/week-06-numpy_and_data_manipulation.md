@@ -62,7 +62,7 @@ np.random.seed(42)
 rts_sim = np.random.normal(loc=400, scale=80, size=100)  # 100 simulated RTs
 ```
 
-#### Real Python: arange vs linspace vs range
+#### arange vs linspace vs range
 
 Understanding when to use each sequence-generation function is key:
 
@@ -86,7 +86,7 @@ Understanding when to use each sequence-generation function is key:
 
 In experiment code, use `np.linspace` when creating stimulus timings or axis labels, and `np.arange` for trial indexing.
 
-#### Real Python: Array dtype and Type Promotion
+#### Array dtype and Type Promotion
 
 When you create an array, NumPy infers the **dtype** (data type):
 
@@ -102,7 +102,7 @@ np.array([1, 2, 3], dtype=int32)   # force 32-bit int
 
 **Why it matters:** If you mix integers and floats, NumPy silently converts everything to float, which uses more memory and might not be what you want.
 
-#### Real Python: zeros, ones, empty, and Initialization
+#### zeros, ones, empty, and Initialization
 
 - **`np.zeros(shape)`**: Initialize with zeros. Safe; always use if you're unsure.
   ```python
@@ -183,7 +183,7 @@ np.sqrt(rts)
 np.abs(rts - 400)
 ```
 
-#### Real Python: Broadcasting — Operating on Different Shapes
+#### Broadcasting — Operating on Different Shapes
 
 NumPy's **broadcasting** allows operations between arrays of different shapes, as long as they are compatible. This eliminates the need for loops:
 
@@ -211,7 +211,7 @@ centered = rts - baseline
 # (2, 3) minus (1, 3) after padding → (2, 3) minus (2, 3)
 ```
 
-#### Real Python: Universal Functions (ufuncs) — Vectorized Operations
+#### Universal Functions (ufuncs) — Vectorized Operations
 
 NumPy's **ufuncs** (universal functions) are compiled C implementations that operate element-wise. They're *much* faster than Python loops:
 
@@ -265,7 +265,7 @@ std  = rts.std()
 clean = rts[np.abs(rts - mean) < 2.5 * std]   # remove values > 2.5 SD from mean
 ```
 
-#### Real Python: np.where — Vectorized if/else
+#### np.where — Vectorized if/else
 
 `np.where(condition, value_if_true, value_if_false)` is a vectorized version of `if/else` that returns values based on a condition:
 
@@ -281,7 +281,7 @@ rts_categorized = np.where(rts > 400, "outlier", "normal")
 rts_adjusted = np.where(rts > 1000, rts - 100, rts)  # subtract 100 from slow RTs
 ```
 
-#### Real Python: argmax, argmin — Finding Indices
+#### argmax, argmin — Finding Indices
 
 `np.argmax()` and `np.argmin()` return the **index** (not the value) of the maximum or minimum:
 
@@ -298,7 +298,7 @@ rts[fastest_trial]              # 280
 outlier_idx = np.argmax(np.abs(rts - rts.mean()))  # furthest from mean
 ```
 
-#### Real Python: Fancy Indexing — Selecting by Indices
+#### Fancy Indexing — Selecting by Indices
 
 Index with an integer array to select multiple elements:
 
@@ -337,7 +337,7 @@ data.mean(axis=1)   # mean RT per subject (3 values)
 data.mean(axis=0)   # mean RT per trial position (10 values)
 ```
 
-#### Real Python: np.random — Seeding and Modern RNG
+#### np.random — Seeding and Modern RNG
 
 NumPy's random number generation has two interfaces:
 
@@ -355,7 +355,7 @@ rts = rng.normal(loc=400, scale=80, size=100)
 
 The new API returns a **Generator** object with the same methods, so the code looks the same but is more robust.
 
-#### Real Python: percentile vs quantile
+#### percentile vs quantile
 
 Both do the same thing but with different conventions:
 - **`np.percentile(a, q)`**: `q` is in range 0–100
