@@ -14,7 +14,8 @@ mou = event.Mouse()
 # Initially, the vertices contain just one point (0,0)
 path = visual.ShapeStim(win, pos=[0,0],
                         vertices = [(0,0)],
-                        closeShape = True)
+                        closeShape = True, 
+                        lineColor="black")
 path.setAutoDraw(True)
 
 apos = []

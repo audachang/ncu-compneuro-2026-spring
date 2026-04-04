@@ -30,8 +30,8 @@ A 16-week practical coding course for graduate students. No prior programming ex
 | [03](week-03-functions_data_structures_and_file_io/) | 2026-03-12 | Lists, dicts, tuples, sets; CSV & text file I/O (pre-recorded)| Python |
 | [04](week-04-psychopy_basics_stimuli_and_windows/) | 2026-03-19 | PsychoPy install, Window, visual stimuli, clocks, input | PsychoPy |
 | [05](week-05-psychopy_experiment_design/) | 2026-03-26 | Event loop, trial structure, response recording, data saving | PsychoPy, Pavlovia |
-| [06](week-06-numpy_and_data_manipulation/) | 2026-04-02 | NumPy arrays, indexing, vectorized operations | NumPy |
-| [07](week-07-data_visualization_with_matplotlib/) | 2026-04-09 | Line/scatter/bar/histogram plots, subplots, annotations | Matplotlib |
+| [06](week-06-psychopy_builder/) | 2026-04-02 | PsychoPy Builder, Stroop experiment, Pavlovia deployment | PsychoPy Builder |
+| [07](week-07-numpy_data_manipulation_and_visualization/) | 2026-04-09 | NumPy arrays, vectorized operations, Matplotlib plots & subplots | NumPy, Matplotlib |
 | **[08](week-08-midterm_online_experiment_on_pavlovia/)** | 2026-04-16 | **MILESTONE: Deploy cognitive experiment to Pavlovia** | PsychoPy, Pavlovia |
 
 ### Part 2: Vibe Coding & Agentic Programming (Weeks 9–16)

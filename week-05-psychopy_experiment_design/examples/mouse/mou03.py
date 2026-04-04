@@ -17,7 +17,7 @@ circle = visual.Circle(win, pos = (0.5, 0))
 circle.setAutoDraw(True)
 
 # Text stimulus for notifications
-notice = visual.TextStim(win, text = '')
+notice = visual.TextStim(win, text = '', pos=(0., 0.7), color="black")
 notice.autoDraw = True
 
 buttons = mou.getPressed()

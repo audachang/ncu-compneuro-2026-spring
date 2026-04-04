@@ -25,7 +25,7 @@ mou.setPos()
 
 # Define target position and draw a circle around it
 tarposi = (-0.5, 0.75)
-circle = visual.Circle(win, pos = tarposi, radius = 0.25)
+circle = visual.Circle(win, pos = tarposi, radius = 0.25, fillColor="gray")
 circle.autoDraw = True
 
 # Initial position set to the target position

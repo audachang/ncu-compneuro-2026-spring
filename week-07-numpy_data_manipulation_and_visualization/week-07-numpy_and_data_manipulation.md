@@ -67,18 +67,19 @@ rts_sim = np.random.normal(loc=400, scale=80, size=100)  # 100 simulated RTs
 Understanding when to use each sequence-generation function is key:
 
 - **`np.arange(start, stop, step)`**: Use when you know the **step size**. Like Python's `range()`, but for NumPy arrays. Returns integers by default; use `dtype=float` if you want floats.
+
   ```python
   np.arange(0, 10, 2)      # [0, 2, 4, 6, 8]
   np.arange(0, 1, 0.1)     # [0.0, 0.1, 0.2, ..., 0.9]
   ```
-
 - **`np.linspace(start, stop, num)`**: Use when you know how many **points** you want, evenly spaced. Perfect for plotting.
+
   ```python
   np.linspace(0, 1, 5)     # exactly 5 points from 0 to 1
   # Output: [0.  , 0.25, 0.5 , 0.75, 1.  ]
   ```
-
 - **Python `range()`**: Use for *integer-only* loops in `for` statements. Doesn't create a NumPy array.
+
   ```python
   for i in range(5):
       print(i)  # 0, 1, 2, 3, 4
@@ -105,16 +106,17 @@ np.array([1, 2, 3], dtype=int32)   # force 32-bit int
 #### zeros, ones, empty, and Initialization
 
 - **`np.zeros(shape)`**: Initialize with zeros. Safe; always use if you're unsure.
+
   ```python
   np.zeros((3, 4))  # 3×4 matrix of zeros
   ```
-
 - **`np.ones(shape)`**: Initialize with ones.
+
   ```python
   np.ones(5)        # [1., 1., 1., 1., 1.]
   ```
-
 - **`np.empty(shape)`**: Allocate memory but don't initialize. *Faster* because it skips the initialization step, but contains garbage values. Only use when you will immediately fill every element:
+
   ```python
   output = np.empty(1000)
   for i in range(1000):
@@ -144,6 +146,7 @@ a.size     # 6       — total number of elements
 ### 3. Indexing and Slicing (20 min)
 
 **1D arrays — same as lists:**
+
 ```python
 rts = np.array([320, 415, 280, 510, 390])
 rts[0]      # 320
@@ -152,6 +155,7 @@ rts[1:4]    # [415, 280, 510]
 ```
 
 **2D arrays — `[row, col]`:**
+
 ```python
 data = np.array([[1, 2, 3],
                  [4, 5, 6],
@@ -203,6 +207,7 @@ centered = rts - baseline
 ```
 
 **Broadcasting rules** (compared from right to left):
+
 - If arrays have different numbers of dimensions, pad the smaller with ones on the left.
 - Dimensions are compatible if they are equal *or* one of them is 1 (the size-1 dimension stretches).
 
@@ -226,6 +231,7 @@ result = np.log(rts)
 ```
 
 Common ufuncs:
+
 - Arithmetic: `np.add`, `np.subtract`, `np.multiply`, `np.divide`
 - Math: `np.log`, `np.exp`, `np.sqrt`, `np.abs`, `np.sin`, `np.cos`
 - Comparison: `np.less`, `np.greater`, `np.equal`
@@ -259,6 +265,7 @@ valid = rts[(rts >= 150) & (rts <= 900)]
 ```
 
 **Outlier removal:**
+
 ```python
 mean = rts.mean()
 std  = rts.std()
@@ -329,6 +336,7 @@ np.percentile(rts, [25, 75])  # quartiles
 ```
 
 **2D aggregation — compute per row or per column:**
+
 ```python
 # Shape (3 subjects × 10 trials)
 data = np.random.normal(400, 80, size=(3, 10))
@@ -342,12 +350,14 @@ data.mean(axis=0)   # mean RT per trial position (10 values)
 NumPy's random number generation has two interfaces:
 
 **Old API (still works but less thread-safe):**
+
 ```python
 np.random.seed(42)
 rts = np.random.normal(loc=400, scale=80, size=100)
 ```
 
 **New API (recommended for reproducibility and thread-safety):**
+
 ```python
 rng = np.random.default_rng(42)
 rts = rng.normal(loc=400, scale=80, size=100)
@@ -358,6 +368,7 @@ The new API returns a **Generator** object with the same methods, so the code lo
 #### percentile vs quantile
 
 Both do the same thing but with different conventions:
+
 - **`np.percentile(a, q)`**: `q` is in range 0–100
 - **`np.quantile(a, q)`**: `q` is in range 0–1
 
@@ -389,6 +400,7 @@ data = np.loadtxt("results.csv", delimiter=",", skiprows=1)
 ```
 
 For more complex CSVs (with string columns), use pandas:
+
 ```python
 import pandas as pd
 df = pd.read_csv("results.csv")
@@ -399,13 +411,13 @@ rts = df["rt_ms"].to_numpy()   # extract one column as a NumPy array
 
 ## Neuroscience Connection
 
-| NumPy feature | Experiment analysis use |
-|--------------|------------------------|
-| Boolean masking | Remove invalid trials (RT < 100 ms or > 1500 ms) |
-| `mean()`, `std()` | Summarize accuracy and RT per condition |
-| `axis=1` aggregation | Compute per-subject or per-block statistics |
-| `np.random.normal()` | Simulate data to test analysis pipelines |
-| z-score | Normalize RTs for comparison across subjects |
+| NumPy feature          | Experiment analysis use                          |
+| ---------------------- | ------------------------------------------------ |
+| Boolean masking        | Remove invalid trials (RT < 100 ms or > 1500 ms) |
+| `mean()`, `std()`  | Summarize accuracy and RT per condition          |
+| `axis=1` aggregation | Compute per-subject or per-block statistics      |
+| `np.random.normal()` | Simulate data to test analysis pipelines         |
+| z-score                | Normalize RTs for comparison across subjects     |
 
 ---
 
@@ -423,6 +435,7 @@ Review [`lpthw_ex40-45.ipynb`](lpthw_ex40-45.ipynb) for OOP background (NumPy ar
 Then create a new notebook `week-06-assignment.ipynb` and:
 
 Key exercises:
+
 - Create and inspect arrays of simulated reaction time data
 - Apply z-score normalization using vectorized operations
 - Use boolean masking to remove outlier trials
@@ -435,26 +448,30 @@ Submit by pushing to your GitHub repository before Week 07.
 ## Resources
 
 ### Official Documentation
+
 - [NumPy Quickstart](https://numpy.org/doc/stable/user/quickstart.html)
 - [NumPy Indexing](https://numpy.org/doc/stable/user/basics.indexing.html)
 - [NumPy for MATLAB users](https://numpy.org/doc/stable/user/numpy-for-matlab-users.html)
 
 ### Real Python — Array Creation & Indexing
+
 - [NumPy arange: How to Use np.arange()](https://realpython.com/how-to-use-numpy-arange/)
 
 ### Real Python — Vectorization & Operations
+
 - [Array Programming with NumPy](https://realpython.com/numpy-array-programming/)
 - [NumPy Array Example: From Basic to Advanced](https://realpython.com/numpy-example/)
 
 ### Real Python — Random Numbers
+
 - [NumPy Random Number Generator](https://realpython.com/numpy-random-number-generator/)
 
 ---
 
 ## What Comes Next
 
-| Week | Topic |
-|------|-------|
-| 07 | Matplotlib — plot the distributions and statistics you computed this week |
-| 08 | **Midterm:** Deploy a full experiment to Pavlovia |
-| 12 | pandas — tabular data with column names (builds on NumPy) |
+| Week | Topic                                                                      |
+| ---- | -------------------------------------------------------------------------- |
+| 07   | Matplotlib — plot the distributions and statistics you computed this week |
+| 08   | **Midterm:** Deploy a full experiment to Pavlovia                    |
+| 12   | pandas — tabular data with column names (builds on NumPy)                 |
