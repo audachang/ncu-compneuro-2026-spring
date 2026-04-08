@@ -17,3 +17,5 @@ __pycache__/
 /Context/
 /Instructions/
 /week-06-numpy_and_data_manipulation/demo/
+general/*.html
+general/*_files/
