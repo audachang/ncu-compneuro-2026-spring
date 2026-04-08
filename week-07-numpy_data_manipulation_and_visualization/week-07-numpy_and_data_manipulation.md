@@ -254,6 +254,32 @@ output = np.empty_like(rts)
 np.log(rts, out=output)  # result stored in output, no new allocation
 ```
 
+**How much faster?** A benchmark on 100,000 simulated RTs (`np.log` on a modern laptop):
+
+*📄 [`universal_functions_timing_comparison.py`](code/numpy/universal_functions_timing_comparison.py)*
+
+```python
+import numpy as np
+import timeit
+
+rng = np.random.default_rng(42)
+rts = rng.normal(400, 80, size=100_000)
+
+# Python list comprehension
+loop_time  = timeit.timeit(lambda: [np.log(rt) for rt in rts], number=10) / 10
+
+# NumPy ufunc
+ufunc_time = timeit.timeit(lambda: np.log(rts), number=10) / 10
+
+print(f"Loop   : {loop_time * 1000:.1f} ms")
+print(f"Ufunc  : {ufunc_time * 1000:.2f} ms")
+print(f"Speedup: {loop_time / ufunc_time:.0f}×")
+# Typical output:
+#   Loop   : ~90 ms
+#   Ufunc  : ~0.4 ms
+#   Speedup: ~200×
+```
+
 📖 [NumPy Array Programming](https://realpython.com/numpy-array-programming/) · [NumPy Ufuncs](https://numpy.org/doc/stable/reference/ufuncs.html)
 
 ---
