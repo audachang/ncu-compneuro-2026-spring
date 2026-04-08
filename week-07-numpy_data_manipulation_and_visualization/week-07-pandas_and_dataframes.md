@@ -24,6 +24,7 @@ By the end of this week you will be able to:
 NumPy is fast but indexing is positional — you must remember that column 2 is RT and column 3 is accuracy.
 Pandas stores data in a **DataFrame**: a table with named columns and labeled rows, like a spreadsheet in Python.
 
+*📄 [`why_pandas.py`](code/pandas/why_pandas.py)*
 ```python
 import numpy as np
 import pandas as pd
@@ -48,6 +49,7 @@ For behavioral experiments with multiple subjects, conditions, and measures, lab
 
 The most common way in experiment code is from a Python dictionary:
 
+*📄 [`creating_dataframes.py`](code/pandas/creating_dataframes.py)*
 ```python
 import pandas as pd
 
@@ -65,6 +67,7 @@ print(df.dtypes)
 
 You can also create a DataFrame row-by-row (useful when building trial lists in a loop):
 
+*📄 [`creating_dataframes_2.py`](code/pandas/creating_dataframes_2.py)*
 ```python
 rows = []
 for trial in range(1, 5):
@@ -92,6 +95,7 @@ df = pd.DataFrame(rows)
 
 #### Column selection
 
+*📄 [`column_selection.py`](code/pandas/column_selection.py)*
 ```python
 # Single column → Series (1D)
 df["rt_ms"]
@@ -102,6 +106,7 @@ df[["subject", "rt_ms"]]
 
 #### Row selection with `.loc` (label-based) and `.iloc` (position-based)
 
+*📄 [`row_selection_with_loc_label_based_and_iloc_position_based.py`](code/pandas/row_selection_with_loc_label_based_and_iloc_position_based.py)*
 ```python
 # loc: label-based — use with index labels or boolean arrays
 df.loc[0]          # first row by index label
@@ -115,6 +120,7 @@ df.iloc[0, 2]      # row 0, column 2
 
 #### Boolean filtering (most common in practice)
 
+*📄 [`boolean_filtering_most_common_in_practice.py`](code/pandas/boolean_filtering_most_common_in_practice.py)*
 ```python
 # Keep only correct trials
 df_correct = df[df["correct"] == 1]
@@ -132,6 +138,7 @@ Use `&` (AND) and `|` (OR) — **not** Python's `and`/`or` — when combining co
 
 ### 3. Adding and Modifying Columns (10 min)
 
+*📄 [`adding_and_modifying_columns.py`](code/pandas/adding_and_modifying_columns.py)*
 ```python
 # Derived column — vectorized, no loop required
 df["rt_sec"] = df["rt_ms"] / 1000
@@ -147,6 +154,7 @@ df["speed"] = np.where(df["rt_ms"] < median_rt, "fast", "slow")
 
 #### apply — execute a custom function per row or per column
 
+*📄 [`apply_execute_a_custom_function_per_row_or_per_column.py`](code/pandas/apply_execute_a_custom_function_per_row_or_per_column.py)*
 ```python
 # Per-element transformation using a function
 def classify_rt(rt):
@@ -168,6 +176,7 @@ Use `apply` when the logic is too complex for a one-liner; otherwise prefer vect
 
 `groupby` splits the DataFrame by one or more columns, then applies an aggregate function to each group.
 
+*📄 [`groupby_and_aggregation.py`](code/pandas/groupby_and_aggregation.py)*
 ```python
 # Mean RT per condition
 df.groupby("condition")["rt_ms"].mean()
@@ -193,6 +202,7 @@ df.groupby(["subject", "condition"])["rt_ms"].mean()
 
 #### Correct-trial accuracy pattern
 
+*📄 [`correct_trial_accuracy_pattern.py`](code/pandas/correct_trial_accuracy_pattern.py)*
 ```python
 # Proportion correct per condition (mean of 0/1 column = proportion)
 df.groupby("condition")["correct"].mean()
@@ -204,6 +214,7 @@ df.groupby("condition")["correct"].mean()
 
 `pivot_table` reshapes long-format data (one row per trial) into wide format (conditions as columns).
 
+*📄 [`pivot_tables.py`](code/pandas/pivot_tables.py)*
 ```python
 # Mean RT: subjects as rows, conditions as columns
 summary = pd.pivot_table(
@@ -218,6 +229,7 @@ print(summary)
 
 The result is a standard DataFrame — you can subtract columns directly to compute interference costs:
 
+*📄 [`pivot_tables_2.py`](code/pandas/pivot_tables_2.py)*
 ```python
 summary["interference_cost"] = summary["incongruent"] - summary["congruent"]
 ```
@@ -226,6 +238,7 @@ summary["interference_cost"] = summary["incongruent"] - summary["congruent"]
 
 ### 6. Reading and Writing CSV (10 min)
 
+*📄 [`reading_and_writing_csv.py`](code/pandas/reading_and_writing_csv.py)*
 ```python
 # Write — index=False avoids saving the row numbers as a column
 df.to_csv("stroop_results.csv", index=False)
@@ -247,6 +260,7 @@ df_loaded = pd.read_csv("stroop_results.csv")
 
 After loading, always check:
 
+*📄 [`common_read_csv_options.py`](code/pandas/common_read_csv_options.py)*
 ```python
 df_loaded.info()        # dtypes and non-null counts
 df_loaded.describe()    # numeric summaries
@@ -259,6 +273,7 @@ df_loaded.isna().sum()  # count missing values per column
 
 pandas Series and numpy arrays can be passed directly to matplotlib functions.
 
+*📄 [`from_pandas_to_matplotlib.py`](code/pandas/from_pandas_to_matplotlib.py)*
 ```python
 import matplotlib.pyplot as plt
 
@@ -279,6 +294,7 @@ plt.show()
 
 #### Iterating over groups to plot per-subject lines
 
+*📄 [`iterating_over_groups_to_plot_per_subject_lines.py`](code/pandas/iterating_over_groups_to_plot_per_subject_lines.py)*
 ```python
 fig, ax = plt.subplots(figsize=(7, 4))
 

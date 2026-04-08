@@ -25,6 +25,7 @@ Pure Python lists are flexible but slow for numerical computation.
 NumPy stores data in contiguous memory blocks and applies operations
 to entire arrays at once — no Python `for` loop required.
 
+*📄 [`why_numpy.py`](code/numpy/why_numpy.py)*
 ```python
 import numpy as np
 
@@ -45,6 +46,7 @@ For 10,000 trials, NumPy is typically 50–100× faster than a Python loop.
 
 ### 1. Creating Arrays (20 min)
 
+*📄 [`creating_arrays.py`](code/numpy/creating_arrays.py)*
 ```python
 import numpy as np
 
@@ -91,6 +93,7 @@ In experiment code, use `np.linspace` when creating stimulus timings or axis lab
 
 When you create an array, NumPy infers the **dtype** (data type):
 
+*📄 [`array_dtype_and_type_promotion.py`](code/numpy/array_dtype_and_type_promotion.py)*
 ```python
 np.array([1, 2, 3])        # int64 (on most systems)
 np.array([1.0, 2.0, 3.0])  # float64
@@ -131,6 +134,7 @@ np.array([1, 2, 3], dtype=int32)   # force 32-bit int
 
 ### 2. Array Properties (10 min)
 
+*📄 [`array_properties.py`](code/numpy/array_properties.py)*
 ```python
 a = np.array([[1, 2, 3],
               [4, 5, 6]])
@@ -147,6 +151,7 @@ a.size     # 6       — total number of elements
 
 **1D arrays — same as lists:**
 
+*📄 [`indexing_and_slicing.py`](code/numpy/indexing_and_slicing.py)*
 ```python
 rts = np.array([320, 415, 280, 510, 390])
 rts[0]      # 320
@@ -156,6 +161,7 @@ rts[1:4]    # [415, 280, 510]
 
 **2D arrays — `[row, col]`:**
 
+*📄 [`indexing_and_slicing_2.py`](code/numpy/indexing_and_slicing_2.py)*
 ```python
 data = np.array([[1, 2, 3],
                  [4, 5, 6],
@@ -171,6 +177,7 @@ data[0:2, 1:] # [[2,3],[5,6]]  — submatrix
 
 ### 4. Vectorized Operations (15 min)
 
+*📄 [`vectorized_operations.py`](code/numpy/vectorized_operations.py)*
 ```python
 rts = np.array([320, 415, 280, 510, 390])
 
@@ -191,6 +198,7 @@ np.abs(rts - 400)
 
 NumPy's **broadcasting** allows operations between arrays of different shapes, as long as they are compatible. This eliminates the need for loops:
 
+*📄 [`broadcasting_operating_on_different_shapes.py`](code/numpy/broadcasting_operating_on_different_shapes.py)*
 ```python
 rts = np.array([[320, 415, 280],    # subject 1: 3 trials
                 [390, 425, 310]])    # subject 2: 3 trials
@@ -211,6 +219,7 @@ centered = rts - baseline
 - If arrays have different numbers of dimensions, pad the smaller with ones on the left.
 - Dimensions are compatible if they are equal *or* one of them is 1 (the size-1 dimension stretches).
 
+*📄 [`broadcasting_operating_on_different_shapes_2.py`](code/numpy/broadcasting_operating_on_different_shapes_2.py)*
 ```python
 # shape (2, 3) minus shape (3,) broadcasts as:
 # (2, 3) minus (1, 3) after padding → (2, 3) minus (2, 3)
@@ -220,6 +229,7 @@ centered = rts - baseline
 
 NumPy's **ufuncs** (universal functions) are compiled C implementations that operate element-wise. They're *much* faster than Python loops:
 
+*📄 [`universal_functions_ufuncs_vectorized_operations.py`](code/numpy/universal_functions_ufuncs_vectorized_operations.py)*
 ```python
 # Instead of:
 result = []
@@ -238,6 +248,7 @@ Common ufuncs:
 
 Ufuncs also support **output arrays** to avoid allocating new memory:
 
+*📄 [`universal_functions_ufuncs_vectorized_operations_2.py`](code/numpy/universal_functions_ufuncs_vectorized_operations_2.py)*
 ```python
 output = np.empty_like(rts)
 np.log(rts, out=output)  # result stored in output, no new allocation
@@ -251,6 +262,7 @@ np.log(rts, out=output)  # result stored in output, no new allocation
 
 Boolean masking lets you filter data without loops:
 
+*📄 [`boolean_masking.py`](code/numpy/boolean_masking.py)*
 ```python
 rts = np.array([320, 415, 280, 510, 390])
 
@@ -266,6 +278,7 @@ valid = rts[(rts >= 150) & (rts <= 900)]
 
 **Outlier removal:**
 
+*📄 [`boolean_masking_2.py`](code/numpy/boolean_masking_2.py)*
 ```python
 mean = rts.mean()
 std  = rts.std()
@@ -276,6 +289,7 @@ clean = rts[np.abs(rts - mean) < 2.5 * std]   # remove values > 2.5 SD from mean
 
 `np.where(condition, value_if_true, value_if_false)` is a vectorized version of `if/else` that returns values based on a condition:
 
+*📄 [`np_where_vectorized_if_else.py`](code/numpy/np_where_vectorized_if_else.py)*
 ```python
 rts = np.array([320, 415, 280, 510, 390])
 labels = np.where(rts > 400, "slow", "fast")
@@ -292,6 +306,7 @@ rts_adjusted = np.where(rts > 1000, rts - 100, rts)  # subtract 100 from slow RT
 
 `np.argmax()` and `np.argmin()` return the **index** (not the value) of the maximum or minimum:
 
+*📄 [`argmax_argmin_finding_indices.py`](code/numpy/argmax_argmin_finding_indices.py)*
 ```python
 rts = np.array([320, 415, 280, 510, 390])
 
@@ -309,6 +324,7 @@ outlier_idx = np.argmax(np.abs(rts - rts.mean()))  # furthest from mean
 
 Index with an integer array to select multiple elements:
 
+*📄 [`fancy_indexing_selecting_by_indices.py`](code/numpy/fancy_indexing_selecting_by_indices.py)*
 ```python
 indices = np.array([0, 2, 4])
 rts[indices]                    # [320, 280, 390] — trials 0, 2, 4
@@ -324,6 +340,7 @@ sorted_rts = rts[sorted_indices]
 
 ### 6. Descriptive Statistics (10 min)
 
+*📄 [`descriptive_statistics.py`](code/numpy/descriptive_statistics.py)*
 ```python
 rts = np.array([320, 415, 280, 510, 390])
 
@@ -337,6 +354,7 @@ np.percentile(rts, [25, 75])  # quartiles
 
 **2D aggregation — compute per row or per column:**
 
+*📄 [`descriptive_statistics_2.py`](code/numpy/descriptive_statistics_2.py)*
 ```python
 # Shape (3 subjects × 10 trials)
 data = np.random.normal(400, 80, size=(3, 10))
@@ -351,6 +369,7 @@ NumPy's random number generation has two interfaces:
 
 **Old API (still works but less thread-safe):**
 
+*📄 [`np_random_seeding_and_modern_rng.py`](code/numpy/np_random_seeding_and_modern_rng.py)*
 ```python
 np.random.seed(42)
 rts = np.random.normal(loc=400, scale=80, size=100)
@@ -358,6 +377,7 @@ rts = np.random.normal(loc=400, scale=80, size=100)
 
 **New API (recommended for reproducibility and thread-safety):**
 
+*📄 [`np_random_seeding_and_modern_rng_2.py`](code/numpy/np_random_seeding_and_modern_rng_2.py)*
 ```python
 rng = np.random.default_rng(42)
 rts = rng.normal(loc=400, scale=80, size=100)
@@ -372,6 +392,7 @@ Both do the same thing but with different conventions:
 - **`np.percentile(a, q)`**: `q` is in range 0–100
 - **`np.quantile(a, q)`**: `q` is in range 0–1
 
+*📄 [`percentile_vs_quantile.py`](code/numpy/percentile_vs_quantile.py)*
 ```python
 rts = np.array([320, 415, 280, 510, 390])
 
@@ -391,6 +412,7 @@ Use whichever mental model matches your field (psychology/neuroscience often use
 
 ### 7. Loading Data from a File (15 min)
 
+*📄 [`loading_data_from_a_file.py`](code/numpy/loading_data_from_a_file.py)*
 ```python
 # Load a single-column text file of reaction times
 rts = np.loadtxt("rts.txt")
@@ -401,6 +423,7 @@ data = np.loadtxt("results.csv", delimiter=",", skiprows=1)
 
 For more complex CSVs (with string columns), use pandas:
 
+*📄 [`loading_data_from_a_file_2.py`](code/numpy/loading_data_from_a_file_2.py)*
 ```python
 import pandas as pd
 df = pd.read_csv("results.csv")

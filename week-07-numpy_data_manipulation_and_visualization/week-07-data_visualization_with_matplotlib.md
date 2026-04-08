@@ -27,6 +27,7 @@ Matplotlib follows a two-level model:
 - **`plt` functions** — quick, stateless interface (fine for single plots)
 - **`fig` and `ax` objects** — explicit control (use this for anything more than one panel)
 
+*📄 [`the_matplotlib_workflow.py`](code/matplotlib/the_matplotlib_workflow.py)*
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
@@ -51,6 +52,8 @@ The **object-oriented (OO) approach** is preferred for anything beyond a single 
 
 `plt.subplots()` is the recommended entry point — it creates a `Figure` and one or more `Axes` in one call:
 
+*📄 [`figure_and_axes_architecture.py`](code/matplotlib/figure_and_axes_architecture.py)*
+
 ```python
 fig, ax = plt.subplots()              # 1 panel
 fig, axes = plt.subplots(2, 3)        # 2 rows × 3 cols → axes[row, col]
@@ -67,6 +70,7 @@ The stateful `plt.plot()` approach works for simple one-off plots in a notebook,
 
 Useful for time series (e.g., RT across trials, EEG signal):
 
+*📄 [`line_plot.py`](code/matplotlib/line_plot.py)*
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -87,6 +91,7 @@ plt.show()
 
 #### Customizing Line Styles and Colors
 
+*📄 [`customizing_line_styles_and_colors.py`](code/matplotlib/customizing_line_styles_and_colors.py)*
 ```python
 # Color: named, hex, RGB tuple, grayscale string
 ax.plot(x, y, color="steelblue")
@@ -115,6 +120,7 @@ ax.plot(x, y, "b--o")   # blue, dashed, with circle markers
 
 Useful for showing relationships between two variables:
 
+*📄 [`scatter_plot.py`](code/matplotlib/scatter_plot.py)*
 ```python
 accuracy = np.random.uniform(0.6, 1.0, 20)
 mean_rt  = np.random.normal(400, 80, 20)
@@ -134,6 +140,7 @@ plt.show()
 
 Use the `c` parameter to color points by a third variable, making scatter plots show three dimensions at once:
 
+*📄 [`encoding_a_third_variable_with_color_or_size.py`](code/matplotlib/encoding_a_third_variable_with_color_or_size.py)*
 ```python
 rng = np.random.default_rng(0)
 mean_rt  = rng.normal(400, 80, 20)
@@ -155,6 +162,7 @@ Avoid using both `c` and `s` simultaneously to encode two variables — the figu
 
 Useful for comparing means across conditions:
 
+*📄 [`bar_plot.py`](code/matplotlib/bar_plot.py)*
 ```python
 conditions = ["Congruent", "Incongruent"]
 mean_rts   = [380, 460]
@@ -178,6 +186,7 @@ Error bars (`yerr`) show variability — always include them in scientific figur
 
 Useful for showing the distribution of a single variable:
 
+*📄 [`histogram.py`](code/matplotlib/histogram.py)*
 ```python
 rts = np.random.normal(loc=400, scale=80, size=200)
 
@@ -200,6 +209,7 @@ Choose `bins` based on your data size — typically 15–30 bins for 100–500 d
 - `bins="auto"` lets matplotlib choose (uses Sturges' or Freedman-Diaconis rule). `bins=np.arange(100, 1000, 50)` gives exact bin edges.
 - To compare two distributions on the same plot, use `alpha` and `density=True` (normalizes area to 1):
 
+*📄 [`choosing_bins_and_showing_density.py`](code/matplotlib/choosing_bins_and_showing_density.py)*
 ```python
 fig, ax = plt.subplots()
 ax.hist(rts_congruent,   bins=20, density=True, alpha=0.6, label="Congruent",   color="steelblue")
@@ -213,6 +223,7 @@ ax.legend()
 
 ### 6. Multi-panel Figures with `subplots()` (20 min)
 
+*📄 [`multi_panel_figures_with_subplots.py`](code/matplotlib/multi_panel_figures_with_subplots.py)*
 ```python
 fig, axes = plt.subplots(2, 2, figsize=(10, 8))
 
@@ -239,6 +250,7 @@ plt.show()
 
 #### Shared Axes and Figure-Level Labels
 
+*📄 [`shared_axes_and_figure_level_labels.py`](code/matplotlib/shared_axes_and_figure_level_labels.py)*
 ```python
 # Share y-axis across columns so comparison is fair
 fig, axes = plt.subplots(1, 2, figsize=(9, 4), sharey=True)
@@ -260,6 +272,7 @@ plt.tight_layout()
 ### 7. Annotations and Saving (10 min)
 
 **Annotating a point:**
+*📄 [`annotations_and_saving.py`](code/matplotlib/annotations_and_saving.py)*
 ```python
 ax.annotate(
     "Slowest trial",
@@ -270,6 +283,7 @@ ax.annotate(
 ```
 
 **Saving the figure:**
+*📄 [`annotations_and_saving_2.py`](code/matplotlib/annotations_and_saving_2.py)*
 ```python
 fig.savefig("summary_figure.png", dpi=150, bbox_inches="tight")
 fig.savefig("summary_figure.pdf", bbox_inches="tight")   # vector format for papers
@@ -279,6 +293,7 @@ Use `bbox_inches="tight"` to prevent labels from being cut off.
 
 #### Publication-Quality Figures
 
+*📄 [`publication_quality_figures.py`](code/matplotlib/publication_quality_figures.py)*
 ```python
 # Use a style sheet for a cleaner look
 plt.style.use("seaborn-v0_8-whitegrid")
