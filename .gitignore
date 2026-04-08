@@ -16,5 +16,4 @@ __pycache__/
 .venv/
 /Context/
 /Instructions/
-/general/
 /week-06-numpy_and_data_manipulation/demo/
