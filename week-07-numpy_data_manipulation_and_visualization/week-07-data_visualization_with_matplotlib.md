@@ -43,7 +43,7 @@ plt.show()
 
 Always use the object-oriented interface when making multi-panel figures.
 
-#### Real Python: Figure and Axes Architecture
+#### Figure and Axes Architecture
 
 A `Figure` is the entire canvas. An `Axes` is one individual plot within the canvas. A `Figure` can have one or many `Axes`.
 
@@ -85,7 +85,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-#### Real Python: Customizing Line Styles and Colors
+#### Customizing Line Styles and Colors
 
 ```python
 # Color: named, hex, RGB tuple, grayscale string
@@ -130,7 +130,7 @@ plt.show()
 
 `s` controls marker size; `alpha` controls transparency (0 = invisible, 1 = opaque).
 
-#### Real Python: Encoding a Third Variable with Color or Size
+#### Encoding a Third Variable with Color or Size
 
 Use the `c` parameter to color points by a third variable, making scatter plots show three dimensions at once:
 
@@ -194,7 +194,7 @@ plt.show()
 
 Choose `bins` based on your data size — typically 15–30 bins for 100–500 data points.
 
-#### Real Python: Choosing Bins and Showing Density
+#### Choosing Bins and Showing Density
 
 - **Too few bins** → hides the shape of the distribution. **Too many bins** → noisy, shows sampling artifacts.
 - `bins="auto"` lets matplotlib choose (uses Sturges' or Freedman-Diaconis rule). `bins=np.arange(100, 1000, 50)` gives exact bin edges.
@@ -237,7 +237,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-#### Real Python: Shared Axes and Figure-Level Labels
+#### Shared Axes and Figure-Level Labels
 
 ```python
 # Share y-axis across columns so comparison is fair
@@ -277,7 +277,7 @@ fig.savefig("summary_figure.pdf", bbox_inches="tight")   # vector format for pap
 
 Use `bbox_inches="tight"` to prevent labels from being cut off.
 
-#### Real Python: Publication-Quality Figures
+#### Publication-Quality Figures
 
 ```python
 # Use a style sheet for a cleaner look
@@ -325,19 +325,17 @@ fig, ax = plt.subplots(figsize=(3.5, 2.8))   # single-column figure
 ## Tools This Week
 
 - `matplotlib` — already installed (`pip install matplotlib` in Week 01)
-- `numpy` — from Week 06
+- `numpy` — covered in companion notes `week-07-numpy_and_data_manipulation.md`
+- `pandas` — covered in companion notes `week-07-pandas_and_dataframes.md`
 
 ---
 
 ## Assignment
 
-Create a new notebook `week-07-assignment.ipynb` and:
+Complete **Part 2** of `week-07-puzzles.ipynb` (Puzzles 19–20):
 
-Key exercises:
-- Plot RT over trials with a mean reference line
-- Build a histogram of RT for each condition separately
-- Create a 2×2 summary figure (line, histogram, bar, scatter) using `subplots()`
-- Save the figure to PNG
+- Puzzle 19: Scatter plot with conditional coloring and annotation
+- Puzzle 20: Full 2×2 summary figure built from Pandas groupby results
 
 Submit by pushing to your GitHub repository before Week 08.
 
@@ -365,6 +363,7 @@ Submit by pushing to your GitHub repository before Week 08.
 
 ## What Comes Next
 
-| Week | Topic                                                 |
-| ---- | ----------------------------------------------------- |
-| 08   | **Midterm:** Deploy a full experiment to Pavlovia     |
+| Week | Topic                                                           |
+| ---- | --------------------------------------------------------------- |
+| 08   | **Midterm:** Deploy a full experiment to Pavlovia               |
+| 13   | Plotly Express — interactive dashboards and data storytelling   |

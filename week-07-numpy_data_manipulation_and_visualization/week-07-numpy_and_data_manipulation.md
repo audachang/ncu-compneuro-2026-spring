@@ -1,7 +1,7 @@
-# Week 06: NumPy & Data Manipulation
+# Week 07: NumPy & Data Manipulation
 
 > **Course:** NS5116 Computational Neuroscience — Spring 2026
-> **Week:** 6 of 16 | **Date:** 2026-04-02 | **Room:** TBA
+> **Week:** 7 of 16 | **Date:** 2026-04-09 | **Room:** TBA
 
 ---
 
@@ -424,24 +424,22 @@ rts = df["rt_ms"].to_numpy()   # extract one column as a NumPy array
 ## Tools This Week
 
 - `numpy` — install already done in Week 01 (`pip install numpy`)
-- `pandas` — preview only; full coverage in Week 12
+- `pandas` — introduced this week alongside NumPy; install if needed: `pip install pandas`
+- `matplotlib` — covered in the companion `week-07-data_visualization_with_matplotlib.md` notes
 
 ---
 
 ## Assignment
 
-Review [`lpthw_ex40-45.ipynb`](lpthw_ex40-45.ipynb) for OOP background (NumPy arrays are objects too).
+Complete **Part 2** of `week-07-puzzles.ipynb` (Puzzles 11–20).
 
-Then create a new notebook `week-06-assignment.ipynb` and:
+Key exercises covered:
 
-Key exercises:
+- NumPy: broadcasting across conditions, outlier removal, `argsort` ranking
+- Pandas: derived columns, pivot tables, interference cost with `apply`, DataFrame merging
+- Matplotlib: scatter plot with annotation, full 2×2 summary figure
 
-- Create and inspect arrays of simulated reaction time data
-- Apply z-score normalization using vectorized operations
-- Use boolean masking to remove outlier trials
-- Compute per-condition mean and standard deviation on a 2D array
-
-Submit by pushing to your GitHub repository before Week 07.
+Submit by pushing to your GitHub repository before Week 08.
 
 ---
 
@@ -470,8 +468,7 @@ Submit by pushing to your GitHub repository before Week 07.
 
 ## What Comes Next
 
-| Week | Topic                                                                      |
-| ---- | -------------------------------------------------------------------------- |
-| 07   | Matplotlib — plot the distributions and statistics you computed this week |
-| 08   | **Midterm:** Deploy a full experiment to Pavlovia                    |
-| 12   | pandas — tabular data with column names (builds on NumPy)                 |
+| Week | Topic                                                                         |
+| ---- | ----------------------------------------------------------------------------- |
+| 08   | **Midterm:** Deploy a full experiment to Pavlovia                             |
+| 12   | pandas advanced — REST APIs, data cleaning, merging Open Data sets            |
