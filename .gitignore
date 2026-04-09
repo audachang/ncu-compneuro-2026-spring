@@ -12,7 +12,19 @@ weekly_contents.md
 __pycache__/
 .ipynb_checkpoints/
 /term_project/
-/homeworks/
+# Homeworks: ignore student submissions and grading, keep assignment specs
+/homeworks/*/submissions/
+/homeworks/*/*.xlsx
+/homeworks/*/*.zip
+/homeworks/*/*.jzip
+/homeworks/*/feedback*.md
+/homeworks/*/feedback*.html
+/homeworks/*/feedback_files/
+/homeworks/*/index.html
+/homeworks/hw_*.zip
+/homeworks/hw_list.html
+# Ignore student folders (numeric ID pattern)
+/homeworks/*/1[0-9][0-9]*/
 .venv/
 /Context/
 /Instructions/
