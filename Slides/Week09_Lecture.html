@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 09｜Vibe / Agentic Coding 入門</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e27;
+    --bg-2:#0f1433;
+    --surface:#171c3e;
+    --surface-2:#1e2449;
+    --border:#2a3160;
+    --text:#E8EAF6;
+    --muted:#9aa3d1;
+    --primary:#FF6B6B;
+    --secondary:#4ECDC4;
+    --accent:#FFE66D;
+    --green:#7CFF6B;
+    --red:#FF3B3B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Inter","Noto Sans TC",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+  code,pre,.mono{font-family:"JetBrains Mono",monospace;font-size:.92em}
+  ::selection{background:var(--primary);color:#fff}
+
+  /* Animated background */
+  .bg-grid{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(78,205,196,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78,205,196,0.04) 1px, transparent 1px);
+    background-size:60px 60px;
+    mask-image: radial-gradient(ellipse at center, #000 40%, transparent 85%);
+  }
+  .bg-glow{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,107,107,0.12), transparent 35%),
+      radial-gradient(circle at 85% 75%, rgba(78,205,196,0.12), transparent 35%),
+      radial-gradient(circle at 50% 100%, rgba(255,230,109,0.08), transparent 45%);
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:14px 32px;
+    background:rgba(10,14,39,.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  nav .brand{font-weight:800;letter-spacing:.5px;font-size:15px}
+  nav .brand span{color:var(--primary)}
+  nav ul{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
+  nav a{color:var(--muted);text-decoration:none;font-size:13.5px;font-weight:500;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+  nav a.active{color:var(--text)}
+
+  main{position:relative;z-index:1}
+  section{padding:110px 28px 90px;max-width:1200px;margin:0 auto}
+  .section-id{
+    display:inline-block;
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;color:var(--secondary);
+    border:1px solid var(--secondary);
+    padding:4px 12px;border-radius:999px;
+    margin-bottom:14px;letter-spacing:1.5px;
+  }
+  h1{font-size:clamp(34px,5vw,64px);font-weight:800;line-height:1.1;margin-bottom:18px;letter-spacing:-.5px}
+  h2{font-size:clamp(28px,3.6vw,44px);font-weight:800;line-height:1.15;margin-bottom:14px;letter-spacing:-.3px}
+  h3{font-size:22px;font-weight:700;margin-bottom:10px;color:var(--text)}
+  h4{font-size:17px;font-weight:700;margin-bottom:8px}
+  .lead{font-size:19px;color:var(--muted);max-width:780px;margin-bottom:36px}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    padding:120px 28px 60px;
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;
+  }
+  .hero-inner{max-width:1200px;margin:0 auto;width:100%}
+  .hero-eyebrow{
+    font-family:"JetBrains Mono",monospace;
+    color:var(--secondary);font-size:13px;letter-spacing:2px;
+    margin-bottom:18px;
+  }
+  .hero h1 .accent{color:var(--primary)}
+  .hero h1 .accent2{color:var(--accent)}
+  .hero-sub{font-size:22px;color:var(--muted);margin:16px 0 40px;max-width:720px;font-weight:500}
+  .hero-meta{
+    font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:18px;
+  }
+  .hero-meta span{padding-right:18px;border-right:1px solid var(--border)}
+  .hero-meta span:last-child{border-right:0}
+
+  /* Terminal illustration */
+  .terminal{
+    margin-top:48px;
+    background:#05081c;
+    border:1px solid var(--border);
+    border-radius:12px;
+    max-width:720px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:14px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(78,205,196,.1);
+    overflow:hidden;
+  }
+  .terminal-bar{
+    padding:10px 14px;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;gap:6px;
+    background:#0a0f2a;
+  }
+  .dot{width:11px;height:11px;border-radius:50%}
+  .dot.r{background:#ff5f56}.dot.y{background:#ffbd2e}.dot.g{background:#27c93f}
+  .terminal-body{padding:18px;min-height:180px;color:#b8c3f0}
+  .prompt{color:var(--secondary)}
+  .cmd{color:var(--text)}
+  .ai{color:var(--accent)}
+  .cursor{display:inline-block;width:8px;height:16px;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px}
+  @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+  /* Generic cards */
+  .grid{display:grid;gap:18px}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .grid-4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px;
+    transition:transform .25s, border-color .25s, box-shadow .25s;
+    position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-3px);border-color:var(--secondary);box-shadow:0 12px 30px rgba(0,0,0,.3)}
+  .card h4{color:var(--accent);margin-bottom:8px}
+  .card p{color:var(--muted);font-size:15px}
+  .card .num{
+    font-family:"JetBrains Mono",monospace;
+    color:var(--primary);font-size:13px;font-weight:700;
+    margin-bottom:8px;display:block;
+  }
+  .card ul{margin-top:10px;padding-left:18px;color:var(--muted);font-size:14.5px}
+  .card ul li{margin-bottom:4px}
+
+  .card-pro{border-color:rgba(124,255,107,.3)}
+  .card-pro h4{color:var(--green)}
+  .card-con{border-color:rgba(255,59,59,.3)}
+  .card-con h4{color:var(--red)}
+
+  /* stat block */
+  .stat{
+    text-align:center;padding:40px 24px;
+    background:linear-gradient(135deg,rgba(255,107,107,.15),rgba(78,205,196,.08));
+    border:1px solid rgba(255,107,107,.25);
+    border-radius:16px;margin:30px 0;
+  }
+  .stat .big{
+    font-size:clamp(72px,14vw,160px);
+    font-weight:900;line-height:1;
+    background:linear-gradient(120deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    letter-spacing:-4px;
+  }
+  .stat .label{font-size:18px;color:var(--muted);margin-top:12px;font-weight:500}
+
+  /* Flow / timeline */
+  .timeline{
+    position:relative;margin:40px 0;
+    display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+  }
+  .timeline::before{
+    content:"";position:absolute;top:34px;left:5%;right:5%;height:3px;
+    background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
+    border-radius:2px;
+    animation:drawLine 1.5s ease-out forwards;transform-origin:left;transform:scaleX(0);
+  }
+  .timeline.in-view::before{transform:scaleX(1)}
+  @keyframes drawLine{to{transform:scaleX(1)}}
+  .tl-item{text-align:center;position:relative;padding-top:28px}
+  .tl-year{
+    font-family:"JetBrains Mono",monospace;
+    font-weight:700;color:var(--accent);font-size:14px;margin-bottom:4px;
+  }
+  .tl-dot{
+    width:16px;height:16px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--secondary);
+    position:absolute;top:28px;left:50%;transform:translateX(-50%);
+    transition:transform .3s;
+  }
+  .tl-item:hover .tl-dot{transform:translateX(-50%) scale(1.4);border-color:var(--primary)}
+  .tl-title{margin-top:22px;font-weight:700;font-size:14px}
+  .tl-desc{font-size:12.5px;color:var(--muted);margin-top:4px;padding:0 4px}
+  @media(max-width:900px){
+    .timeline{grid-template-columns:1fr;gap:18px}
+    .timeline::before{left:20px;right:auto;top:0;bottom:0;width:3px;height:auto}
+  }
+
+  /* Level ladder */
+  .ladder{display:flex;flex-direction:column;gap:14px;margin:34px 0}
+  .level{
+    display:grid;grid-template-columns:80px 1fr auto;gap:18px;align-items:center;
+    padding:20px 24px;border-radius:12px;
+    background:var(--surface);border:1px solid var(--border);
+    transition:all .3s;position:relative;
+  }
+  .level::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;
+    background:var(--primary);opacity:.6;transition:opacity .3s;
+  }
+  .level:nth-child(1)::before{background:#9aa3d1}
+  .level:nth-child(2)::before{background:#7EA7FF}
+  .level:nth-child(3)::before{background:var(--secondary)}
+  .level:nth-child(4)::before{background:var(--primary)}
+  .level:nth-child(5)::before{background:var(--accent)}
+  .level:hover{transform:translateX(8px);border-color:var(--secondary)}
+  .level:hover::before{opacity:1;width:6px}
+  .level .lvl{
+    font-family:"JetBrains Mono",monospace;
+    font-weight:800;font-size:28px;color:var(--accent);
+  }
+  .level .name{font-weight:700;margin-bottom:2px}
+  .level .tool{color:var(--muted);font-size:14px}
+  .level .tag{
+    padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;
+    background:rgba(78,205,196,.12);color:var(--secondary);
+    border:1px solid rgba(78,205,196,.3);
+  }
+  .level .tag.primary{background:rgba(255,107,107,.15);color:var(--primary);border-color:rgba(255,107,107,.35)}
+  .level .tag.muted{background:rgba(154,163,209,.1);color:var(--muted);border-color:var(--border)}
+
+  /* PEV flow */
+  .pev{
+    display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:stretch;
+    margin:40px 0;
+  }
+  .pev-step{
+    padding:26px;border-radius:14px;
+    background:var(--surface);border:1px solid var(--border);
+    text-align:center;min-height:200px;
+    display:flex;flex-direction:column;justify-content:center;
+    transition:transform .3s;
+  }
+  .pev-step:hover{transform:translateY(-4px)}
+  .pev-step .icon{font-size:40px;margin-bottom:12px;display:block}
+  .pev-step h4{color:var(--accent);font-size:22px;margin-bottom:8px}
+  .pev-step p{font-size:14px;color:var(--muted)}
+  .pev-arrow{
+    display:flex;align-items:center;justify-content:center;padding:0 8px;
+    color:var(--secondary);font-size:28px;font-weight:bold;
+  }
+  @media(max-width:900px){
+    .pev{grid-template-columns:1fr}
+    .pev-arrow{transform:rotate(90deg);padding:8px 0}
+  }
+
+  /* Quadrants */
+  .quadrants{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0;
+    position:relative;padding:40px;
+    background:radial-gradient(circle at center,rgba(255,230,109,.05),transparent);
+  }
+  .quad{
+    padding:22px;border-radius:12px;
+    background:var(--surface);border:1px solid var(--border);
+    transition:all .25s;
+  }
+  .quad:hover{border-color:var(--accent);transform:scale(1.02)}
+  .quad .label{
+    font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent);
+    margin-bottom:6px;letter-spacing:1px;
+  }
+  .quad h4{color:var(--text)}
+  .quad p{font-size:14px;color:var(--muted)}
+  .quad .rec{
+    margin-top:10px;display:inline-block;
+    padding:4px 10px;border-radius:6px;font-size:12px;font-weight:700;
+    background:rgba(78,205,196,.15);color:var(--secondary);
+  }
+
+  /* Prompt comparison */
+  .prompt-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0}
+  .prompt-box{
+    border-radius:12px;padding:22px;
+    font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.7;
+    border:1px solid var(--border);background:var(--bg-2);
+    position:relative;white-space:pre-wrap;
+  }
+  .prompt-box.bad{border-color:rgba(255,59,59,.35)}
+  .prompt-box.good{border-color:rgba(124,255,107,.35)}
+  .prompt-box .tag{
+    position:absolute;top:-10px;left:16px;
+    padding:3px 10px;font-size:11px;font-weight:700;
+    border-radius:6px;font-family:"Inter",sans-serif;
+  }
+  .prompt-box.bad .tag{background:var(--red);color:#fff}
+  .prompt-box.good .tag{background:var(--green);color:#0a0e27}
+  @media(max-width:800px){.prompt-compare{grid-template-columns:1fr}}
+
+  /* Git commit visualization */
+  .git-vis{margin:30px 0;padding:30px;background:var(--surface);border-radius:14px;border:1px solid var(--border)}
+  .commits{display:flex;align-items:center;gap:0;overflow-x:auto;padding:14px 0}
+  .commit{
+    min-width:120px;padding:14px 12px;margin-right:10px;
+    border-radius:10px;background:var(--bg-2);border:1px solid var(--border);
+    position:relative;flex-shrink:0;
+  }
+  .commit::after{
+    content:"";position:absolute;right:-10px;top:50%;transform:translateY(-50%);
+    width:10px;height:2px;background:var(--secondary);
+  }
+  .commit:last-child::after{display:none}
+  .commit .sha{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:11px}
+  .commit .msg{font-size:12px;color:var(--text);margin-top:4px}
+
+  /* Shield/defense layers */
+  .layers{display:flex;justify-content:center;align-items:center;margin:40px 0;position:relative;min-height:360px}
+  .layer{
+    position:absolute;border-radius:50%;
+    border:2px solid;display:flex;align-items:center;justify-content:center;
+    font-weight:700;text-align:center;padding:14px;font-size:13px;
+    animation:pulse 3s ease-in-out infinite;
+  }
+  .layer.l1{width:340px;height:340px;border-color:rgba(255,107,107,.3);color:var(--primary);animation-delay:0s}
+  .layer.l2{width:260px;height:260px;border-color:rgba(255,230,109,.35);color:var(--accent);animation-delay:.5s}
+  .layer.l3{width:180px;height:180px;border-color:rgba(78,205,196,.4);color:var(--secondary);animation-delay:1s}
+  .layer.l4{width:100px;height:100px;border-color:rgba(124,255,107,.5);color:var(--green);background:rgba(124,255,107,.08);animation-delay:1.5s}
+  .layer span{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:11px;color:var(--muted)}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+  /* Quote */
+  blockquote{
+    border-left:4px solid var(--primary);
+    padding:20px 28px;margin:40px 0;
+    background:linear-gradient(90deg,rgba(255,107,107,.06),transparent);
+    border-radius:0 10px 10px 0;
+    font-size:22px;font-weight:500;font-style:italic;
+    color:var(--text);
+  }
+  blockquote cite{display:block;font-size:13px;color:var(--muted);margin-top:10px;font-style:normal;font-family:"JetBrains Mono",monospace}
+
+  /* Animation on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
+  .reveal.in-view{opacity:1;transform:translateY(0)}
+  .reveal-delay-1{transition-delay:.1s}
+  .reveal-delay-2{transition-delay:.2s}
+  .reveal-delay-3{transition-delay:.3s}
+
+  /* Utility */
+  .section-divider{
+    height:1px;max-width:1200px;margin:0 auto;
+    background:linear-gradient(90deg,transparent,var(--border),transparent);
+  }
+  .kicker{
+    font-family:"JetBrains Mono",monospace;font-size:14px;
+    color:var(--secondary);letter-spacing:2px;text-transform:uppercase;
+    margin-bottom:12px;
+  }
+  .hl{color:var(--primary);font-weight:700}
+  .hl2{color:var(--accent);font-weight:700}
+  .hl3{color:var(--secondary);font-weight:700}
+
+  /* Decision matrix (before/after) */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0}
+  .ba-col{
+    padding:24px;border-radius:12px;
+    background:var(--surface);border:1px solid var(--border);
+  }
+  .ba-col.before{border-top:4px solid var(--red)}
+  .ba-col.after{border-top:4px solid var(--green)}
+  .ba-col h4{margin-bottom:10px}
+  .ba-col.before h4{color:var(--red)}
+  .ba-col.after h4{color:var(--green)}
+  .ba-col ul{padding-left:18px;color:var(--muted);font-size:14.5px}
+  .ba-col ul li{margin-bottom:5px}
+  .ba-col .sum{margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);font-size:13px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+  @media(max-width:800px){.ba{grid-template-columns:1fr}}
+
+  /* Footer */
+  footer{
+    padding:70px 28px 40px;text-align:center;color:var(--muted);font-size:14px;
+    border-top:1px solid var(--border);margin-top:60px;
+  }
+  footer .next{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:15px;margin-top:10px;font-weight:500}
+
+  /* Scroll progress */
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent),var(--secondary));z-index:999;width:0%;transition:width .1s}
+
+  /* Checklist */
+  .checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0}
+  .check-item{padding:16px 18px;border-radius:10px;background:var(--surface);border:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;transition:background .25s}
+  .check-item:hover{background:var(--surface-2)}
+  .check-item .box{
+    flex-shrink:0;width:22px;height:22px;border-radius:5px;border:2px solid var(--secondary);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--secondary);
+    background:rgba(78,205,196,.08);
+  }
+  .check-item strong{display:block;margin-bottom:4px;font-size:14px}
+  .check-item small{color:var(--muted);font-size:12.5px;line-height:1.5}
+
+  /* CLAUDE.md illustration */
+  .claudemd{
+    background:#05081c;border:1px solid var(--border);border-radius:12px;
+    padding:20px 24px;font-family:"JetBrains Mono",monospace;font-size:13px;
+    line-height:1.7;margin:20px 0;color:#b8c3f0;
+  }
+  .claudemd .comment{color:#7EA7FF}
+  .claudemd .key{color:var(--accent)}
+  .claudemd .val{color:var(--green)}
+  .claudemd .h{color:var(--primary);font-weight:700}
+
+  /* Animated dots pattern for AI flow */
+  .flow-anim{
+    height:80px;position:relative;overflow:hidden;
+    background:linear-gradient(90deg,transparent 0%,rgba(78,205,196,.08) 50%,transparent 100%);
+    border-radius:10px;margin:24px 0;
+  }
+  .particle{
+    position:absolute;width:6px;height:6px;border-radius:50%;
+    background:var(--secondary);top:50%;transform:translateY(-50%);
+    animation:flow 4s linear infinite;
+  }
+  .particle:nth-child(1){animation-delay:0s;background:var(--primary)}
+  .particle:nth-child(2){animation-delay:.5s;background:var(--accent)}
+  .particle:nth-child(3){animation-delay:1s}
+  .particle:nth-child(4){animation-delay:1.5s;background:var(--primary)}
+  .particle:nth-child(5){animation-delay:2s;background:var(--accent)}
+  .particle:nth-child(6){animation-delay:2.5s}
+  .particle:nth-child(7){animation-delay:3s;background:var(--primary)}
+  .particle:nth-child(8){animation-delay:3.5s;background:var(--accent)}
+  @keyframes flow{
+    0%{left:-10px;opacity:0}
+    10%{opacity:1}
+    90%{opacity:1}
+    100%{left:100%;opacity:0}
+  }
+
+  /* Code block */
+  pre.code{
+    background:#05081c;border:1px solid var(--border);border-radius:10px;
+    padding:18px 22px;overflow-x:auto;margin:18px 0;
+    font-size:13px;line-height:1.7;color:#b8c3f0;
+  }
+  pre.code .c{color:#6a7299;font-style:italic}
+  pre.code .s{color:var(--green)}
+  pre.code .k{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<nav>
+  <div class="brand">W09 · <span>Vibe Coding</span></div>
+  <ul>
+    <li><a href="#s1">§1 為什麼學</a></li>
+    <li><a href="#s2">§2 工具光譜</a></li>
+    <li><a href="#s3">§3 三原則</a></li>
+    <li><a href="#s4">§4 責任倫理</a></li>
+    <li><a href="#s5">行動項目</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal in-view">WEEK 09 · NS5116 · 2026/04/23</div>
+    <h1 class="reveal in-view">從「自己寫程式」<br>到「<span class="accent">指揮 AI</span> 寫程式」<span class="accent2">.</span></h1>
+    <p class="hero-sub reveal in-view reveal-delay-1">Vibe / Agentic Coding 入門 — 寫給非資工研究者的新典範</p>
+    <div class="hero-meta reveal in-view reveal-delay-2">
+      <span>電腦硬體與程式語言在行為科學實驗與大數據分析之應用</span>
+      <span>Erik Chang</span>
+      <span>NCU 認知所</span>
+    </div>
+
+    <div class="terminal reveal in-view reveal-delay-3">
+      <div class="terminal-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <span style="margin-left:auto;font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace">~/analysis — claude</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="prompt">$</span> <span class="cmd">claude</span></div>
+        <div style="margin-top:8px"><span class="ai">●</span> <span id="typed"></span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECTION 1 -->
+<section id="s1">
+  <div class="section-id reveal">SECTION 01</div>
+  <h2 class="reveal">為什麼研究者需要學 vibe coding?</h2>
+  <p class="lead reveal">這不只是「新工具」,而是非資工研究者的槓桿。先看真正的瓶頸在哪。</p>
+
+  <div class="grid grid-3 reveal">
+    <div class="card">
+      <span class="num">情境 A</span>
+      <h4>語法忘了</h4>
+      <p>pandas 的 groupby 怎麼加 count?matplotlib subplot 參數順序?</p>
+    </div>
+    <div class="card">
+      <span class="num">情境 B</span>
+      <h4>Debug</h4>
+      <p>IndexError、KeyError、ValueError……錯誤訊息翻 Stack Overflow 一小時。</p>
+    </div>
+    <div class="card">
+      <span class="num">情境 C</span>
+      <h4>起手難</h4>
+      <p>知道要做什麼分析,但不知道程式第一行怎麼寫。</p>
+    </div>
+  </div>
+
+  <div class="stat reveal">
+    <div class="big">80%</div>
+    <div class="label">時間花在「啟動 + 環境 + 型別 debug」<br>真正做科學思考的時間往往不到 20%</div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§1.6 若 AI 吸收了前 80% — 你的研究時間會怎麼變?</h3>
+  <div class="ba reveal">
+    <div class="ba-col before">
+      <h4>❌ 傳統工作流</h4>
+      <ul>
+        <li>研究者:80% 寫程式 + debug,20% 思考</li>
+        <li>新手一個分析要卡 1–2 天才能跑起來</li>
+        <li>熟手快但花時間在「樣板程式」</li>
+        <li>遇到新工具時重新學習曲線陡峭</li>
+      </ul>
+      <div class="sum">分配:Code 80% / Think 20%</div>
+    </div>
+    <div class="ba-col after">
+      <h4>✓ Vibe coding 工作流</h4>
+      <ul>
+        <li>研究者:20% 引導 + 驗證,80% 思考</li>
+        <li>從「我卡住了」到「我在驗證 AI 給的結果」</li>
+        <li>熟手更快,新手摩擦降至可接受</li>
+        <li>新工具門檻由 AI 代為填平</li>
+      </ul>
+      <div class="sum">分配:Guide 20% / Think 80%</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§1.7 AI 程式協作的四年演進</h3>
+  <div class="timeline reveal" id="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2021</div>
+      <div class="tl-title">GitHub Copilot</div>
+      <div class="tl-desc">IDE 內自動補全,第一次大規模普及</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2022</div>
+      <div class="tl-title">ChatGPT</div>
+      <div class="tl-desc">對話式 LLM 進入公眾視野</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2023</div>
+      <div class="tl-title">Claude 2 · GPT-4</div>
+      <div class="tl-desc">Context window 擴大,可貼整檔</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2024</div>
+      <div class="tl-title">Cursor · Claude 3</div>
+      <div class="tl-desc">IDE 讀整個專案資料夾</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2025</div>
+      <div class="tl-title">Claude Code · Devin</div>
+      <div class="tl-desc">Agentic — AI 能執行 bash / git</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2026</div>
+      <div class="tl-title">本堂課起點</div>
+      <div class="tl-desc">研究者系統性導入 agentic 工具</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§1.9 研究場景:心理學碩士生 × Meta-analysis</h3>
+  <div class="ba reveal">
+    <div class="ba-col before">
+      <h4>2022 版本 · 手動模式</h4>
+      <ul>
+        <li>從 80 篇 Stroop 研究萃取 congruent / incongruent RT 差</li>
+        <li>Excel 手動整理 3 週,規則不一致重複清 4 次</li>
+        <li>無法重做,換資料集要從頭</li>
+        <li>卡在 pandas pivot table 語法</li>
+      </ul>
+      <div class="sum">估計:4 週 · 多次中途放棄</div>
+    </div>
+    <div class="ba-col after">
+      <h4>2026 版本 · Agentic 模式</h4>
+      <ul>
+        <li>Claude Code 讀 PDF → 自動結構化 CSV(3 天)</li>
+        <li>Cleaning pipeline 同學 review 後可重複跑</li>
+        <li>pandas / statsmodels 由 AI 起手,人類驗證</li>
+        <li>換資料集只要重跑 script</li>
+      </ul>
+      <div class="sum">估計:5–7 天 · 程式留存可重用</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§1.12 關鍵洞察 — 為什麼「非資工背景」受益最大?</h3>
+  <div class="grid grid-3 reveal">
+    <div class="card">
+      <span class="num">原因 01</span>
+      <h4>起點門檻</h4>
+      <p>資工背景本就第一版快寫完,AI 提升不顯著。非資工者的第一版常需 1–2 天,AI 能壓到 <span class="hl">1–2 小時</span>。</p>
+    </div>
+    <div class="card">
+      <span class="num">原因 02</span>
+      <h4>語言優勢</h4>
+      <p>研究者的強項是「精確描述現象」。Vibe coding 需要的正是這個 — 把意圖講清楚,<span class="hl2">不是把語法寫對</span>。</p>
+    </div>
+    <div class="card">
+      <span class="num">原因 03</span>
+      <h4>領域知識</h4>
+      <p>AI 懂語法但不懂你的領域。認知神經、語言學、社會學的 <span class="hl3">domain expertise</span> 反而是無可替代的 edge。</p>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§1.13 新的核心技能:Express + Verify</h3>
+  <div class="flow-anim reveal">
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);font-weight:700;color:var(--primary);z-index:2;background:var(--bg);padding:6px 14px;border-radius:8px;border:1px solid var(--border)">Human Idea 🧠</div>
+    <div style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-weight:700;color:var(--green);z-index:2;background:var(--bg);padding:6px 14px;border-radius:8px;border:1px solid var(--border)">Verified Code ✓</div>
+  </div>
+  <div class="grid grid-2 reveal">
+    <div class="card card-pro">
+      <h4>Express · 精確表達</h4>
+      <p>把模糊想法變成明確規格。用「結果語言」而非「步驟語言」描述,主動講清邊界條件、例外、驗收標準。</p>
+      <p style="margin-top:10px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px">核心訓練 → 寫 spec / prompt / CLAUDE.md</p>
+    </div>
+    <div class="card card-pro">
+      <h4>Verify · 嚴謹驗證</h4>
+      <p>讀 AI 的程式並理解關鍵幾行,跑測試、對比樣本、檢查邊界值。辨識幻覺訊號(例如不存在的 API)。</p>
+      <p style="margin-top:10px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px">留下可重現的紀錄 → 程式本身就是紀錄</p>
+    </div>
+  </div>
+
+  <blockquote class="reveal">
+    「AI 放大的是你已經有的能力 — 先想清楚,再放大。」
+    <cite>— §1.14 定位釐清</cite>
+  </blockquote>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECTION 2 -->
+<section id="s2">
+  <div class="section-id reveal">SECTION 02</div>
+  <h2 class="reveal">AI 程式協作的光譜</h2>
+  <p class="lead reveal">兩個座標軸、五個工具。理解各層能力與限制,學會挑對工具。本課主力:<span class="hl">L4 Agentic CLI</span>。</p>
+
+  <div class="ladder reveal">
+    <div class="level">
+      <div class="lvl">L1</div>
+      <div>
+        <div class="name">Copilot · IDE 自動補全</div>
+        <div class="tool">GitHub Copilot · Tabnine · Cursor Tab — 當前檔案周圍幾百行</div>
+      </div>
+      <div class="tag muted">熟手 +20–30%</div>
+    </div>
+    <div class="level">
+      <div class="lvl">L2</div>
+      <div>
+        <div class="name">Chat · 對話式網頁</div>
+        <div class="tool">ChatGPT · Claude.ai · Gemini — 你貼什麼看什麼,token 有限</div>
+      </div>
+      <div class="tag">概念釐清</div>
+    </div>
+    <div class="level">
+      <div class="lvl">L3</div>
+      <div>
+        <div class="name">IDE 整合</div>
+        <div class="tool">Cursor · Windsurf · Continue — 專案等級 context,可直接改程式</div>
+      </div>
+      <div class="tag">小重構</div>
+    </div>
+    <div class="level">
+      <div class="lvl">L4</div>
+      <div>
+        <div class="name">Agentic CLI ⭐ 本課主力</div>
+        <div class="tool">Claude Code · Aider · Cline — 能讀檔、跑 bash、commit git,多步驟自主</div>
+      </div>
+      <div class="tag primary">W9–W10</div>
+    </div>
+    <div class="level">
+      <div class="lvl">L5</div>
+      <div>
+        <div class="name">Autonomous · 全自主代理</div>
+        <div class="tool">Devin · OpenHands · AutoGPT — 可跨天、建 VM、部署、發 PR</div>
+      </div>
+      <div class="tag muted">示範,不強求</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§2.10 該用哪一層? — 四象限決策</h3>
+  <div class="quadrants reveal">
+    <div class="quad">
+      <div class="label">QUAD A · 低複雜度</div>
+      <h4>寫個 snippet / 翻 API</h4>
+      <p>便宜、即時、風險低。</p>
+      <span class="rec">→ L1 Copilot 或 L2 Chat</span>
+    </div>
+    <div class="quad">
+      <div class="label">QUAD B · 中複雜度</div>
+      <h4>加新欄位 / 小重構</h4>
+      <p>在 diff 層級做最安全。</p>
+      <span class="rec">→ L3 IDE</span>
+    </div>
+    <div class="quad">
+      <div class="label">QUAD C · 高複雜度 ⭐</div>
+      <h4>多步 pipeline / 跨檔重構</h4>
+      <p>本課主打:資料清理、分析 workflow。</p>
+      <span class="rec">→ L4 Agentic CLI</span>
+    </div>
+    <div class="quad">
+      <div class="label">QUAD D · 跨天、跨系統</div>
+      <h4>長週期自主專案</h4>
+      <p>目前暫不建議交給全自主 agent。</p>
+      <span class="rec">→ L4 + 人類審查</span>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§2.13 為什麼本課選 Claude Code?</h3>
+  <div class="grid grid-2 reveal">
+    <div class="card">
+      <span class="num">01</span>
+      <h4>Transferable 技能</h4>
+      <p>在終端機運作 — 未來換模型供應商,terminal + git + unix 技能都還在。</p>
+    </div>
+    <div class="card">
+      <span class="num">02</span>
+      <h4>對受試者資料友善</h4>
+      <p>本機檔案不自動上傳,只把必要片段進 prompt,比貼進網頁更可控。</p>
+    </div>
+    <div class="card">
+      <span class="num">03</span>
+      <h4>CLAUDE.md = AI 的世界觀</h4>
+      <p>寫一次,之後所有對話都知道你的命名、環境、風格。</p>
+    </div>
+    <div class="card">
+      <span class="num">04</span>
+      <h4>真正完成任務</h4>
+      <p>能跑 bash、讀 traceback,跑到綠燈 / commit 為止,而不只是給你建議。</p>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§2.14 CLAUDE.md 範本</h3>
+  <div class="claudemd reveal">
+<span class="h"># Project · 我的認知實驗分析</span>
+
+<span class="h">## 環境</span>
+- <span class="key">Python</span> 3.11, <span class="key">conda env</span> = <span class="val">cogn</span>
+- <span class="key">套件</span>:pandas 2, numpy, matplotlib, seaborn
+
+<span class="h">## 資料夾</span>
+- <span class="val">data/raw</span>   <span class="comment"># 原始(只讀)</span>
+- <span class="val">data/tidy</span>  <span class="comment"># 清理後</span>
+- <span class="val">figures/</span>   <span class="comment"># 產出圖</span>
+
+<span class="h">## 規約</span>
+- 變數 <span class="key">snake_case</span>,圖檔 <span class="key">300 dpi</span>
+- 使用 <span class="key">pathlib</span>;姓名欄位一律 <span class="key">drop</span>
+  </div>
+  <p style="color:var(--muted);font-size:14px;margin-top:-4px" class="reveal">第一次進 repo,Claude Code 自動讀這個檔。<span class="hl3">好 CLAUDE.md = 好合作品質</span>。</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECTION 3 -->
+<section id="s3">
+  <div class="section-id reveal">SECTION 03</div>
+  <h2 class="reveal">Vibe Coding 的三個工作原則</h2>
+  <p class="lead reveal">一組可操作的守則 — 讓 AI 成為合作者,而不是亂源。</p>
+
+  <div class="grid grid-3 reveal">
+    <div class="card">
+      <span class="num">PRINCIPLE 01</span>
+      <h4>Describe, Don't Dictate</h4>
+      <p>用「結果」描述,不用「步驟」命令。<span class="hl">精確性 &gt; 禮貌</span>。</p>
+    </div>
+    <div class="card">
+      <span class="num">PRINCIPLE 02</span>
+      <h4>Plan-Execute-Verify</h4>
+      <p>先 AI 提計畫,你核可再執行,最後驗證。<span class="hl2">三階段不可省</span>。</p>
+    </div>
+    <div class="card">
+      <span class="num">PRINCIPLE 03</span>
+      <h4>Small Commits, Short Context</h4>
+      <p>小步走、常 commit,讓 context 永遠乾淨。<span class="hl3">風險 isolate</span>。</p>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:50px">§3.3–3.4 Prompt 對照:同一需求,兩種寫法</h3>
+  <div class="prompt-compare reveal">
+    <div class="prompt-box bad">
+      <span class="tag">❌ Dictate</span>
+幫我寫 Python,
+先 import pandas,
+然後 read_csv,
+然後 groupby subject,
+然後 mean RT,
+然後畫圖,
+然後存成 png,謝謝
+
+<span style="color:var(--muted)"># 沒講資料欄位
+# 沒講為什麼分組
+# 沒講圖的樣式與存檔位置
+# → AI 會瞎猜</span>
+    </div>
+    <div class="prompt-box good">
+      <span class="tag">✓ Describe</span>
+資料:data/tidy/rt.csv
+ 欄位:subject_id, condition
+       (congruent/incongruent),
+       rt_ms, trial
+
+任務:
+1. 依 subject × condition 算 mean/sd
+2. seaborn bar + errorbar(sd)
+3. figures/rt_by_cond.png (300 dpi)
+
+限制:
+- 使用 pathlib
+- RT &lt; 100ms 視為 outlier,先 drop
+- 若有 NaN,raise ValueError
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§3.5 好 Prompt 的六個欄位</h3>
+  <div class="grid grid-3 reveal">
+    <div class="card"><span class="num">01</span><h4>Input · 資料在哪</h4><p>路徑 + column 名 + dtype + 約略列數</p></div>
+    <div class="card"><span class="num">02</span><h4>Output · 期待格式</h4><p>DataFrame? 圖? 檔案? 要什麼欄位?</p></div>
+    <div class="card"><span class="num">03</span><h4>Constraint · 限制</h4><p>套件版本、效能、禁止的手法</p></div>
+    <div class="card"><span class="num">04</span><h4>Edge case · 邊界</h4><p>NaN、outlier、重複、空檔怎麼處理</p></div>
+    <div class="card"><span class="num">05</span><h4>Success · 驗收</h4><p>row 數、值的範圍、特定輸出</p></div>
+    <div class="card"><span class="num">06</span><h4>Style · 風格</h4><p>snake_case、type hint、註解深度</p></div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§3.6 Plan → Execute → Verify 三段流程</h3>
+  <div class="pev reveal">
+    <div class="pev-step">
+      <span class="icon">📝</span>
+      <h4>Plan</h4>
+      <p>AI 先列「打算分幾步、touch 哪些檔、風險點、產物」。<br><strong style="color:var(--text)">你核可再放行</strong>。</p>
+    </div>
+    <div class="pev-arrow">→</div>
+    <div class="pev-step">
+      <span class="icon">⚡</span>
+      <h4>Execute</h4>
+      <p>AI 一次跑完一個 atomic unit。<br>中途不插嘴改需求 — 會讓 context 很髒。</p>
+    </div>
+    <div class="pev-arrow">→</div>
+    <div class="pev-step">
+      <span class="icon">✅</span>
+      <h4>Verify</h4>
+      <p>實際執行 · 輸出值對期望 · 抽樣讀關鍵幾行 · <strong style="color:var(--accent)">幻覺檢查</strong>。</p>
+    </div>
+  </div>
+
+  <p class="reveal" style="color:var(--muted);font-size:15px;margin-top:-10px">
+    為什麼重要:省下『錯 50 步才發現第 2 步錯』的浩劫。PEV 也是研究方法 — <span class="hl3">hypothesis → experiment → check</span>,同一個思維。
+  </p>
+
+  <h3 class="reveal" style="margin-top:50px">§3.11 原則 3:Small Commits, Short Context</h3>
+
+  <div class="git-vis reveal">
+    <div class="commits">
+      <div class="commit"><div class="sha">#a3f2d1</div><div class="msg">clean: drop RT&lt;100</div></div>
+      <div class="commit"><div class="sha">#b4e5c2</div><div class="msg">feat: add mean RT</div></div>
+      <div class="commit"><div class="sha">#c6d8e3</div><div class="msg">plot: bar + errorbar</div></div>
+      <div class="commit"><div class="sha">#d7f9a4</div><div class="msg">test: RT range check</div></div>
+      <div class="commit"><div class="sha">#e8a0b5</div><div class="msg">fix: NaN handling</div></div>
+      <div class="commit" style="border-color:var(--accent);background:rgba(255,230,109,.08)"><div class="sha">#HEAD</div><div class="msg" style="color:var(--accent)">現在位置 ✓</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin-top:8px;font-family:'JetBrains Mono',monospace">
+      每次 AI 改動控制在「幾十行、單一目的」。任何時刻可 <span style="color:var(--accent)">git checkout</span> 回到對的狀態。
+    </p>
+  </div>
+
+  <div class="ba reveal">
+    <div class="ba-col before">
+      <h4>無 AI 時代</h4>
+      <ul>
+        <li>慢,錯也慢;每次改動量小</li>
+        <li>人腦能守住 working memory</li>
+        <li>錯了多半是邏輯,rollback 選擇性多</li>
+      </ul>
+    </div>
+    <div class="ba-col after">
+      <h4>AI 時代 — 風險新形態</h4>
+      <ul>
+        <li>一個 prompt 可能改 20 個檔</li>
+        <li>幻覺是『像真的錯』,肉眼難察</li>
+        <li>累積 5 個 prompt 才 commit,debug 等於重啟研究</li>
+      </ul>
+      <div class="sum" style="color:var(--accent)">→ 小 commit 是最便宜的保險</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§3.13 Git 速查 — 研究者版</h3>
+  <pre class="code reveal">
+<span class="c"># 觀察</span>
+git status                           <span class="c"># 現在有哪些改動?</span>
+git diff                             <span class="c"># 差在哪幾行?</span>
+git log --oneline -10                <span class="c"># 最近 10 個 commit</span>
+
+<span class="c"># 分 commit 的關鍵</span>
+<span class="k">git add -p</span>                           <span class="c"># 選擇性加入</span>
+git commit -m <span class="s">"clean: drop RT&lt;100"</span>
+
+<span class="c"># Rollback</span>
+git checkout &lt;sha&gt; -- path/file.py    <span class="c"># 把某個檔退回</span>
+git reset --hard HEAD~1              <span class="c"># 整個 commit 丟棄(小心)</span>
+  </pre>
+
+  <h3 class="reveal" style="margin-top:44px">§3.16 開 AI 前的五題自檢</h3>
+  <div class="checklist reveal">
+    <div class="check-item"><div class="box">1</div><div><strong>結果說得出來嗎?</strong><small>不是步驟 — 說不出來,先別開 AI</small></div></div>
+    <div class="check-item"><div class="box">2</div><div><strong>有 CLAUDE.md 嗎?</strong><small>沒有 → 先寫 5 行再開工</small></div></div>
+    <div class="check-item"><div class="box">3</div><div><strong>AI 要改哪些檔?</strong><small>心裡有清單,才好驗</small></div></div>
+    <div class="check-item"><div class="box">4</div><div><strong>Git 是乾淨的嗎?</strong><small>未 commit 改動先 stash</small></div></div>
+    <div class="check-item"><div class="box">5</div><div><strong>預期多久結束?</strong><small>超過 30 分鐘就該開新對話</small></div></div>
+  </div>
+
+  <blockquote class="reveal">
+    「AI 讓『寫程式』便宜了。但讓『正確、負責、可重現』變貴了。」
+    <cite>— 進入 §4 責任、限制與學術倫理</cite>
+  </blockquote>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECTION 4 -->
+<section id="s4">
+  <div class="section-id reveal">SECTION 04</div>
+  <h2 class="reveal">責任、限制與學術倫理</h2>
+  <p class="lead reveal">讓 AI 工具在你的研究裡,成為<span class="hl">可以寫進方法章節的正當工具</span>。</p>
+
+  <div class="grid grid-3 reveal">
+    <div class="card card-con">
+      <span class="num">DIMENSION 01</span>
+      <h4>技術面</h4>
+      <p><strong style="color:var(--text)">幻覺 · 可重現 · 成本</strong><br>產出是否可信?是否可重現?值不值得?</p>
+    </div>
+    <div class="card card-con">
+      <span class="num">DIMENSION 02</span>
+      <h4>學術面</h4>
+      <p><strong style="color:var(--text)">誠信 · 引用 · 授權</strong><br>合乎 NCU / 期刊 / funder 規範?有沒有揭露?</p>
+    </div>
+    <div class="card card-con">
+      <span class="num">DIMENSION 03</span>
+      <h4>人文面</h4>
+      <p><strong style="color:var(--text)">隱私 · 勞動 · 思考</strong><br>受試者保密?不外包思考?環境成本?</p>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§4.3 幻覺實例 — 教室裡真的發生過</h3>
+  <div class="grid grid-3 reveal">
+    <div class="card">
+      <span class="num">案例 1 · 假函式</span>
+      <h4>不存在的 API</h4>
+      <p class="mono" style="color:var(--red)">df.correlate(method=<br>'pearson_bootstrap')</p>
+      <p style="margin-top:8px">pandas 沒這個函式,但 AI 很「自信」地寫出來。</p>
+    </div>
+    <div class="card">
+      <span class="num">案例 2 · 假統計量</span>
+      <h4>概念張冠李戴</h4>
+      <p style="font-style:italic;color:var(--red)">「我們採用 Mahalanobis 相關」</p>
+      <p style="margin-top:8px">Mahalanobis 是距離不是相關。術語混淆。</p>
+    </div>
+    <div class="card">
+      <span class="num">案例 3 · 假文獻</span>
+      <h4>完美格式、錯誤來源</h4>
+      <p style="color:var(--red)">APA citation 格式完美 ✓<br>DOI 打開 → 另一篇無關論文 ✗</p>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§4.4 對抗幻覺 — 四層防線</h3>
+  <div class="layers reveal">
+    <div class="layer l1">第一層 · 跑起來<span>Execute</span></div>
+    <div class="layer l2">第二層 · 對期望值<span>Expected Output</span></div>
+    <div class="layer l3">第三層 · 人讀關鍵行<span>Human Review</span></div>
+    <div class="layer l4">第四層<br>引用<br>比對<span>Source</span></div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§4.5 可重現 — 你與 AI 的共同責任</h3>
+  <div class="grid grid-2 reveal">
+    <div class="card">
+      <span class="num">01</span>
+      <h4>紀錄 prompt</h4>
+      <p>關鍵 prompt 存進 repo(例如 <code>prompts/clean_rt.md</code>)。</p>
+    </div>
+    <div class="card">
+      <span class="num">02</span>
+      <h4>鎖套件版本</h4>
+      <p><code>requirements.txt</code> / <code>environment.yml</code>,含 Anthropic SDK 版本。</p>
+    </div>
+    <div class="card">
+      <span class="num">03</span>
+      <h4>留 seed</h4>
+      <p>隨機性操作使用固定 seed,且寫進 CLAUDE.md。</p>
+    </div>
+    <div class="card">
+      <span class="num">04</span>
+      <h4>方法章節揭露</h4>
+      <p>使用了哪個模型、哪個版本、做什麼子任務。</p>
+    </div>
+  </div>
+  <p class="reveal" style="color:var(--muted);font-size:14.5px;margin-top:10px">
+    ⚠️ LLM 同樣 prompt 不保證同樣輸出 → <span class="hl2">程式是主產物,prompt 是脈絡</span>。
+  </p>
+
+  <h3 class="reveal" style="margin-top:44px">§4.10 絕對不要貼進雲端 LLM 的資料</h3>
+  <div class="grid grid-2 reveal">
+    <div class="card card-con">
+      <h4>🚫 受試者個資</h4>
+      <ul>
+        <li>姓名、學號、email、電話、身分證</li>
+        <li>未發表的影像 / 生理訊號 / 問卷原始資料</li>
+        <li>依 IRB 條款尚未核准公開者</li>
+      </ul>
+    </div>
+    <div class="card card-con">
+      <h4>🚫 未公開研究資料</h4>
+      <ul>
+        <li>合作單位資料(醫院病歷、公司營運)</li>
+        <li>合作研究者未同意公開的 manuscript</li>
+        <li>API key、password、server credentials</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§4.11 學術誠信 — 怎麼用與怎麼說</h3>
+  <div class="ba reveal">
+    <div class="ba-col before">
+      <h4>❌ 不合誠信</h4>
+      <ul>
+        <li>繳交整段 AI 生成程式,不 review 不驗收</li>
+        <li>論文內容整段 AI 寫,未揭露</li>
+        <li>讓 AI 幫你編造資料或引用</li>
+        <li>複製他人含 AI 的作業,掩蓋來源</li>
+      </ul>
+    </div>
+    <div class="ba-col after">
+      <h4>✓ 合誠信</h4>
+      <ul>
+        <li>AI 起手 + 自己驗證 + 揭露</li>
+        <li>把 prompt 與 diff 留檔,方便審閱</li>
+        <li>引用 AI 產生片段,如同引用 collaborator</li>
+        <li>在 acknowledgement / methods 清楚寫</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="margin-top:44px">§4.14 何時<u>不要</u>使用 AI</h3>
+  <div class="grid grid-3 reveal">
+    <div class="card card-con">
+      <span class="num">情境 01</span>
+      <h4>你在學</h4>
+      <p>第一次學 pandas / numpy,要親手寫幾次。AI 會讓你<span class="hl">以為自己懂</span>。</p>
+    </div>
+    <div class="card card-con">
+      <span class="num">情境 02</span>
+      <h4>受試者敏感資料</h4>
+      <p>即便去識別化也要三思。首選本機模型或完全不用。</p>
+    </div>
+    <div class="card card-con">
+      <span class="num">情境 03</span>
+      <h4>核心論證</h4>
+      <p>論文核心結果、關鍵統計 — <span class="hl2">親手跑過、理解每一行</span>。</p>
+    </div>
+  </div>
+
+  <blockquote class="reveal">
+    「AI 是腳手架,不是建築師。自問一句:如果明天 AI 都斷線,我還能繼續做研究嗎?」
+    <cite>— §4.15 最重要的一條:不外包思考</cite>
+  </blockquote>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECTION 5 ACTION -->
+<section id="s5">
+  <div class="section-id reveal">SECTION 05</div>
+  <h2 class="reveal">本堂三個行動項目</h2>
+  <p class="lead reveal">回家之前,把這三件事做完。</p>
+
+  <div class="grid grid-3 reveal">
+    <div class="card" style="border-top:4px solid var(--primary)">
+      <span class="num">ACTION 01 · 30 分鐘內</span>
+      <h4>安裝 Claude Code</h4>
+      <p>完成第一次登入。助教工作站有備用。</p>
+      <pre class="code" style="margin-top:14px"><span class="c"># macOS / Linux</span>
+curl -fsSL claude.ai/install.sh | sh
+claude</pre>
+    </div>
+    <div class="card" style="border-top:4px solid var(--secondary)">
+      <span class="num">ACTION 02 · 一個小專案</span>
+      <h4>寫一版 CLAUDE.md</h4>
+      <p>至少列四項:環境、資料夾、命名、倫理規範。</p>
+      <ul>
+        <li>Python 版本 + conda env</li>
+        <li>data/ 結構</li>
+        <li>snake_case · pathlib · 300 dpi</li>
+        <li>姓名欄位一律 drop</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--accent)">
+      <span class="num">ACTION 03 · 下週課堂分享</span>
+      <h4>用 PEV 重寫舊腳本</h4>
+      <p>選一個 20 行以內的舊腳本 — 帶著 prompt 與 diff 來分享。</p>
+      <p style="margin-top:10px;color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:13px">
+        Plan → Execute → Verify
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>謝謝,W10 見!</div>
+  <div class="next">下週:多步驟任務分解 · Git 進階 · GitHub Actions 自動化</div>
+  <div style="margin-top:20px;font-size:13px">
+    提問 / 一對一輔導:<a href="mailto:audachang@gmail.com" style="color:var(--secondary);text-decoration:none">audachang@gmail.com</a> · 建議用 eeclass 留言以便追蹤
+  </div>
+  <div style="margin-top:14px;opacity:.6;font-family:'JetBrains Mono',monospace;font-size:12px">
+    © NCU NS5116 · 2026 Spring · Erik Chang
+  </div>
+</footer>
+
+</main>
+
+<script>
+// Scroll progress
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (scrolled / max * 100) + '%';
+});
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+    }
+  });
+}, {threshold: 0.12, rootMargin: '0px 0px -60px 0px'});
+document.querySelectorAll('.reveal, .timeline').forEach(el => io.observe(el));
+
+// Active nav link
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 130;
+    if (window.scrollY >= top) current = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+// Terminal typing animation
+const messages = [
+  '幫我把 data/tidy/rt.csv 依 subject × condition 算 mean RT,畫 bar + errorbar,存 figures/',
+  '讀完 BIDS 資料夾,先給我你理解的結構,不要動手。',
+  '把 analyze.py 拆成 load / process / plot 三個檔,保留所有功能。',
+  'RT < 100ms 視為 outlier,先 drop 並印出捨棄數。有 NaN 就 raise ValueError。'
+];
+const typedEl = document.getElementById('typed');
+let msgIdx = 0, charIdx = 0, deleting = false;
+function tick() {
+  const msg = messages[msgIdx];
+  if (!deleting) {
+    typedEl.textContent = msg.slice(0, ++charIdx);
+    if (charIdx === msg.length) {
+      deleting = true;
+      setTimeout(tick, 2400);
+      return;
+    }
+  } else {
+    typedEl.textContent = msg.slice(0, --charIdx);
+    if (charIdx === 0) {
+      deleting = false;
+      msgIdx = (msgIdx + 1) % messages.length;
+    }
+  }
+  setTimeout(tick, deleting ? 18 : 38);
+}
+tick();
+</script>
+</body>
+</html>

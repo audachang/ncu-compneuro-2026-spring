@@ -138,127 +138,147 @@
     \end{enumerate}
 \end{itemize}
 
-\subsection*{Module 2: Machine Learning \& AI Applications}
+\subsection*{Module 2: Vibe/Agentic Coding \& Data Applications}
 
-\noindent\textbf{Focus}: \textit{Transitioning from analyzing past data to predicting future outcomes using Machine Learning, Deep Learning, and LLMs.}
+\noindent\textbf{Focus}: \textit{From describing intent to shipping applications—using AI as a coding partner to build, deploy, and narrate data-driven web apps grounded in real-world open data.}
 
 \vspace{0.3cm}
 
-\noindent\textbf{Week 9: Machine Learning Foundations}
+\noindent\textbf{Week 9: Vibe/Agentic Coding Fundamentals}
 \begin{itemize}
     \item \textbf{Date}: 2026/04/23
-    \item \textbf{Topic}: \textbf{Concepts \& Pipelines}
+    \item \textbf{Topic}: \textbf{From Writing Code to Directing AI}
     \item \textbf{Course Content}:
     \begin{itemize}
-        \item \textbf{Concepts}: Supervised vs. Unsupervised learning; Features ($X$) and Labels ($y$).
-        \item \textbf{The Pipeline}: Data preprocessing (Scaling/Normalization), One-Hot Encoding, and Train/Test splits.
-        \item \textbf{Library}: Introduction to \texttt{scikit-learn}.
+        \item \textbf{The Spectrum}: Copilot autocomplete $\rightarrow$ Chat collaboration $\rightarrow$ Agentic execution.
+        \item \textbf{Vibe Coding Philosophy}: Describe intent, let AI scaffold, human verifies; comparing ChatGPT/Claude web, Cursor IDE, and Claude Code CLI.
+        \item \textbf{Setup}: Installing Node.js, Claude Code, API key management, first dialogue.
     \end{itemize}
     \item \textbf{Teaching Plan}:
     \begin{itemize}
-        \item \textbf{Lab}: Preprocessing a behavioral dataset to prepare it for ML (e.g., converting subject IDs to categorical codes).
+        \item \textbf{Live Demo}: Have Claude Code read and improve a pandas notebook by prompt only.
+        \item \textbf{Lab}: Rewrite Week 7's Stroop analysis script using Claude Code; compare original vs. AI-assisted versions.
+        \item \textbf{Homework}: One-page reflection on where AI outperformed and where human judgment was essential.
     \end{itemize}
 \end{itemize}
 
-\noindent\textbf{Week 10: Basic ML Algorithms: Regression \& Classification}
+\noindent\textbf{Week 10: Multi-Step Task Delegation, Git \& GitHub Actions}
 \begin{itemize}
     \item \textbf{Date}: 2026/04/30
-    \item \textbf{Topic}: \textbf{Predictive Modeling}
+    \item \textbf{Topic}: \textbf{Version Control in the Agentic Era}
     \item \textbf{Course Content}:
     \begin{itemize}
-        \item \textbf{Regression}: Linear Regression (Predicting continuous variables like RT).
-        \item \textbf{Classification}: Logistic Regression and SVM (Predicting binary outcomes like Error/Correct).
-        \item \textbf{Evaluation}: Accuracy, Precision, Recall, Confusion Matrix.
+        \item \textbf{Prompt Design}: Plan--execute--verify pattern; \texttt{CLAUDE.md} and project context files.
+        \item \textbf{Git Essentials}: Repo, commit, branch, push, pull via GitHub Desktop (GUI) and Claude Code (CLI).
+        \item \textbf{GitHub Actions}: Automated checks on push (linting, Streamlit build verification).
     \end{itemize}
     \item \textbf{Teaching Plan}:
     \begin{itemize}
-        \item \textbf{Challenge}: Train a model to predict if a subject will make an error on the \textit{next} trial based on their RT in the \textit{previous} trial.
+        \item \textbf{Demo}: Delegate an end-to-end pipeline (read CSV $\rightarrow$ clean $\rightarrow$ plot $\rightarrow$ commit $\rightarrow$ push) to Claude Code.
+        \item \textbf{Lab}: Create personal project repo on GitHub; configure a minimal GitHub Action.
+        \item \textbf{Homework}: Use AI to draft \texttt{README.md} and \texttt{CLAUDE.md} defining project goals and coding norms.
     \end{itemize}
 \end{itemize}
 
-\noindent\textbf{Week 11: Advanced ML Algorithms}
+\noindent\textbf{Week 11: Streamlit Fundamentals \& Cloud Deployment}
 \begin{itemize}
     \item \textbf{Date}: 2026/05/07
-    \item \textbf{Topic}: \textbf{Complexity \& Unsupervised Learning}
+    \item \textbf{Topic}: \textbf{From Script to Web App in Pure Python}
     \item \textbf{Course Content}:
     \begin{itemize}
-        \item \textbf{Ensembles}: Random Forests and Gradient Boosting (XGBoost).
-        \item \textbf{Dimensionality Reduction}: \textbf{PCA} (Principal Component Analysis) for high-dimensional data (e.g., surveys/pixels).
-        \item \textbf{Clustering}: K-Means.
+        \item \textbf{Core API}: \texttt{st.write}, \texttt{st.dataframe}, widgets (\texttt{slider}, \texttt{selectbox}, \texttt{file\_uploader}), layout (\texttt{columns}, \texttt{tabs}).
+        \item \textbf{State \& Caching}: \texttt{st.session\_state} and \texttt{@st.cache\_data}.
+        \item \textbf{Deployment}: Streamlit Community Cloud with GitHub integration.
     \end{itemize}
     \item \textbf{Teaching Plan}:
     \begin{itemize}
-        \item \textbf{Lab}: Use PCA to visualize a high-dimensional dataset in 2D space, then apply K-Means to identify clusters of participants.
+        \item \textbf{Live Coding}: Vibe-code a Stroop analysis script into an interactive Streamlit app in 30 minutes.
+        \item \textbf{Lab}: Convert a personal pandas/matplotlib analysis into a deployed Streamlit app.
+        \item \textbf{Homework}: Submit deployed app URL.
     \end{itemize}
 \end{itemize}
 
-\noindent\textbf{Week 12: GPU Acceleration Tools}
+\noindent\textbf{Week 12: Taiwan Open Data \& Real-World Cleaning}
+\begin{itemize}
+    \item \textbf{Date}: 2026/05/12
+    \item \textbf{Topic}: \textbf{APIs, Messy Data, and How AI Accelerates Cleaning}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{Data Sources}: data.gov.tw, TDX transport API, MOHW statistics, weather/air-quality APIs.
+        \item \textbf{HTTP/REST}: GET/POST, query parameters, JSON responses; \texttt{requests} with \texttt{pandas.read\_json}/\texttt{read\_csv}.
+        \item \textbf{Cleaning}: Chinese encoding, date parsing, missing values, deduplication, dtype coercion.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Demo}: Claude Code analyzes a ``dirty'' air-quality dataset and proposes a cleaning pipeline with justifications.
+        \item \textbf{Lab}: Each group selects a behaviorally/socially relevant dataset; completes Download $\rightarrow$ Clean $\rightarrow$ EDA notebook.
+        \item \textbf{Homework}: Integrate the dataset into the Week 11 Streamlit app.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 13: Interactive Visualization \& Data Storytelling}
 \begin{itemize}
     \item \textbf{Date}: 2026/05/14
-    \item \textbf{Topic}: \textbf{High-Performance Computing}
+    \item \textbf{Topic}: \textbf{Charts That Tell a Story}
     \item \textbf{Course Content}:
     \begin{itemize}
-        \item \textbf{Hardware}: CPU vs. GPU architecture differences.
-        \item \textbf{Tools}: Google Colab (Cloud GPUs), \textbf{CuPy} (NumPy on GPU), and \textbf{PyTorch Tensors}.
+        \item \textbf{Storytelling Structure}: Hook $\rightarrow$ Context $\rightarrow$ Conflict $\rightarrow$ Insight $\rightarrow$ Conclusion.
+        \item \textbf{Tools}: \texttt{plotly.express}, Altair, \texttt{pydeck} for geospatial data.
+        \item \textbf{Design Principles}: Chart selection hierarchy, colorblind-safe palettes, misleading-axis anti-patterns.
     \end{itemize}
     \item \textbf{Teaching Plan}:
     \begin{itemize}
-        \item \textbf{Benchmark Lab}: Write a script that performs massive matrix multiplication. Measure and compare execution time on CPU (NumPy) vs. GPU (PyTorch).
+        \item \textbf{Comparison Demo}: Same data rendered as academic-style static figure vs. public-facing interactive chart.
+        \item \textbf{Lab}: Add $\geq 3$ interactive elements (filters, tooltips, maps) and a narrative flow to the Streamlit app.
+        \item \textbf{Homework}: 3-minute demo video, practicing storytelling delivery.
     \end{itemize}
 \end{itemize}
 
-\noindent\textbf{Week 13: Deep Learning}
+\noindent\textbf{Week 14: Anthropic SDK \& Responsible AI Integration}
 \begin{itemize}
     \item \textbf{Date}: 2026/05/21
-    \item \textbf{Topic}: \textbf{Neural Networks}
+    \item \textbf{Topic}: \textbf{Adding AI Features to Your App}
     \item \textbf{Course Content}:
     \begin{itemize}
-        \item \textbf{Basics}: Neurons, Layers, Weights, Biases, Activation Functions (ReLU).
-        \item \textbf{Training}: Backpropagation and Optimizers (Adam).
-        \item \textbf{Implementation}: Building a Multi-Layer Perceptron (MLP) in PyTorch.
+        \item \textbf{Anthropic API}: messages endpoint, system prompts, roles, streaming.
+        \item \textbf{Integration Patterns}: data summarization, Q\&A over data, natural-language-to-pandas, classification/sentiment.
+        \item \textbf{Responsible AI}: hallucinations, privacy, de-identification, cost control, transparency (labeling AI output); alignment with EU AI Act and Taiwan's AI Basic Act draft.
     \end{itemize}
     \item \textbf{Teaching Plan}:
     \begin{itemize}
-        \item \textbf{Lab}: "Hello World" of Deep Learning—Training a network to classify handwritten digits (MNIST) or behavioral patterns.
+        \item \textbf{Demo}: Add an ``Ask this data'' dialog to the Streamlit app—natural language in, answer or chart out.
+        \item \textbf{Lab}: Each group integrates one AI feature (summary / chat / auto-report) with \texttt{.env}/Streamlit secrets for key management.
+        \item \textbf{Homework}: Add responsible-AI disclosure and API-cost estimate notes to the app.
     \end{itemize}
 \end{itemize}
 
-\noindent\textbf{Week 14: Large Language Model (LLM)}
+\noindent\textbf{Week 15: Final Project Workshop \& Peer Code Review}
+\begin{itemize}
+    \item \textbf{Date}: 2026/05/26
+    \item \textbf{Topic}: \textbf{From Working to Polished}
+    \item \textbf{Course Content}:
+    \begin{itemize}
+        \item \textbf{UI/UX Basics}: Hick's law, Fitts's law, consistency, visual hierarchy.
+        \item \textbf{Code Review Culture}: Structure of constructive feedback; reviewing repo layout, README clarity, app usability, AI feature design.
+        \item \textbf{Presentation Prep}: Narrative arc for a 10-minute demo.
+    \end{itemize}
+    \item \textbf{Teaching Plan}:
+    \begin{itemize}
+        \item \textbf{Short Lecture}: 30-minute overview of code review and UX principles.
+        \item \textbf{Workshop}: 150 minutes of open development; instructor circulates as technical consultant.
+        \item \textbf{Peer Review}: Paired 30-minute code review sessions; written feedback delivered before final presentation.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Week 16: Final Presentation}
 \begin{itemize}
     \item \textbf{Date}: 2026/05/28
-    \item \textbf{Topic}: \textbf{NLP in Research}
-    \item \textbf{Course Content}:
-    \begin{itemize}
-        \item \textbf{Theory}: Transformer Architecture overview (Attention mechanism).
-        \item \textbf{Tools}: Hugging Face \texttt{transformers} library.
-        \item \textbf{Application}: Using LLMs to generate stimuli text or analyze qualitative survey responses.
-    \end{itemize}
-    \item \textbf{Teaching Plan}:
-    \begin{itemize}
-        \item \textbf{Workshop}: Build a pipeline that uses a pre-trained BERT model to perform Sentiment Analysis on a text dataset.
-    \end{itemize}
-\end{itemize}
-
-\noindent\textbf{Week 15: ML \& AI Capstone Studio}
-\begin{itemize}
-    \item \textbf{Date}: 2026/06/04
-    \item \textbf{Activity}: \textbf{Guided Development / Hackathon}
-    \item \textbf{Details}:
-    \begin{itemize}
-        \item Students work on their final projects in class.
-        \item Instructor acts as a technical consultant (debugging code, refining models).
-        \item \textbf{Peer Review}: Students pair up to code-review their analysis pipelines.
-    \end{itemize}
-\end{itemize}
-
-\noindent\textbf{Week 16: Final Poster Presentation}
-\begin{itemize}
-    \item \textbf{Date}: 2026/06/11
-    \item \textbf{Activity}: \textbf{Symposium}
+    \item \textbf{Activity}: \textbf{Symposium \& Live Demo}
     \item \textbf{Deliverables}:
     \begin{enumerate}
-        \item \textbf{Scientific Poster}: Introduction, Methods (Code/Algo), Results (Vis/Stats), Conclusion.
-        \item \textbf{Code Repository}: A public GitHub link allowing others to reproduce the results.
+        \item \textbf{Live Streamlit App}: Deployed online, integrating Taiwan open data and at least one AI feature.
+        \item \textbf{GitHub Repository}: Public repo with clear README, CLAUDE.md, and reproducible setup.
+        \item \textbf{10-Minute Presentation}: Problem framing, data, design decisions, AI usage, responsible-AI considerations, and live demo.
     \end{enumerate}
 \end{itemize}
 
