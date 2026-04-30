@@ -181,4 +181,8 @@
 
 本作業的設計呼應 2024–2026 年認知科學界對「分散式認知（distributed cognition）」與「外部工具如何重塑研究實踐」的討論。三階段分別對應：
 
-- **階段一**：傳統科學家的工作模式（Vannev
+- **階段一**：傳統科學家的工作模式（Vannevar Bush, 1945）
+- **階段二**：Engelbart (1962) 的「智能增強」（Intelligence Augmentation, IA）
+- **階段三**：當代「Agentic AI」典範下的「意圖驅動運算」（Intent-driven computing）
+
+理解三者的差異，有助於你在未來研究設計中，更有意識地選擇何時把哪些認知任務外包給 AI、何時必須親力親為。

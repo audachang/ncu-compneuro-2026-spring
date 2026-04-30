@@ -9,7 +9,9 @@ weekly_contents.md
 *.tmp
 *.aux
 *.out
+*lecture_plan*.md
 __pycache__/
+archive/
 .ipynb_checkpoints/
 /term_project/
 # Homeworks: ignore student submissions and grading, keep assignment specs
@@ -31,3 +33,4 @@ __pycache__/
 /week-06-numpy_and_data_manipulation/demo/
 general/*.html
 general/*_files/
+~$*
