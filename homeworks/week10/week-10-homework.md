@@ -25,7 +25,7 @@
 
 ### 預設資料集（推薦）：Big Five Personality Test
 
-- **Download:** <https://openpsychometrics.org/_rawdata/BIG5.zip>
+- **Download:** [https://openpsychometrics.org/_rawdata/BIG5.zip](https://openpsychometrics.org/_rawdata/BIG5.zip)
 - **n = 19,719** participants
 - **Variables:** 50 個 IPIP Big Five 題項（Likert 1–5）+ gender, age, race, native language, country
 - **Codebook:** zip 檔內附 `codebook.txt`
@@ -35,12 +35,12 @@
 
 如果你的研究興趣偏向情緒/臨床心理或認知能力，可改用：
 
-| Dataset | n | Theme | Download |
-|---------|---|-------|----------|
-| DASS (Depression Anxiety Stress Scales) | 39,775 | 情緒/精神症狀 | [`DASS_data_21.02.19.zip`](https://openpsychometrics.org/_rawdata/DASS_data_21.02.19.zip) |
-| HEXACO Personality | 22,786 | 六因子人格 | [`HEXACO.zip`](https://openpsychometrics.org/_rawdata/HEXACO.zip) |
-| Vocabulary IQ Test | 12,173 | 詞彙能力 + 人格 | [`VIQT_data.zip`](https://openpsychometrics.org/_rawdata/VIQT_data.zip) |
-| Multifactor General Knowledge Test | 19,218 | 通識知識能力 | [`MGKT_data.zip`](https://openpsychometrics.org/_rawdata/MGKT_data.zip) |
+| Dataset                                 | n      | Theme           | Download                                                                                 |
+| --------------------------------------- | ------ | --------------- | ---------------------------------------------------------------------------------------- |
+| DASS (Depression Anxiety Stress Scales) | 39,775 | 情緒/精神症狀   | [`DASS_data_21.02.19.zip`](https://openpsychometrics.org/_rawdata/DASS_data_21.02.19.zip) |
+| HEXACO Personality                      | 22,786 | 六因子人格      | [`HEXACO.zip`](https://openpsychometrics.org/_rawdata/HEXACO.zip)                         |
+| Vocabulary IQ Test                      | 12,173 | 詞彙能力 + 人格 | [`VIQT_data.zip`](https://openpsychometrics.org/_rawdata/VIQT_data.zip)                   |
+| Multifactor General Knowledge Test      | 19,218 | 通識知識能力    | [`MGKT_data.zip`](https://openpsychometrics.org/_rawdata/MGKT_data.zip)                   |
 
 > **注意：** 這些 CSV 多以 tab 分隔（`sep="\t"`），不是逗號。第一次讀檔時要留意。
 >
@@ -65,12 +65,15 @@
 針對 **同一個任務**：「載入資料集，產出一張顯示 *年齡分布* 的直方圖，並儲存為 `reports/age_distribution.png`」，分別用以下三種 prompt 風格給 Claude Code 寫程式碼：
 
 #### Style A — One-liner（一句話風格）
+
 ```
 > 幫我畫一張資料的年齡分布圖。
 ```
+
 把產生的程式碼存為 `notebooks/style_a_oneliner.ipynb`。
 
 #### Style B — Specification（規格化風格）
+
 ```
 > Read data/raw/data.csv (tab-separated). Filter rows where 13 <= age <= 80
   to remove implausible entries. Plot a histogram of age with 30 bins,
@@ -79,9 +82,11 @@
   at dpi=150. Print to stdout: total rows loaded, rows kept after filter,
   and the path of the saved figure.
 ```
+
 把產生的程式碼存為 `notebooks/style_b_specification.ipynb`。
 
 #### Style C — Plan-first / Agentic（先計畫再執行）
+
 ```
 > I want to produce reports/age_distribution.png from data/raw/data.csv.
   Before writing code:
@@ -90,17 +95,18 @@
   3. Then write the code, with comments explaining each defensive step.
   Confirm the plan with me before producing the final code.
 ```
+
 把產生的程式碼存為 `notebooks/style_c_planfirst.ipynb`。
 
 ### 1.3 Reflection Table（5 pts）
 
 在 README.md 的 `## Prompt Style Comparison` 區塊，填寫下表（不需多長，每格 1–3 句即可）：
 
-| Style | 產出能直接跑嗎？ | 程式碼可讀性 | 防呆程度（處理 edge case） | 你下次會選哪個？為什麼？ |
-|-------|------------------|--------------|---------------------------|--------------------------|
-| A. One-liner | | | | |
-| B. Specification | | | | |
-| C. Plan-first | | | | |
+| Style            | 產出能直接跑嗎？ | 程式碼可讀性 | 防呆程度（處理 edge case） | 你下次會選哪個？為什麼？ |
+| ---------------- | ---------------- | ------------ | -------------------------- | ------------------------ |
+| A. One-liner     |                  |              |                            |                          |
+| B. Specification |                  |              |                            |                          |
+| C. Plan-first    |                  |              |                            |                          |
 
 > **提示：** 沒有「絕對最好」的答案。簡單探索任務 one-liner 可能更快，正式分析則 specification 或 plan-first 更穩。寫出 **你的判準** 比挑出贏家重要。
 
@@ -126,11 +132,13 @@
 在 `notebooks/01_explore.ipynb` 中產出兩張圖，並儲存到 `reports/`：
 
 **Figure 1 — 描述性 (descriptive):** 你選的資料集中**任一主要變項**的分布或 cross-tab。例如：
+
 - Big Five → 五個分數的小提琴圖 (violin plot)，比較性別差異。
 - DASS → Depression / Anxiety / Stress 三個分數的散布圖矩陣。
 - HEXACO → 六因子的 correlation heatmap。
 
 **Figure 2 — 關係 (relational):** 一個變項與另一個變項的關係。例如：
+
 - Big Five → Extraversion 分數隨年齡的趨勢（用 binned mean ± SEM）。
 - DASS → Depression 分數的國家差異（取前 10 大國家）。
 - 自由發揮，但要有意義的研究問題。
@@ -174,15 +182,16 @@ jupyter notebook notebooks/01_explore.ipynb
 
 ### Rubric for README
 
-| 項目 | Pts | 觀察點 |
-|------|-----|--------|
-| 第一段廣告文案是否清楚 | 4 | 滑過的人 5 秒內知道這是什麼 |
-| Live Demo 連結是否能打開 | 3 | 連到題目四的 Pages |
-| 主要圖表是否內嵌 | 3 | 不是文字描述，是真的圖片 |
-| How to run 是否完全可複製 | 5 | 助教實際照做能不能跑起來 |
-| Prompt Style Comparison 表格的洞察品質 | 5 | 不是堆形容詞，要有具體判準 |
+| 項目                                   | Pts | 觀察點                      |
+| -------------------------------------- | --- | --------------------------- |
+| 第一段廣告文案是否清楚                 | 4   | 滑過的人 5 秒內知道這是什麼 |
+| Live Demo 連結是否能打開               | 3   | 連到題目四的 Pages          |
+| 主要圖表是否內嵌                       | 3   | 不是文字描述，是真的圖片    |
+| How to run 是否完全可複製              | 5   | 助教實際照做能不能跑起來    |
+| Prompt Style Comparison 表格的洞察品質 | 5   | 不是堆形容詞，要有具體判準  |
 
 > **常見錯誤：**
+>
 > - ❌ README 只列檔名，沒有說明專案做什麼。
 > - ❌ How to run 缺步驟（例如忘了講要先下載資料）。
 > - ❌ 圖表用「請看 reports 資料夾」帶過 — 應該直接內嵌。
@@ -218,13 +227,13 @@ jupyter notebook notebooks/01_explore.ipynb
 
 ### Rubric for docs/index.html
 
-| 項目 | Pts | 觀察點 |
-|------|-----|--------|
-| 七個必要區塊都齊全 | 7 | 缺一扣 1 分 |
-| Goal / Procedure / Outcome 是否說人話 | 5 | 非技術讀者能否看懂 |
-| 圖片載入正確（不是 broken image） | 4 | 路徑相對於 docs/ |
-| Caveats 是否誠實 | 2 | 有寫到資料限制 |
-| 整體可讀性與美感 | 2 | 字級、留白、配色 |
+| 項目                                  | Pts | 觀察點             |
+| ------------------------------------- | --- | ------------------ |
+| 七個必要區塊都齊全                    | 7   | 缺一扣 1 分        |
+| Goal / Procedure / Outcome 是否說人話 | 5   | 非技術讀者能否看懂 |
+| 圖片載入正確（不是 broken image）     | 4   | 路徑相對於 docs/   |
+| Caveats 是否誠實                      | 2   | 有寫到資料限制     |
+| 整體可讀性與美感                      | 2   | 字級、留白、配色   |
 
 ---
 
@@ -282,14 +291,14 @@ jupyter notebook notebooks/01_explore.ipynb
 
 ## Grading Summary (100 pts)
 
-| Section | Pts |
-|---------|-----|
-| 題目一 — Project Bootstrap & Prompt Style | 30 |
-| 題目二 — Mini Analysis Pipeline | 25 |
-| 題目三 — README.md | 20 |
-| 題目四 — docs/index.html | 20 |
-| 題目五 — Reflection Note | 5 |
-| **Total** | **100** |
+| Section                                    | Pts           |
+| ------------------------------------------ | ------------- |
+| 題目一 — Project Bootstrap & Prompt Style | 30            |
+| 題目二 — Mini Analysis Pipeline           | 25            |
+| 題目三 — README.md                        | 20            |
+| 題目四 — docs/index.html                  | 20            |
+| 題目五 — Reflection Note                  | 5             |
+| **Total**                            | **100** |
 
 ### Bonus (up to 10 pts)
 
@@ -310,12 +319,11 @@ jupyter notebook notebooks/01_explore.ipynb
 
 ## Resources / 參考資料
 
-- 課堂講義：[`week-10-lecture_plan_150min.md`](week-10-lecture_plan_150min.md)
-- Open-Source Psychometrics Project：<https://openpsychometrics.org/_rawdata/>
-- GitHub Pages 官方文件：<https://docs.github.com/en/pages>
-- Markdown 語法：<https://www.markdownguide.org/basic-syntax/>
-- 「Awesome README」精選清單：<https://github.com/matiassingers/awesome-readme>
-- Claude Code Prompt Engineering Guide：<https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview>
+- Open-Source Psychometrics Project：[https://openpsychometrics.org/_rawdata/](https://openpsychometrics.org/_rawdata/)
+- GitHub Pages 官方文件：[https://docs.github.com/en/pages](https://docs.github.com/en/pages)
+- Markdown 語法：[https://www.markdownguide.org/basic-syntax/](https://www.markdownguide.org/basic-syntax/)
+- 「Awesome README」精選清單：[https://github.com/matiassingers/awesome-readme](https://github.com/matiassingers/awesome-readme)
+- Claude Code Prompt Engineering Guide：[https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview)
 
 ---
 
