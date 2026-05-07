@@ -34,3 +34,16 @@ archive/
 general/*.html
 general/*_files/
 ~$*
+archive/
+# Local grading docs with credentials/PII (homeworks/CLAUDE.md). Root CLAUDE.md
+# is already tracked; gitignore only affects new files, so the public teaching
+# guide is unaffected.
+CLAUDE.md
+# Student feedback HTML/CSS (names + grades)
+/homeworks/*/*.html
+/homeworks/*/_feedback.css
+# Debug / dry-run screenshots in repo root
+debug_*.png
+dry_run_*.png
+# LibreOffice / Office lock files
+.~lock.*

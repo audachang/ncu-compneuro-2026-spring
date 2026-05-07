@@ -20,7 +20,17 @@
       "Bash(.venv/Scripts/python.exe -m jupyter nbconvert --to notebook --execute --inplace notebooks/01_explore.ipynb --debug)",
       "Read(//tmp/**)",
       "Read(//c/temp/**)",
-      "PowerShell($env:PYTHONIOENCODING='utf-8'; & 'c:\\\\mypython\\\\2026\\\\tw-airquality-mini\\\\.venv\\\\Scripts\\\\python.exe' -m jupyter nbconvert --to notebook --execute --inplace 'c:\\\\mypython\\\\2026\\\\tw-airquality-mini\\\\notebooks\\\\01_explore.ipynb' 2>&1 | Out-String; Write-Output \"EXIT=$LASTEXITCODE\")"
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; & 'c:\\\\mypython\\\\2026\\\\tw-airquality-mini\\\\.venv\\\\Scripts\\\\python.exe' -m jupyter nbconvert --to notebook --execute --inplace 'c:\\\\mypython\\\\2026\\\\tw-airquality-mini\\\\notebooks\\\\01_explore.ipynb' 2>&1 | Out-String; Write-Output \"EXIT=$LASTEXITCODE\")",
+      "Bash(ls \"C:\\\\Users\\\\audachang\\\\Dropbox\\\\09_AI-testing-sites\\\\Claude\\\\demo_streamlit\\\\\")",
+      "Read(//c/Users/audachang/Dropbox/09_AI-testing-sites/Claude/**)",
+      "WebFetch(domain:www.datacamp.com)",
+      "PowerShell(Get-Process git -ErrorAction SilentlyContinue)",
+      "Bash(rm .git/index.lock && git status --short | head -20)",
+      "Bash(git rm *)",
+      "Bash(git add *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\audachang\\Dropbox\\02_Academic_Work\\courses\\ComputerCogneuro\\2026_Spring_CompBigData\\.git"
     ]
   }
 }
