@@ -50,8 +50,8 @@
 完成本作業後，你會能夠：
 
 1. 用 `pandas.read_csv` 載入 CSV 資料並做基本錯誤處理。
-2. 加入 sidebar widgets（slider / multiselect / selectbox）讓使用者篩選資料。
-3. 用 `st.metric` 顯示關鍵摘要數字。sidebar使用方式請參考本週課程下app資料夾的app.py，以及課程投影片。
+2. 加入 sidebar widgets（slider / multiselect / selectbox）讓使用者篩選資料。sidebar使用方式請參考本週課程下app資料夾的app.py，以及課程投影片。
+3. 用 `st.metric` 顯示關鍵摘要數字。
 4. 用 matplotlib 畫一張依使用者選擇而動態變化的圖。
 5. 用 `st.dataframe` 與 `st.download_button` 顯示與下載篩選後的資料。
 6. 把 app 推到 GitHub 並部署到 Streamlit Community Cloud。
