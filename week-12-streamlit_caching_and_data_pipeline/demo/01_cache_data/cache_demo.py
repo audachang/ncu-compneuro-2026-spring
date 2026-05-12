@@ -23,7 +23,9 @@ import streamlit as st
 # 切換點：改這兩個常數來觀察 cache 行為
 # ---------------------------------------------------------------
 DECORATED = True      # False = 完全不 cache
-TTL       = None      # None = 永久；改 10 = 10 秒 TTL
+#DECORATED = False      # False = 完全不 cache
+#TTL       = None      # None = 永久；改 10 = 10 秒 TTL
+TTL       = 5      # None = 永久；改 10 = 10 秒 TTL
 
 # ---------------------------------------------------------------
 # 製造一筆「重」的合成資料（夠慢以看出差異）

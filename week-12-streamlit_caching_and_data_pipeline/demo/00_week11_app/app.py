@@ -275,7 +275,7 @@ with tab_group:
     st.subheader("Group means across measures")
     # observed=True：避免 categorical 的「空 group」被顯示成 NaN row
     summary = (
-        df.groupby("group", observed=True)[list(MEASURES.keys())]
+        df.groupby(["group", "sex"], observed=True)[list(MEASURES.keys())]
         .agg(["mean", "std", "count"])
         .round(2)
     )
@@ -284,7 +284,7 @@ with tab_group:
     st.subheader(f"Bar chart — mean {MEASURES[measure]} by group")
     # Streamlit 內建 st.bar_chart() — 接受 Series 或 DataFrame；
     # 比 matplotlib 快一行，但客製化能力弱（無法調色、無法加 error bar）。
-    bar_data = df.groupby("group", observed=True)[measure].mean()
+    bar_data = df.groupby(["group", "sex"], observed=True)[measure].mean()
     st.bar_chart(bar_data)
 
 # ----- Tab 4：原始資料表 + 下載按鈕 -----

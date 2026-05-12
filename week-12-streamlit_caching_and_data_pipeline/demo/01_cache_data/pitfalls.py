@@ -18,7 +18,7 @@ st.set_page_config(page_title="Cache Pitfalls", layout="wide")
 st.title("@st.cache_data 三種常見錯誤")
 
 rng = np.random.default_rng(42)
-DF = pd.DataFrame({"rt_ms": rng.normal(500, 80, 1_000)})
+DF = pd.DataFrame({"rt_ms": rng.normal(500, 80, 1000)})
 
 
 # ===============================================================
@@ -37,19 +37,36 @@ with col1:
         n = st.slider("rows (bad)", 10, 500, 50, key="bad_n")
         return _df.sample(n, random_state=0)
 
-    bad_sample = bad_load(DF)
-    st.write(f"取樣 {len(bad_sample)} rows — slider 改動不會更新！")
+    try:
+        bad_sample = bad_load(DF)
+        st.write(f"取樣 {len(bad_sample)} rows — slider 改動不會更新！")
+        st.dataframe(bad_sample.head(), use_container_width=True)
+    except Exception as e:
+        st.error(f"**{type(e).__name__}** — Streamlit 直接擋下這個 pattern。")
+        st.markdown(
+            "**舊版 Streamlit (< 1.40) 的行為**：不會報錯，但 cache key "
+            "不含 slider 值 → slider 改動後仍回傳同一個 sample（silent footgun）。\n\n"
+            "**現在 (≥ 1.40)**：偵測到 widget 寫在 `@st.cache_data` 內，"
+            "直接 raise `CachedWidgetWarning`。\n\n"
+            "**修法**：把 `st.slider(...)` 拉到函式外，當參數傳進去 → 見右邊。"
+        )
 
 with col2:
     st.subheader("✅ 正確：widget 在外面")
+    n = st.slider("rows (good)", 10, 500, 50, key="good_n")
 
     @st.cache_data
     def good_load(_df, n):
         return _df.sample(n, random_state=0)
 
-    n = st.slider("rows (good)", 10, 500, 50, key="good_n")
     good_sample = good_load(DF, n)
     st.write(f"取樣 {len(good_sample)} rows — 跟隨 slider 變化")
+    st.dataframe(good_sample.tail(), use_container_width=True)
+    st.caption(
+        "顯示最後 5 列：`n` 改變時 cache miss → 重新取樣 → 末段 row 會變。"
+        " （注意：`random_state=0` 固定 → 前段 row 不會變，因為 pandas 是用同一個"
+        " permutation 取前 n 個。）"
+    )
 
 
 st.divider()
