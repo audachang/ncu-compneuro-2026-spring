@@ -18,20 +18,24 @@ import pandas as pd
 
 # 1. Title
 # TODO: 用 st.title(...) 顯示 "🧠 Cognitive Aging Dashboard"
-
+st.title("🧠 Cognitive Aging Dashboard")
 
 # 2. Description
 # TODO: 用 st.write(...) 加一段介紹文字
 
-
+st.write("""
+         This dashboard presents data on cognitive aging in Taiwan,
+          including participant demographics and cognitive test results.""")
 # 3. Load data
 # TODO: df = pd.read_csv("data/cognitive_aging_taiwan.csv")
-
+df = pd.read_csv("data/cognitive_aging_taiwan.csv")
 
 # 4. Metrics
 # TODO: st.metric("Participants", ...)
+st.metric("Participants", df.shape[0])
 # TODO: st.metric("Mean age", ...)
-
+st.metric("Mean age", round(df['age'].mean(), 1))
 
 # 5. Show first 10 rows
 # TODO: st.dataframe(df.head(10))
+st.dataframe(df.head(10))
