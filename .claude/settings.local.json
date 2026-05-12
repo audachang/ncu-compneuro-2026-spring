@@ -27,7 +27,10 @@
       "PowerShell(Get-Process git -ErrorAction SilentlyContinue)",
       "Bash(rm .git/index.lock && git status --short | head -20)",
       "Bash(git rm *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git log *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\audachang\\Dropbox\\02_Academic_Work\\courses\\ComputerCogneuro\\2026_Spring_CompBigData\\.git"
