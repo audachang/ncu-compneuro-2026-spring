@@ -41,7 +41,7 @@ A 16-week practical coding course for graduate students. No prior programming ex
 | [09](week-09-intro_to_vibe_coding_and_claude_code/) | 2026-04-23 | Vibe/agentic coding concepts; Claude Code CLI setup; prompting | Claude Code |
 | [10](week-10-agentic_workflows_and_github/) | 2026-04-30 | Multi-step task delegation, git commits, GitHub Actions | Claude Code, GitHub |
 | [11](week-11-web_app_development_with_streamlit/) | 2026-05-07 | Streamlit app; layout, widgets, charts; deploy to Streamlit Cloud | Streamlit |
-| [12](week-12-open_data_apis_and_data_engineering/) | 2026-05-14 | Taiwan gov open data portal (data.gov.tw), API calls, data cleaning | pandas, requests |
+| [12](week-12-streamlit_caching_and_data_pipeline/) | 2026-05-14 | Streamlit caching (cache_data/resource), data analysis pipeline, descriptive statistics | Streamlit, pandas |
 | [13](week-13-interactive_dashboards_and_storytelling/) | 2026-05-21 | Interactive charts, narrative data storytelling | Plotly, Altair |
 | [14](week-14-ai_features_with_claude_api/) | 2026-05-28 | Anthropic SDK; add AI features; responsible AI | Anthropic SDK |
 | [15](week-15-final_project_workshop/) | 2026-06-04 | Peer code review; polish UI/UX; documentation; rehearsal (pre-recorded )| Claude Code |

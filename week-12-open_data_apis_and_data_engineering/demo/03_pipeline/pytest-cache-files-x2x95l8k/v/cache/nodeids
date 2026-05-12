@@ -1,7 +1,0 @@
-[
-  "test_clean.py::test_99999_sentinel_filtered",
-  "test_clean.py::test_age_minus_999_becomes_nan",
-  "test_clean.py::test_clean_does_not_mutate_input",
-  "test_clean.py::test_condition_recoded",
-  "test_clean.py::test_rt_ms_NA_becomes_nan_then_dropped"
-]
