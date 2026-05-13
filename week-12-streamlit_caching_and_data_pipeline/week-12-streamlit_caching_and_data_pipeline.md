@@ -129,7 +129,7 @@
 - `count` 比其他欄位少 → 缺值
 - `min`/`max` 物理上不可能 → 編碼錯誤或 outlier
 - `dtype` 是 object 但內容看起來是數字 → 型別錯誤
-- `value_counts` 出現 `"NA"`, `"-"`, `""`, `999` → 缺值的偽裝
+- `value_counts` 出現 `"NA"`, `"-"`, `""`, `-999` → 缺值的偽裝
 - mean 與 median 差很多 → 分佈偏斜或有極端值
 
 **Key questions**：
@@ -520,7 +520,7 @@ for col in df.select_dtypes("object"):
 | `min` 或 `max` 物理上不可能 (RT = -50 或 99999；age = 250) | sentinel value 偽裝成缺值，或編碼錯誤 |
 | `mean` 與 `median` 差很多 | 分佈偏斜或有極端 outlier |
 | `std` 異常大 / 接近 0 | 有 outlier 或欄位幾乎是常數 |
-| `value_counts` 出現 `"NA"`, `"-"`, `""`, `"unknown"`, `999` | 缺值被人類用 sentinel 編碼 |
+| `value_counts` 出現 `"NA"`, `"-"`, `""`, `"unknown"`, `-999` | 缺值被人類用 sentinel 編碼 |
 | Categorical level 看起來重複 (`"M"`, `"male"`, `"Male"`) | 大小寫不一致 / 編碼不統一 |
 | 某 condition 的 trial 數遠少於其他 | 不平衡 (unbalanced design) 或 logging 失敗 |
 

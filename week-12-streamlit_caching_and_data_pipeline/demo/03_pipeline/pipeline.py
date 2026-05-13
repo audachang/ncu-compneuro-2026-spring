@@ -149,5 +149,5 @@ if __name__ == "__main__":
     result = analyse(cleaned, outlier_sd=3.0)
     print(result)
     if "stroop_effect_ms" in result.attrs:
-        print(f"\nStroop effect (incong − cong) = "
+        print(f"\nStroop effect (incong - cong) = "
               f"{result.attrs['stroop_effect_ms']} ms")

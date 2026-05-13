@@ -1200,7 +1200,7 @@ def slide_diagnose_table(prs, page, total):
         ("min / max 物理上不可能",                 "sentinel value 或編碼錯誤"),
         ("mean ≠ median",                          "分佈偏斜或極端 outlier"),
         ("std 異常大 / ≈ 0",                       "outlier 或近常數"),
-        ("value_counts 出現 \"NA\",\"-\",\"\",999", "缺值偽裝"),
+        ("value_counts 出現 \"NA\",\"-\",\"\",-999", "缺值偽裝"),
         ("level 重複（M / male / Male）",          "編碼不一致"),
         ("某 condition trial 數遠少",              "不平衡設計或 logging 失敗"),
     ]
