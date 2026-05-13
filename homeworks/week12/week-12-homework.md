@@ -77,13 +77,15 @@
 
 ## 3. 繳交內容 (Deliverables)
 
-學生需繳交以下三個檔案（請打包成一個 zip 或上傳到 GitHub repo）：
+學生需將以下檔案上傳到自己的github，以及佈署到streamlit：
 
 ```
-hw12_yourname/
+https://github.com/<yourrepo>/<yourhw12_repo>
 ├── report.ipynb       ← Part A — 完整 pipeline 報告
 ├── app.py             ← Part B — Streamlit dashboard
-└── README.md          ← 簡短說明（≤ 1 頁，告訴 TA 怎麼跑你的東西）
+└── README.md          ← 簡短說明（≤ 1 頁，告訴教師怎麼跑你的東西）
+
+https://<your streamlit>.streamlit.app
 ```
 
 ---
