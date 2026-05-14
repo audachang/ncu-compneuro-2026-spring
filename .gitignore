@@ -1,0 +1,55 @@
+
+/textbook/
+/materials/
+/sections/
+weekly_contents.md
+*.pdf
+!syllabus_*.pdf
+*.log
+*.tmp
+*.aux
+*.out
+*lecture_plan*.md
+__pycache__/
+archive/
+.ipynb_checkpoints/
+/term_project/
+# Homeworks: ignore student submissions and grading, keep assignment specs
+/homeworks/*/submissions/
+/homeworks/*/*.xlsx
+/homeworks/*/*.zip
+/homeworks/*/*.jzip
+/homeworks/*/feedback*.md
+/homeworks/*/feedback*.html
+/homeworks/*/feedback_files/
+/homeworks/*/index.html
+/homeworks/hw_*.zip
+/homeworks/hw_list.html
+# Ignore student folders (numeric ID pattern)
+/homeworks/*/1[0-9][0-9]*/
+/homeworks/solutions/
+/homeworks/*/solution/
+.claude/worktrees/
+.venv/
+/Context/
+/Instructions/
+/week-06-numpy_and_data_manipulation/demo/
+general/*.html
+general/*_files/
+~$*
+archive/
+# Local grading docs with credentials/PII (homeworks/CLAUDE.md). Root CLAUDE.md
+# is already tracked; gitignore only affects new files, so the public teaching
+# guide is unaffected.
+CLAUDE.md
+# Student feedback HTML/CSS (names + grades)
+/homeworks/*/*.html
+/homeworks/*/_feedback.css
+# Debug / dry-run screenshots in repo root
+debug_*.png
+dry_run_*.png
+# LibreOffice / Office lock files
+.~lock.*
+.eeclass_passwd
+.qa*
+*slide-outline.md
