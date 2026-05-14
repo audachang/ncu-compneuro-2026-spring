@@ -1,0 +1,17 @@
+# PsychoPy data files (local runs)
+data/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Last run Python scripts (auto-generated)
+*_lastrun.py
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dropbox
+.dropbox
+.dropbox.attr

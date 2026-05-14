@@ -1,0 +1,236 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[14pt,]{extarticle}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setmainfont[]{Times New Roman}
+  \ifxetex
+    \usepackage{xeCJK}
+    \setCJKmainfont[]{Microsoft JhengHei}
+  \fi
+  \ifluatex
+    \usepackage[]{luatexja-fontspec}
+    \setmainjfont[]{Microsoft JhengHei}
+  \fi
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\date{}
+
+\begin{document}
+
+\hypertarget{week-05-ux4f5cux696dux56deux994b}{%
+\section{Week 05 作業回饋}\label{week-05-ux4f5cux696dux56deux994b}}
+
+\begin{quote}
+\textbf{評分標準：} 依據 \texttt{week05\_rubric\_v2.xlsx} 之 13
+項評分指標，滿分 100 分。 各大項配分：A. 實驗架構（Coder）50 分 ／ B.
+Builder 版本 20 分 ／ C. 程式品質 15 分 ／ D. 文件與繳交 15 分
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.4pt}\end{center}
+
+\hypertarget{ux5433ux5fc3ux5713-96100}{%
+\subsection{113892001 吳心圓 ---
+96／100}\label{ux5433ux5fc3ux5713-96100}}
+
+\hypertarget{ux7e3dux8a55}{%
+\subsubsection{總評}\label{ux7e3dux8a55}}
+
+刺激設計具獨到巧思------target 為垂直翻轉（y 取反）、distractor
+為水平翻轉（x
+取反），使二者視覺差異更具挑戰性，符合知覺辨識實驗的科學考量。距離門檻過濾（\texttt{np.linalg.norm\ \textgreater{}\ 5px}）是很好的效能優化選擇。小幅扣分在於
+Escape 偵測不完整及未附範例 CSV 檔案。
+
+\hypertarget{ux5404ux9805ux8a55ux8a9e}{%
+\subsubsection{各項評語}\label{ux5404ux9805ux8a55ux8a9e}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.09\columnwidth}\raggedright
+指標\strut
+\end{minipage} & \begin{minipage}[b]{0.03\columnwidth}\raggedright
+得分\strut
+\end{minipage} & \begin{minipage}[b]{0.80\columnwidth}\raggedright
+評語\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+A1 試驗迴圈\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+15/15\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\texttt{for\ trial\ in\ range(n\_trials)} 正確執行 10 輪，以
+\texttt{n\_trials} 變數控制，易於調整。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+A2 刺激呈現與計時\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+10/10\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+繪圖階段以 \texttt{core.Clock} 控制 10 秒計時；選擇階段分為前 5
+秒純觀看（target +
+distractor）與後續按鍵收集，將「知覺編碼」與「反應執行」分離，這在認知實驗設計中是有意義的做法，可減少速度---準確度權衡的干擾。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+A3 反應收集與正確性\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+15/15\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+以 \texttt{left}/\texttt{right} 方向鍵配合 \texttt{side}
+變數判斷正確性，邏輯正確。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+A4 區塊結構\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+10/10\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+觀看階段與反應階段的時序分離提供了試驗內的結構化節奏控制。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+B1 Builder 流程重建\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+10/10\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Builder
+版本完整重現實驗流程，且同樣實作了先觀看再按鍵的兩階段設計。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+B2 Builder 資料紀錄\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+5/5\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+使用
+\texttt{thisExp.addData(\textquotesingle{}is\_correct\textquotesingle{},\ int(is\_correct))}
+與
+\texttt{thisExp.addData(\textquotesingle{}side\_of\_target\textquotesingle{},\ side)}
+將結果正確記入資料檔。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+B3 Code Component / JS\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+5/5\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Code Component 邏輯正確，與 Coder 版本一致。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+C1 可讀性與組織\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+5/5\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+程式碼簡潔，使用 \texttt{np.linalg.norm}
+做距離門檻過濾是有效率的寫法，變數命名清楚（\texttt{drawing\_points}、\texttt{flipped\_points}、\texttt{distractor\_points}）。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+C2 Escape 處理\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+\textbf{3/5}\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+⚠️ 繪圖階段有偵測
+Escape（\texttt{if\ \textquotesingle{}escape\textquotesingle{}\ in\ event.getKeys():\ win.close();\ core.quit()}），但選擇階段的
+\texttt{while\ not\ responded} 迴圈中未包含 Escape
+偵測。若受試者在選擇階段想退出，需等待該輪結束或強制關閉程式。\textbf{（-2）}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+C3 邊界情況處理\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+5/5\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+當繪圖為空時以 \texttt{{[}(0,0),\ (10,10){]}} 預設值填充，避免 ShapeStim
+崩潰。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+D1 繳交完整度\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+5/5\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+同時繳交 \texttt{.py} 與 \texttt{.psyexp}，附
+\texttt{content.html}。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+D2 範例輸出\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+\textbf{3/5}\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+⚠️ 未附上範例 CSV 檔案。Builder 版本透過 \texttt{thisExp.addData}
+可自動儲存，但繳交時未包含實際執行後的範例資料檔。\textbf{（-2）}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright
+D3 科學設計品質\strut
+\end{minipage} & \begin{minipage}[t]{0.03\columnwidth}\raggedright
+5/5\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+垂直翻轉作為 target、水平翻轉作為 distractor
+的設計增加辨識難度，符合知覺辨識研究中對干擾項設計的考量。\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{ux6539ux9032ux5efaux8b70}{%
+\subsubsection{改進建議}\label{ux6539ux9032ux5efaux8b70}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{補充 Escape 偵測（+2 分）：} 在 \texttt{while\ not\ responded}
+  迴圈中加入
+  \texttt{if\ \textquotesingle{}escape\textquotesingle{}\ in\ event.getKeys():\ win.close();\ core.quit()}
+  檢查，確保受試者可隨時退出。
+\item
+  \textbf{附上範例輸出（+2 分）：} 執行 Builder 版本一次，將產生的 CSV
+  檔案一併繳交，以利驗證實驗功能。
+\end{enumerate}
+
+\end{document}

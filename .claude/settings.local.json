@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(python ~/.agents/skills/pptx/scripts/thumbnail.py \"week-10-agentic_workflows_and_github/week-10-slides.pptx\" \"week-10-agentic_workflows_and_github/thumbs/\")",
+      "Bash(pip install *)",
+      "Bash(where soffice *)",
+      "Bash(where libreoffice *)",
+      "Read(//c/Program Files/LibreOffice/program/**)",
+      "Bash(python week-10-agentic_workflows_and_github/build_slides.py)",
+      "Bash(python)",
+      "Bash(git check-ignore *)",
+      "Bash(jupyter --version)",
+      "Bash(where python *)",
+      "Bash(python -c \"import jupyter; print\\(jupyter.__version__\\)\")",
+      "Bash(.venv/Scripts/jupyter.exe nbconvert *)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(.venv/Scripts/python.exe -c ' *)",
+      "Bash(.venv/Scripts/python.exe -m jupyter nbconvert --to notebook --execute --inplace notebooks/01_explore.ipynb)",
+      "Bash(.venv/Scripts/python.exe -m jupyter nbconvert --to notebook --execute --inplace notebooks/01_explore.ipynb --debug)",
+      "Read(//tmp/**)",
+      "Read(//c/temp/**)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; & 'c:\\\\mypython\\\\2026\\\\tw-airquality-mini\\\\.venv\\\\Scripts\\\\python.exe' -m jupyter nbconvert --to notebook --execute --inplace 'c:\\\\mypython\\\\2026\\\\tw-airquality-mini\\\\notebooks\\\\01_explore.ipynb' 2>&1 | Out-String; Write-Output \"EXIT=$LASTEXITCODE\")",
+      "Bash(ls \"C:\\\\Users\\\\audachang\\\\Dropbox\\\\09_AI-testing-sites\\\\Claude\\\\demo_streamlit\\\\\")",
+      "Read(//c/Users/audachang/Dropbox/09_AI-testing-sites/Claude/**)",
+      "WebFetch(domain:www.datacamp.com)",
+      "PowerShell(Get-Process git -ErrorAction SilentlyContinue)",
+      "Bash(rm .git/index.lock && git status --short | head -20)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git log *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\audachang\\Dropbox\\02_Academic_Work\\courses\\ComputerCogneuro\\2026_Spring_CompBigData\\.git"
+    ]
+  }
+}

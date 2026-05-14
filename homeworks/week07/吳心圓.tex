@@ -1,0 +1,215 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  14pt,
+]{extarticle}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmainfont[]{Droid Sans Fallback}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{week-07-ux4f5cux696dux56deux994b}{%
+\section{Week 07 作業回饋}\label{week-07-ux4f5cux696dux56deux994b}}
+
+\begin{quote}
+\textbf{評分標準：} 依據 \texttt{week07\_rubric.xlsx}
+之六項評分指標，基礎分 100 分，Bonus 最高 +10 分，總分上限為 100。
+各大項配分：Q1 Data Simulation (25) ／ Q2 Data Cleaning (20) ／ Q3
+Descriptive Stats (20) ／ Q4 Multi-Panel Figure (35) ／ Bonus Panel E
+(+5) ／ Bonus Paired t-test (+5)
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux5433ux5fc3ux5713-100100}{%
+\subsection{113892001 吳心圓 ---
+100／100}\label{ux5433ux5fc3ux5713-100100}}
+
+\hypertarget{ux7e3dux8a55}{%
+\subsubsection{總評}\label{ux7e3dux8a55}}
+
+本次作業完成度與程式品質均屬最高水準：資料欄位命名完全遵循題目規範、清理流程結構清楚、描述統計與
+SEM／SD 的區分精準、主圖四個 panel 加上 Bonus Panel E 與 paired t-test
+均達成，且圖面整體可讀性最佳（平均值文字標註、legend、grid、條件色碼一致）。中文註解詳盡，閱讀者可輕鬆理解每一步的設計考量。Base
+基礎分 97 + Bonus 10 = 107，封頂 100。
+
+\hypertarget{ux5404ux9805ux8a55ux8a9e}{%
+\subsubsection{各項評語}\label{ux5404ux9805ux8a55ux8a9e}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\raggedright
+指標\strut
+\end{minipage} & \begin{minipage}[b]{0.04\columnwidth}\raggedright
+得分（Base）\strut
+\end{minipage} & \begin{minipage}[b]{0.78\columnwidth}\raggedright
+評語\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+Q1 Data Simulation (NumPy)\strut
+\end{minipage} & \begin{minipage}[t]{0.04\columnwidth}\raggedright
+24/25\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright
+\texttt{np.random.default\_rng(2026)} ✓，欄位命名
+\texttt{subject}／\texttt{trial}／\texttt{condition}／\texttt{rt\_ms}／\texttt{correct}
+完全符合規範，shape (1600, 5)
+✓，\texttt{df.head(10)}／\texttt{df.dtypes} 印出齊全。唯一處可再思考：RT
+儲存時使用了 \texttt{max(100,\ round(rt\_congruent))}，會將 RT
+四捨五入至整數並強制 ≥100 ms。這會讓第 3 步「移除 \textless150 ms 或
+\textgreater1500 ms」的篩選幾乎失效（所有 RT 已被預先
+clamp），嚴格來說屬於資料生成階段直接介入清理，建議在 Q1 保持原始 float
+RT，僅於 Q2 的清理階段做截斷。扣 1 分。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+Q2 Data Cleaning\strut
+\end{minipage} & \begin{minipage}[t]{0.04\columnwidth}\raggedright
+20/20\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright
+三步驟邏輯清晰（error → per-subject outlier via \texttt{transform} →
+implausible RT），每步都重新計算移除數量並印出，最後輸出保留百分比。CSV
+儲存 ✓（\texttt{index=False}）。per-subject 標準化使用
+\texttt{groupby.transform} 是推薦做法。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+Q3 Descriptive Stats (groupby)\strut
+\end{minipage} & \begin{minipage}[t]{0.04\columnwidth}\raggedright
+20/20\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright
+\texttt{agg} 一次輸出 mean/std/median/count
+✓；\texttt{pivot\_table(index=\textquotesingle{}subject\textquotesingle{},\ columns=\textquotesingle{}condition\textquotesingle{},\ values=\textquotesingle{}rt\_ms\textquotesingle{})}
+後計算 \texttt{interference\_cost} 並列出 20 位受試者結果
+✓；\texttt{scipy.stats.sem} 計算 between-subjects SEM ✓；SEM vs SD
+的區分正確（條件均值用 SEM、interference cost 跨受試者變異用
+SD）。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+Q4 Multi-Panel Figure\strut
+\end{minipage} & \begin{minipage}[t]{0.04\columnwidth}\raggedright
+33/35\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright
+圖總標題 \texttt{"Stroop\ Task:\ Experiment\ Summary"} ✓，3×2
+版面合理容納 Panel A--E，隱藏空位以 \texttt{set\_visible(False)}
+處理乾淨。Panel A histogram + 平均線 ✓、Panel B 長條加 SEM errorbar
+且文字註解為平均值（\texttt{f\textquotesingle{}\{yval:.2f\}\textquotesingle{}}）✓、Panel
+C 依 cost 由大至小並畫組平均線 ✓、Panel D 以條件著色散佈圖
+✓，tight\_layout 與 PNG/PDF 雙輸出皆完備。小扣：Panel D 為避免 RT
+outlier 干擾又額外建了一個 \texttt{df\_cleaned\_for\_D}（保留 error
+trials 以計算 accuracy，但對 RT 仍做 outlier
+過濾），這個做法立意良好，但與 Q2 得到的單一 clean
+版本分離，若題目精神是「以清理後資料呈現 speed-accuracy
+trade-off」，使用 \texttt{df\_clean} 計算 RT／另從原始 \texttt{df} 計算
+accuracy 會更直接；扣 2 分。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textbf{Base 小計}\strut
+\end{minipage} & \begin{minipage}[t]{0.04\columnwidth}\raggedright
+\textbf{97/100}\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+Bonus Panel E (+5)\strut
+\end{minipage} & \begin{minipage}[t]{0.04\columnwidth}\raggedright
+\textbf{+5}\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright
+Panel E 以 \texttt{df\_cleaned\_for\_D}（保留 error trials、移除 RT
+離群值）分條件畫出逐 trial 平均 RT，添加 marker、grid、每 5 個 trial
+一個 xtick，圖面資訊量高且呈現自然的 trial-by-trial 變異。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+Bonus Paired t-test (+5)\strut
+\end{minipage} & \begin{minipage}[t]{0.04\columnwidth}\raggedright
+\textbf{+5}\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright
+於額外 cell 中以 \texttt{stats.ttest\_rel(incongruent,\ congruent)}
+執行配對樣本 t 檢定，並加上 \texttt{common\_subjects} 的 intersection
+檢查，邏輯嚴謹。t、p 值與 α=.05 判讀皆正確。\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textbf{最終分數（上限 100）}\strut
+\end{minipage} & \begin{minipage}[t]{0.04\columnwidth}\raggedright
+\textbf{100/100}\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright
+Base 97 + Bonus 10 = 107 → 封頂 100。\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{ux5f8cux7e8cux5efaux8b70}{%
+\subsubsection{後續建議}\label{ux5f8cux7e8cux5efaux8b70}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{資料生成與清理職責分離}：Q1 應保留 \texttt{rng.normal()}
+  的原始 float RT，讓 Q2 的 \texttt{150–1500\ ms}
+  篩選器能真的運作一次。把 \texttt{max(100,\ round(...))} 留到
+  Q2，程式碼可讀性更高，也更符合真實 behavioral 資料的流程。
+\item
+  \textbf{清理後 DataFrame 的一致使用}：建議讓 \texttt{df\_clean}
+  成為後續所有分析的唯一入口（single source of truth）；若 Panel D
+  需要不同清理策略，可在函式裡直接用 \texttt{rt\_ms} + \texttt{correct}
+  兩個維度處理，避免再維護一份近似但略有差異的 DataFrame。
+\item
+  \textbf{延伸練習（非本次扣分項）}：可以嘗試 \texttt{matplotlib} 的
+  \texttt{GridSpec} 做不規則版面（如 Panel E 跨兩欄），或加入
+  \texttt{scipy.stats.wilcoxon} 作為非參數對照。
+\end{enumerate}
+
+\end{document}
