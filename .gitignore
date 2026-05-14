@@ -50,3 +50,6 @@ debug_*.png
 dry_run_*.png
 # LibreOffice / Office lock files
 .~lock.*
+.eeclass_passwd
+.qa?
+*slide-outline.md
