@@ -1,1 +1,0 @@
-$env:PATH = "C:\Program Files\PsychoPy;C:\Program Files\PsychoPy\Scripts;C:\Windows\System32"
