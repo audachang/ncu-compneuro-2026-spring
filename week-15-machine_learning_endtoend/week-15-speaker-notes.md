@@ -1,17 +1,12 @@
-"""Week 15 speaker notes — one entry per slide.
+# Week 15 — End-to-End Machine Learning · Speaker Notes
 
-Indexed by slide number (1-based, matching the builders list in build_slides.py).
-Each entry: (short_title, body_markdown).
+> 自動生成自 `speaker_notes.py`。請編輯該檔，不要直接編輯本檔。
+> 對應的投影片：`week-15-slides.pptx` (49 張)。
 
-Style: 講師可直接照念，繁體中文為主，技術術語保留英文。每張約 30–90 秒。
-"""
+---
 
-NOTES: dict[int, tuple[str, str]] = {
+## Slide 01 · Title
 
-# ============================================================
-# Opening (1–4)
-# ============================================================
-1: ("Title", """\
 歡迎來到 Week 15。今天是這學期最技術性的一週 — 我們要把前面學過的 pandas、NumPy、視覺化全部串起來，
 進入 machine learning。
 
@@ -21,9 +16,11 @@ NOTES: dict[int, tuple[str, str]] = {
 
 提醒一下：今天涵蓋的都是 **shallow learning** — 也就是傳統 ML。Deep learning 屬於另一個範疇，
 本週不涵蓋。重點是 **pipeline 與 algorithm taxonomy**，不是任何單一模型的極致最佳化。
-"""),
 
-2: ("Learning Objectives", """\
+---
+
+## Slide 02 · Learning Objectives
+
 這六個目標是今天結束時你應該能做到的事。
 
 我特別強調第一個 — **Frame**。在寫任何 sklearn code 之前，你必須先回答四個問題：
@@ -32,9 +29,11 @@ NOTES: dict[int, tuple[str, str]] = {
 
 如果你能回答這四個問題，後面所有 sklearn 的選擇都會變得清楚。
 反過來說，如果你跳過 framing 直接 import sklearn，你會 silently 選錯類型，所有 metric 就變得毫無意義。
-"""),
 
-3: ("Agenda", """\
+---
+
+## Slide 03 · Agenda
+
 這是今天的時間規劃，總共三小時。
 
 前 20 分鐘是 framing — 比較抽象但很重要。
@@ -45,9 +44,11 @@ NOTES: dict[int, tuple[str, str]] = {
 最後 25 分鐘把整套 pipeline 套到 cogneuro 情境上。
 
 每個 section 後面都有一個 hands-on practice，請大家準備好 VS Code 與 Jupyter notebook。
-"""),
 
-4: ("Why this matters", """\
+---
+
+## Slide 04 · Why this matters
+
 你們已經會用 PsychoPy 收資料，會用 pandas 整理，會用 Streamlit 展示。
 今天要補上最後一塊拼圖 — **從資料中學出一個可預測的 model**。
 
@@ -57,18 +58,19 @@ NOTES: dict[int, tuple[str, str]] = {
 這個問題本身就是 supervised regression。我們今天的策略是：
 先用 California Housing 跑完一遍 — 因為這個資料集乾淨、文獻多、好除錯；
 然後把完全一樣的 pipeline 套到 Stroop RT 上，讓你看到 pipeline 是 domain-agnostic 的。
-"""),
 
-# ============================================================
-# §1 Framing (5–8)
-# ============================================================
-5: ("§1 divider", """\
+---
+
+## Slide 05 · §1 divider
+
 進入第一個 section — ML 問題的框架化。
 
 這個 section 沒有 code，但它決定了你後面所有 code 怎麼寫。
-"""),
 
-6: ("Four framing questions", """\
+---
+
+## Slide 06 · Four framing questions
+
 這四個問題是寫任何 ML code 之前必須回答的。
 
 第一：**有沒有 label？** 有觀測值就是 supervised；沒有就是 unsupervised；部分有就是 semi-supervised。
@@ -83,9 +85,11 @@ NOTES: dict[int, tuple[str, str]] = {
 model-based 則是「學出一組 parameter」 — linear regression、neural network 都是。
 
 下方的紅色提醒框很重要：選錯類型會讓所有 metric 變得無意義。
-"""),
 
-7: ("Algorithm taxonomy map", """\
+---
+
+## Slide 07 · Algorithm taxonomy map
+
 這張圖是今天會涵蓋的 algorithm 全景。
 
 左半邊是 **supervised**，分五大家族：linear、instance-based、tree、ensemble、kernel。
@@ -96,9 +100,11 @@ model-based 則是「學出一組 parameter」 — linear regression、neural ne
 而且不是當主角，是當 **feature engineering 工具** 與 **outlier filter**。
 
 底下的灰字提醒：deep learning 屬於 representation learning 範疇，本週不涵蓋。
-"""),
 
-8: ("Hands-on 1", """\
+---
+
+## Slide 08 · Hands-on 1
+
 第一個 hands-on。請大家花 5 分鐘，跟同桌討論這三個情境，回答四個 framing 問題。
 
 情境 A 比較直接：清醒 vs. 睡著是二元分類。
@@ -107,19 +113,20 @@ model-based 則是「學出一組 parameter」 — linear regression、neural ne
 如果沒有，就用 anomaly detection (unsupervised) 找「不像正常 volume 的 volume」。
 
 5 分鐘後我們各組分享一個情境的答案。
-"""),
 
-# ============================================================
-# §2 Anchor case (9–13)
-# ============================================================
-9: ("§2 divider", """\
+---
+
+## Slide 09 · §2 divider
+
 進入 anchor case — California Housing。
 
 這個資料集是 ML 教學界的標準案例，因為它乾淨、量適中、有現實意義。
 今天我們會跟著 Géron 走一遍。
-"""),
 
-10: ("Data overview", """\
+---
+
+## Slide 10 · Data overview
+
 這是 1990 美國加州人口普查的 block-level 資料 — 一個 block 大約 600-3000 人。
 總共 20,640 個 block，10 個欄位。
 
@@ -131,9 +138,11 @@ Features 包括地理位置（經緯度）、房屋年齡中位數、總房間�
 這兩個 issue 是我們等下 pipeline 要處理的核心。
 
 下方的 code 是 Géron 提供的 loader — 第一次跑會下載到 `datasets/`，之後就從 cache 讀。
-"""),
 
-11: ("Golden rule: split first", """\
+---
+
+## Slide 11 · Golden rule: split first
+
 這張投影片只有一個訊息，但它是整堂課最重要的一個：
 
 **拿到資料的第一件事，是切出 test set，然後鎖起來，直到最後評估前都不准看。**
@@ -144,9 +153,11 @@ Features 包括地理位置（經緯度）、房屋年齡中位數、總房間�
 
 `random_state=42` 是 reproducibility 的關鍵。為什麼是 42？因為 Douglas Adams。
 但任何固定的整數都可以，重點是 **不要每次跑不同**。
-"""),
 
-12: ("Stratified split", """\
+---
+
+## Slide 12 · Stratified split
+
 純 random split 有個問題：當某個重要 feature 分布不均時，test set 可能不能代表母體。
 
 以 housing 為例，`median_income` 右尾很長 — 大部分 block 收入中等，少數很高。
@@ -157,28 +168,31 @@ Features 包括地理位置（經緯度）、房屋年齡中位數、總房間�
 這個技巧到 cogneuro 也用得到。下方藍框提示：
 如果你的 dataset 中年輕人遠多於老人，random split 後 test 可能只有兩三個老人，
 模型在「老人 generalization」上的結果就不可靠。用 age group stratify 才能保證 test 反映母體。
-"""),
 
-13: ("Hands-on 2", """\
+---
+
+## Slide 13 · Hands-on 2
+
 第二個 hands-on — 8 分鐘獨立完成。
 
 任務：給定一個模擬 RT dataset，先用 `pd.cut` 切 4 個 age bin，
 再用 `StratifiedShuffleSplit` 切 20% test，最後驗證 train/test 各 bin 比例差異 < 1%。
 
 寫完之後跟同桌互看程式碼。常見的卡點是 `pd.cut` 的 `bins` 與 `labels` 長度要差 1。
-"""),
 
-# ============================================================
-# §3 Pipeline (14–20)
-# ============================================================
-14: ("§3 divider", """\
+---
+
+## Slide 14 · §3 divider
+
 進入第三 section — preprocessing pipeline。
 
 這個 section 是整堂課技術上最關鍵的部分。如果你只記得一件事，就是：
 **所有 preprocessing 步驟，要先在 train 上 fit，再 transform 到 test。**
-"""),
 
-15: ("Pipeline why", """\
+---
+
+## Slide 15 · Pipeline why
+
 為什麼需要 Pipeline？
 
 最常見的錯誤是這樣：學生把 train 與 test concatenate 起來，一起 `fit_transform(StandardScaler())`。
@@ -188,9 +202,11 @@ Features 包括地理位置（經緯度）、房屋年齡中位數、總房間�
 `sklearn.pipeline.Pipeline` 就是強制你遵守「fit on train, transform on test」這條規則的工具。
 整個 pipeline 像一個 model — 你對它 `fit(X_train, y_train)` 一次，對它 `predict(X_test)` 一次，
 sklearn 內部會自動只用 train 的 statistics 去 transform test。
-"""),
 
-16: ("Pipeline flow diagram", """\
+---
+
+## Slide 16 · Pipeline flow diagram
+
 這張流程圖把整個 preprocessing pipeline 視覺化 — 從原始 DataFrame 一路到 estimator。
 
 上面是 raw DataFrame，混雜 numerical 與 categorical、有 missing values。
@@ -208,9 +224,11 @@ ColumnTransformer 把這個 DataFrame 「分流」 — 不同型別的欄位走�
 
 這是 leakage 防火牆的具象化 — 整條 pipeline 就是一個 model，
 你對它 fit(X_train, y_train) 一次，對它 predict(X_test) 一次，sklearn 內部會自動只用 train 的 statistics。
-"""),
 
-17: ("Imputation", """\
+---
+
+## Slide 17 · Imputation
+
 Step A — 處理 missing values。
 
 三種選擇：drop rows、drop column、impute。前兩個都會丟資訊，所以推薦 impute。
@@ -223,9 +241,11 @@ median 比 mean 更 robust 於 outlier。
 
 注意：imputer 一定要放在 pipeline 裡，不要自己手動 `df.fillna(df.mean())` —
 那樣做會在 cross-validation 時把整個 dataset 的 mean 算進去，造成 leakage。
-"""),
 
-18: ("Encoding", """\
+---
+
+## Slide 18 · Encoding
+
 Step B — 處理文字類別。
 
 兩種主要選擇：`OrdinalEncoder` 與 `OneHotEncoder`。
@@ -239,9 +259,11 @@ Linear model 看到「INLAND 比 <1H OCEAN 大 1」會試圖學這個假關係�
 缺點是類別很多時會產生 sparse 高維 feature。但對於 < 50 個類別的情況，這是最安全的預設。
 
 **一定要加** `handle_unknown="ignore"`，否則 test 出現訓練時沒看過的類別，整個 pipeline 會 crash。
-"""),
 
-19: ("Scaling", """\
+---
+
+## Slide 19 · Scaling
+
 Step C — Feature scaling。
 
 為什麼需要：基於距離的演算法 (k-NN、SVM、k-means) 與基於梯度的演算法 (linear + GD、neural net)
@@ -257,9 +279,11 @@ RobustScaler：用 median 與 IQR，outlier 多時的替代方案。
 
 重要例外：**tree-based 演算法（RandomForest、GradientBoosting）不需要 scaling**。
 因為 tree 是用「>X 還是 <X」做分割，與 scale 無關。但放在 pipeline 裡也沒壞處，只是浪費計算。
-"""),
 
-20: ("ColumnTransformer", """\
+---
+
+## Slide 20 · ColumnTransformer
+
 Step D — 把所有步驟串成 ColumnTransformer。
 
 `Pipeline` 是垂直 — 一個步驟接一個。
@@ -270,9 +294,11 @@ Step D — 把所有步驟串成 ColumnTransformer。
 
 最關鍵的一行在下面的綠框：對 train 用 `fit_transform()`，對 test 只用 `transform()`。
 pipeline 會自動處理這件事 — 你只要對整個 pipeline `fit(X_train, y_train)` 一次。
-"""),
 
-21: ("Hands-on 3", """\
+---
+
+## Slide 21 · Hands-on 3
+
 第三個 hands-on — 10 分鐘獨立完成。
 
 任務：把剛剛學到的 ColumnTransformer 套到一個 trial-level dataframe 上。
@@ -281,19 +307,20 @@ pipeline 會自動處理這件事 — 你只要對整個 pipeline `fit(X_train, 
 最後 X 的 shape 應該是 (100, 4) — 兩個 numerical + 兩個 one-hot 的 congruency level。
 
 如果你 shape 跑出來不對，第一個檢查點是 OneHotEncoder 後 column 數量。
-"""),
 
-# ============================================================
-# §4 Algorithm Zoo (21–31)
-# ============================================================
-22: ("§4 divider", """\
+---
+
+## Slide 22 · §4 divider
+
 進入第四 section — algorithm zoo。
 
 到目前為止我們的 X_train_prepared 是一個乾淨的矩陣。
 同一個矩陣可以餵給很多 algorithm。接下來我們會用 **完全相同的 evaluation protocol** 比較五大家族。
-"""),
 
-23: ("Taxonomy table", """\
+---
+
+## Slide 23 · Taxonomy table
+
 這張表是今天 algorithm 的速覽。記不住沒關係 — 重點是知道 **這五類各自的 inductive bias** 是什麼。
 
 **Inductive bias** 是個重要概念：每個 algorithm 對「資料長什麼樣」都有先驗假設。
@@ -303,9 +330,11 @@ tree 假設 feature 空間可以用 axis-aligned 切割；ensemble 沒有自己�
 
 選對 algorithm，就是讓它的 bias 跟資料的真實結構對上。
 這也是為什麼「沒有最強的 algorithm」 — 只有「最適合這份資料的 algorithm」。
-"""),
 
-24: ("Linear family", """\
+---
+
+## Slide 24 · Linear family
+
 第一家族：linear models。
 
 最簡單的就是 LinearRegression — y = w·x + b，用最小平方法解。
@@ -315,9 +344,11 @@ Lasso 用 L1 penalty，會把某些 coefficient 壓到 0，等於自動 feature 
 Linear model 的 **最大優點是可解釋** — 看 coefficient 你就知道每個 feature 對 target 的方向與強度。
 缺點：對非線性與互動完全無感。如果你的資料是 `y = age × congruency` 這種互動結構，
 linear model 永遠抓不到。
-"""),
 
-25: ("k-NN", """\
+---
+
+## Slide 25 · k-NN
+
 第二家族：instance-based — k-Nearest Neighbors。
 
 概念極簡：對一個新 sample，找最近的 k 個 train sample，取他們 target 的平均當預測值。
@@ -329,9 +360,11 @@ k-NN 的兩個關鍵 gotcha：
 
 k-NN 在低維、區域結構強、資料量大時非常有效。在認知神經科學中，
 fMRI MVPA 的 searchlight 分析常用 k-NN 當 base classifier。
-"""),
 
-26: ("Decision Tree", """\
+---
+
+## Slide 26 · Decision Tree
+
 第三家族：tree-based — Decision Tree。
 
 概念：遞迴把 feature 空間切成 axis-aligned 區塊，每塊預測該區的 mean (regression) 或 majority class (classification)。
@@ -343,9 +376,11 @@ fMRI MVPA 的 searchlight 分析常用 k-NN 當 base classifier。
 兩個基本控制 hyperparameter：
 `max_depth` 限制樹深，`min_samples_leaf` 限制葉節點最小 sample 數。
 不過 single tree 即使調好參數通常還是不夠 — 真正的解法是下一個 family：ensemble。
-"""),
 
-27: ("Ensemble", """\
+---
+
+## Slide 27 · Ensemble
+
 第四家族：ensemble — Random Forest 與 Gradient Boosting。
 
 兩者都用「多棵 tree 的組合」，但路徑不同：
@@ -362,9 +397,11 @@ fMRI MVPA 的 searchlight 分析常用 k-NN 當 base classifier。
 實務上 GradientBoosting 通常表現更好，但比 RF 慢、對 hyperparameter 較敏感。
 RF 是個 hyperparameter 不調也表現不錯的 default baseline；
 GB（特別是 XGBoost、LightGBM）是 kaggle competition 的常勝軍。
-"""),
 
-28: ("Kernel methods", """\
+---
+
+## Slide 28 · Kernel methods
+
 第五家族：kernel methods — Support Vector Regression。
 
 SVR 的想法：在 high-dim feature space 找一個 margin-maximizing hyperplane。
@@ -380,9 +417,11 @@ SVR 的兩個 gotcha：
 γ 控制 RBF 的寬度。沒調好 C 與 γ 的 SVR 通常輸給其他 family。
 
 在中等大小、非線性結構的資料上，調好的 SVR 是強力選擇。
-"""),
 
-29: ("Unified evaluation", """\
+---
+
+## Slide 29 · Unified evaluation
+
 這張 code 是 algorithm zoo 的核心 — 用一個 for-loop 跑完五大家族。
 
 關鍵點：**所有 model 都包在 make_pipeline(full_pipeline, model) 裡**。
@@ -394,9 +433,11 @@ SVR 的兩個 gotcha：
 
 注意：SVR 在 16k samples 太慢 — 真正跑的時候要對 SVR 做 subsample，
 或者直接跳過放在 code 註解。下一張投影片的 bar chart 就是這個 loop 的結果。
-"""),
 
-30: ("Results bar chart", """\
+---
+
+## Slide 30 · Results bar chart
+
 這就是上面 loop 跑出來的結果，5-fold CV RMSE，單位 USD，**越低越好**。
 
 幾個關鍵觀察：
@@ -413,9 +454,11 @@ SVR 的兩個 gotcha：
 
 右邊的小字提醒：RMSE 與 target 同單位（USD），這比 R² 更好解讀 —
 「平均誤差大概 50k」比「R² = 0.78」直觀得多。
-"""),
 
-31: ("Bias–Variance Tradeoff", """\
+---
+
+## Slide 31 · Bias–Variance Tradeoff
+
 這張圖把所有 algorithm 放在一個 spectrum 上。
 
 左邊是 **high bias** — model 太簡單，連 train 都學不好（underfit）。LinearRegression 在這端。
@@ -427,9 +470,11 @@ SVR 的兩個 gotcha：
 
 下方綠色 callout 是 ensemble 的魅力 — 它用「多個 high-variance learner 的平均」
 降 variance 而不增加 bias，相當於把 spectrum 上的點往左推。這就是為什麼 RF 幾乎永遠贏 single tree。
-"""),
 
-32: ("Hands-on 4", """\
+---
+
+## Slide 32 · Hands-on 4
+
 第四個 hands-on — 10 分鐘。
 
 任務：把 `Ridge(alpha=1.0)` 與 `GradientBoostingRegressor(n_estimators=100)` 加進比較表，
@@ -439,19 +484,20 @@ Ridge 是 LinearRegression 的 L2 regularized 版本，在多重共線性下會�
 GradientBoosting 我們剛剛已經看過了，預期會跟 RF 差不多。
 
 寫完後互看 code，特別注意 `make_pipeline` 的接法有沒有對。
-"""),
 
-# ============================================================
-# §5 Model Selection (32–36)
-# ============================================================
-33: ("§5 divider", """\
+---
+
+## Slide 33 · §5 divider
+
 進入第五 section — model evaluation 與 hyperparameter tuning。
 
 到目前為止我們用 5-fold CV 比較 model，但還沒調 hyperparameter。
 這個 section 講怎麼系統性地調，並且最後怎麼用 test set 報告 final 結果。
-"""),
 
-34: ("No train accuracy", """\
+---
+
+## Slide 34 · No train accuracy
+
 為什麼我們從頭到尾都用 CV，不用 train accuracy？
 
 這張 code 給出最戲劇化的例子：
@@ -462,9 +508,11 @@ DecisionTree 沒限制深度，在 train 上 R² 接近 1，看似完美；
 
 **唯一正確的做法是用 CV 評估** — 對 train 集做 k-fold split，每次留一個 fold 當 validation，
 其他 fold 訓練。這樣 model 永遠在「沒看過」的資料上被評估。
-"""),
 
-35: ("K-Fold diagram", """\
+---
+
+## Slide 35 · K-Fold diagram
+
 這張圖示 5-fold CV：把 train 集切 5 份，每次留一份當 test，其他 4 份訓練。
 跑 5 次，得到 5 個 score。最後報告 mean ± std。
 
@@ -474,9 +522,11 @@ DecisionTree 沒限制深度，在 train 上 R² 接近 1，看似完美；
 
 下方的 code 就一行 — `cross_val_score`。記得 `scoring` 參數要加負號（neg_root_mean_squared_error）
 因為 sklearn 規定 score 越大越好。
-"""),
 
-36: ("Grid vs Random", """\
+---
+
+## Slide 36 · Grid vs Random
+
 有了 CV，下一步是調 hyperparameter。三個工具：
 
 **GridSearchCV**：窮舉所有組合。優點是徹底，缺點是組合爆炸 — 4 個參數每個 5 個值就是 625 個組合 × 5 folds = 3125 次訓練。
@@ -490,9 +540,11 @@ DecisionTree 沒限制深度，在 train 上 R² 接近 1，看似完美；
 RandomizedSearch 通通能處理。
 
 底下的 code 範例用 scipy 的 `randint` 定義 hyperparameter 的分布。
-"""),
 
-37: ("Final test", """\
+---
+
+## Slide 37 · Final test
+
 這張是另一個「整堂課最重要」的訊息：
 
 **最終的 test set 評估，只能做一次。**
@@ -505,19 +557,20 @@ test set 就變成 train set 的一部分了 — 它的「unseen」性質被破�
 如果結果不滿意，就接受它，並把這個限制寫進 paper 的 limitation 段落。
 
 下方綠字：誠實的科學家會接受 negative result。
-"""),
 
-# ============================================================
-# §6 Unsupervised (37–39)
-# ============================================================
-38: ("§6 divider", """\
+---
+
+## Slide 38 · §6 divider
+
 進入第六 section — unsupervised 小品。
 
 主軸還是 supervised，但 unsupervised 方法常作為 **feature engineering 工具** 或 **outlier filter** 出現。
 這裡介紹兩個最常用的：k-means 與 IsolationForest。
-"""),
 
-39: ("KMeans as feature engineering", """\
+---
+
+## Slide 39 · KMeans as feature engineering
+
 Géron 在原 notebook 用了一個漂亮的 trick：
 
 把 (latitude, longitude) 餵給 k-means 聚成 10 個 cluster，
@@ -531,9 +584,11 @@ Géron 在原 notebook 用了一個漂亮的 trick：
 
 Cogneuro 類比：對 fMRI ROI time series 做 k-means 找 functional clusters，
 再以每個 voxel 與 cluster centroid 的相似度作為 feature。這就是 RSA (representational similarity analysis) 的近親。
-"""),
 
-40: ("IsolationForest", """\
+---
+
+## Slide 40 · IsolationForest
+
 IsolationForest 是 multivariate outlier detection 的 workhorse。
 
 概念：用一堆 random tree 來「孤立」每個 sample — outlier 應該很容易被孤立（少數幾步就分到自己一個 leaf），
@@ -547,19 +602,20 @@ IsolationForest 能抓到「每個 feature 單看都正常，但組合起來很�
 單看 RT 或 accuracy 都正常，IsolationForest 卻能在 multidimensional space 中認出它。
 
 `contamination` 是先驗的 outlier 比例，0.01–0.05 是常用範圍。
-"""),
 
-# ============================================================
-# §7 Cogneuro (40–43)
-# ============================================================
-41: ("§7 divider", """\
+---
+
+## Slide 41 · §7 divider
+
 進入最後一個 section — 把今天學的全部套到 cogneuro 問題上。
 
 我們會跑兩遍：一遍用純線性的生成式，一遍加入 age × congruency 互動。
 這兩遍會展示「最佳 model 取決於資料結構」的核心訊息。
-"""),
 
-42: ("RT pipeline code", """\
+---
+
+## Slide 42 · RT pipeline code
+
 這張 code 把今天學的所有元件串起來：
 
 1. 用 `simulate_stroop()` 生成資料 — 200 受試者 × 30 trial。
@@ -570,9 +626,11 @@ IsolationForest 能抓到「每個 feature 單看都正常，但組合起來很�
 注意：**這個 pipeline 的結構跟 housing 完全一樣**。
 唯一不同的是欄位名稱與 model 種類。這就是為什麼學會 housing 的人，
 可以馬上跑任何結構類似的 tabular data — 不只 cogneuro，任何 trial-level 或 subject-level 資料都適用。
-"""),
 
-43: ("RT results", """\
+---
+
+## Slide 43 · RT results
+
 這張表是兩種生成方式的結果：
 
 **Linear DGP (純線性)**：Linear RMSE 39.8，RF RMSE 44.5。
@@ -586,9 +644,11 @@ RF 贏了 — 因為 Linear 抓不到互動，RF 用 tree 結構自然 capture�
 
 底下提醒：完整可重跑的程式在 `code/ml/06_cogneuro_rt_pipeline.py`，
 回去自己跑一遍，把生成式參數改一改看 RMSE 怎麼變。
-"""),
 
-44: ("Hands-on 5", """\
+---
+
+## Slide 44 · Hands-on 5
+
 最後一個 hands-on — 課堂收尾。
 
 任務：在合成資料的 RT 公式中，加入「老年人受 incongruent trial 影響更大」的 interaction。
@@ -603,12 +663,11 @@ RF 贏了 — 因為 Linear 抓不到互動，RF 用 tree 結構自然 capture�
 跑完後思考：如果你的真實 RT 資料有 age × congruency 互動 — 而文獻說它確實有 —
 那 RF 在你的資料上應該勝過 linear regression。但記得 RF 比較難解釋 coefficient，
 所以對「解釋變項貢獻」這類問題，linear + interaction term 還是有它的位置。
-"""),
 
-# ============================================================
-# Recap + HW + closing (44–48)
-# ============================================================
-45: ("Recap", """\
+---
+
+## Slide 45 · Recap
+
 今天結束前，記住這五件事就好：
 
 第一：**先 frame 再 code；先切 test set 再 EDA**。順序錯了後面全錯。
@@ -620,9 +679,11 @@ RF 贏了 — 因為 Linear 抓不到互動，RF 用 tree 結構自然 capture�
 第四：**Test set 只能評估一次**。看完結果就接受，不要回頭調。
 
 第五：**Ensemble 是 tabular data 的強力 baseline**。如果不知道用什麼，先試 RandomForest。
-"""),
 
-46: ("Pitfalls", """\
+---
+
+## Slide 46 · Pitfalls
+
 這張表列了五個最常見的錯誤，也是我在批改作業時最常扣分的地方。
 
 第一：train + test 一起 fit StandardScaler — 嚴重 leakage，扣最多分。
@@ -632,9 +693,11 @@ RF 贏了 — 因為 Linear 抓不到互動，RF 用 tree 結構自然 capture�
 第五：報告 R² 而非 RMSE — R² 對 outlier 敏感、單位抽象，建議盡量用 RMSE。
 
 明天作業出去前再看一次這張表。
-"""),
 
-47: ("Homework", """\
+---
+
+## Slide 47 · Homework
+
 這週的作業：把今天的 pipeline 套到一個合成的 Flanker task 資料集。
 
 資料來源：作業說明裡附了 `simulate_flanker()` 函式，**請不要改參數**，否則 grading 對不上。
@@ -647,9 +710,11 @@ RF 贏了 — 因為 Linear 抓不到互動，RF 用 tree 結構自然 capture�
 algorithm 比較佔 25%，tuning 佔 20%。其他 25% 是解釋與報告品質。
 
 下週三晚上 11:59 截止，上傳 eeclass。詳細規格在 `week-15-homework.md`。
-"""),
 
-48: ("References", """\
+---
+
+## Slide 48 · References
+
 延伸閱讀：
 
 Géron 的書是今天的 anchor — 第二章值得從頭到尾跑一遍。GitHub 上的原 notebook 可以直接 fork。
@@ -661,9 +726,11 @@ Hastie 等人的 ESL（Elements of Statistical Learning）是 bias-variance 數�
 
 最後 Varoquaux 與 Cheplygina 2022 那篇 npj Digital Medicine 是 **必讀** —
 專講 ML 在 medical / brain imaging 上的常見方法學錯誤。你們未來寫 ML 相關 paper 一定會用到。
-"""),
 
-49: ("Closing", """\
+---
+
+## Slide 49 · Closing
+
 感謝大家今天的專注。
 
 下週是 final project workshop — 把這學期學的所有東西做成一個可 deploy 的 Streamlit app，
@@ -672,5 +739,5 @@ Hastie 等人的 ESL（Elements of Statistical Learning）是 bias-variance 數�
 如果今天的作業有問題，office hour 直接來找我，或 email：audachang@gmail.com。
 
 下週見。
-"""),
-}
+
+---

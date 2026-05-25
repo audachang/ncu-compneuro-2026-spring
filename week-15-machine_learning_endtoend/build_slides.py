@@ -600,6 +600,175 @@ def slide_pipeline_why(prs):
     return s
 
 
+def slide_pipeline_flow(prs):
+    """Visual diagram of the preprocessing pipeline data flow."""
+    s = add_slide_base(prs)
+    add_section_label(s, "§3 · Pipeline")
+    add_title(s, "Preprocessing pipeline — 資料流圖", size=28)
+
+    # --------------------------------------------------------------------
+    # Layout reference (inches):
+    #   raw block ~ y=1.6
+    #   ColumnTransformer band ~ y=2.5
+    #   numeric track   x=2.0-5.5, y=3.4-5.0
+    #   categorical track x=7.8-11.3, y=3.4-5.0
+    #   merge / X_prepared ~ y=5.3
+    #   estimator ~ y=6.1
+    # --------------------------------------------------------------------
+
+    def box(left, top, width, height, text, *, fill, text_color=TEXT_LIGHT,
+            font=FONT_SANS, size=12, bold=False, line=None):
+        sh = s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
+                                Inches(left), Inches(top),
+                                Inches(width), Inches(height))
+        sh.fill.solid(); sh.fill.fore_color.rgb = fill
+        if line is None:
+            sh.line.fill.background()
+        else:
+            sh.line.color.rgb = line; sh.line.width = Pt(0.5)
+        sh.adjustments[0] = 0.18
+        tf = sh.text_frame
+        tf.margin_left = Inches(0.10); tf.margin_right = Inches(0.10)
+        tf.margin_top = Inches(0.04); tf.margin_bottom = Inches(0.04)
+        tf.word_wrap = True
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.CENTER
+        r = p.add_run(); r.text = text
+        r.font.name = font; r.font.size = Pt(size); r.font.bold = bold
+        r.font.color.rgb = text_color
+        return sh
+
+    def arrow(x1, y1, x2, y2, color=TEXT_DARK, weight=1.8):
+        c = s.shapes.add_connector(2, Inches(x1), Inches(y1),
+                                   Inches(x2), Inches(y2))
+        c.line.color.rgb = color
+        c.line.width = Pt(weight)
+        try:
+            from pptx.oxml.ns import qn
+            from lxml import etree
+            ln = c.line._get_or_add_ln()
+            tail = etree.SubElement(ln, qn("a:tailEnd"))
+            tail.set("type", "triangle")
+            tail.set("w", "med"); tail.set("len", "med")
+        except Exception:
+            pass
+        return c
+
+    # --- (1) Raw DataFrame ----------------------------------------------
+    box(3.5, 1.55, 6.3, 0.75,
+        "Raw DataFrame  (X with mixed types)",
+        fill=ACCENT_PRIMARY, size=15, bold=True)
+    add_text(s,
+             "longitude  ·  latitude  ·  median_income  ·  total_bedrooms (NA)  ·  ocean_proximity (str)",
+             Inches(2.6), Inches(2.32), Inches(8.1), Inches(0.32),
+             size=10, color=TEXT_MUTED, font=FONT_MONO, align=PP_ALIGN.CENTER)
+
+    # arrow down into ColumnTransformer
+    arrow(6.65, 2.34, 6.65, 2.78)
+
+    # --- (2) ColumnTransformer "splitter" --------------------------------
+    box(2.5, 2.78, 8.3, 0.50,
+        "ColumnTransformer  —  不同欄位走不同路徑",
+        fill=ACCENT_TEAL, size=14, bold=True)
+
+    # arrows to two tracks
+    arrow(4.5, 3.28, 3.75, 3.55, color=ACCENT_TEAL)
+    arrow(8.75, 3.28, 9.50, 3.55, color=ACCENT_ORANGE)
+
+    # --- (3a) Numerical track (left) -------------------------------------
+    add_card(s, Inches(1.45), Inches(3.55), Inches(4.6), Inches(2.4),
+             fill=BG_OFFWHITE, accent=ACCENT_TEAL, accent_w=0.06)
+    add_text(s, "Numerical columns",
+             Inches(1.65), Inches(3.62), Inches(4.3), Inches(0.32),
+             size=12, bold=True, color=ACCENT_PRIMARY, font=FONT_SANS)
+    add_text(s, "longitude, latitude, total_rooms,\nmedian_income, ...",
+             Inches(1.65), Inches(3.92), Inches(4.3), Inches(0.55),
+             size=10, color=TEXT_MUTED, font=FONT_MONO,
+             align=PP_ALIGN.LEFT)
+
+    box(1.75, 4.55, 4.0, 0.55,
+        "SimpleImputer(strategy='median')",
+        fill=ACCENT_TEAL, size=12, bold=True)
+    add_text(s, "→ learns the median per column",
+             Inches(1.75), Inches(5.12), Inches(4.0), Inches(0.28),
+             size=10, color=TEXT_MUTED, font=FONT_CJK, italic=True,
+             align=PP_ALIGN.CENTER)
+    arrow(3.75, 5.10, 3.75, 5.40, color=ACCENT_TEAL)
+
+    box(1.75, 5.42, 4.0, 0.50,
+        "StandardScaler()",
+        fill=ACCENT_TEAL, size=12, bold=True)
+    add_text(s, "→ learns mean & std per column",
+             Inches(1.75), Inches(5.93), Inches(4.0), Inches(0.28),
+             size=10, color=TEXT_MUTED, font=FONT_CJK, italic=True,
+             align=PP_ALIGN.CENTER)
+
+    # --- (3b) Categorical track (right) ----------------------------------
+    add_card(s, Inches(7.30), Inches(3.55), Inches(4.6), Inches(2.4),
+             fill=BG_OFFWHITE, accent=ACCENT_ORANGE, accent_w=0.06)
+    add_text(s, "Categorical columns",
+             Inches(7.50), Inches(3.62), Inches(4.3), Inches(0.32),
+             size=12, bold=True, color=ACCENT_PRIMARY, font=FONT_SANS)
+    add_text(s, "ocean_proximity",
+             Inches(7.50), Inches(3.92), Inches(4.3), Inches(0.32),
+             size=10, color=TEXT_MUTED, font=FONT_MONO)
+
+    box(7.55, 4.30, 4.1, 0.95,
+        "OneHotEncoder(\n  handle_unknown='ignore')",
+        fill=ACCENT_ORANGE, size=12, bold=True, font=FONT_MONO)
+    add_text(s, "→ learns the set of categories",
+             Inches(7.55), Inches(5.28), Inches(4.1), Inches(0.28),
+             size=10, color=TEXT_MUTED, font=FONT_CJK, italic=True,
+             align=PP_ALIGN.CENTER)
+
+    # --- (4) Merge node + X_prepared -------------------------------------
+    arrow(3.75, 5.95, 5.95, 6.30, color=ACCENT_TEAL)
+    arrow(9.60, 5.55, 7.40, 6.30, color=ACCENT_ORANGE)
+
+    box(5.45, 6.30, 2.45, 0.55,
+        "concat → X_prepared",
+        fill=ACCENT_PRIMARY, size=13, bold=True)
+
+    # --- (5) Estimator ---------------------------------------------------
+    arrow(6.67, 6.86, 6.67, 7.05, color=TEXT_DARK)
+    add_text(s, "estimator.fit() / .predict()",
+             Inches(5.0), Inches(7.05), Inches(3.4), Inches(0.32),
+             size=12, bold=True, color=TEXT_DARK, font=FONT_SANS,
+             align=PP_ALIGN.CENTER)
+
+    # --- Side callouts: fit on train (left) / transform on test (right) --
+    fit_box = s.shapes.add_shape(MSO_SHAPE.RECTANGLE,
+                                 Inches(0.10), Inches(3.55),
+                                 Inches(1.25), Inches(2.10))
+    fit_box.fill.solid(); fit_box.fill.fore_color.rgb = ACCENT_GREEN
+    fit_box.line.fill.background()
+    add_text(s, "fit_transform\n(X_train)",
+             Inches(0.10), Inches(3.55), Inches(1.25), Inches(2.10),
+             size=12, bold=True, color=TEXT_LIGHT, font=FONT_SANS,
+             align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+    add_text(s, "← 學 statistics",
+             Inches(0.10), Inches(5.70), Inches(1.25), Inches(0.30),
+             size=10, color=ACCENT_GREEN, font=FONT_CJK,
+             align=PP_ALIGN.CENTER, italic=True)
+
+    tx_box = s.shapes.add_shape(MSO_SHAPE.RECTANGLE,
+                                Inches(12.00), Inches(3.55),
+                                Inches(1.25), Inches(2.10))
+    tx_box.fill.solid(); tx_box.fill.fore_color.rgb = ACCENT_RED
+    tx_box.line.fill.background()
+    add_text(s, "transform\n(X_test)",
+             Inches(12.00), Inches(3.55), Inches(1.25), Inches(2.10),
+             size=12, bold=True, color=TEXT_LIGHT, font=FONT_SANS,
+             align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+    add_text(s, "↓ 重用 statistics",
+             Inches(12.00), Inches(5.70), Inches(1.25), Inches(0.30),
+             size=10, color=ACCENT_RED, font=FONT_CJK,
+             align=PP_ALIGN.CENTER, italic=True)
+
+    return s
+
+
 def slide_imputation(prs):
     s = add_slide_base(prs)
     add_section_label(s, "§3 · Pipeline")
@@ -780,11 +949,14 @@ def slide_algo_linear(prs):
     s = add_slide_base(prs)
     add_section_label(s, "§4 · Algorithm Zoo · 1/5")
     add_title(s, "Family 1：Linear models")
-    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(4.5),
+    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(3.6),
                "Linear / Ridge", "LinearRegression, Ridge",
                "假設 y = w·x + b。Ridge 加上 L2 penalty 防止 overfit。\n\n"
                "適合：baseline、變項數遠少於樣本數、需要可解釋 coefficient。",
                "⚠ 對 feature 非線性 / 互動完全無感")
+    s.shapes.add_picture(
+        "diagrams/algo_linear.png",
+        Inches(0.7), Inches(5.75), width=Inches(5.8), height=Inches(1.30))
     code = ('from sklearn.linear_model import LinearRegression, Ridge\n\n'
             'lin   = LinearRegression()\n'
             'ridge = Ridge(alpha=1.0)\n\n'
@@ -799,11 +971,14 @@ def slide_algo_knn(prs):
     s = add_slide_base(prs)
     add_section_label(s, "§4 · Algorithm Zoo · 2/5")
     add_title(s, "Family 2：Instance-based — k-Nearest Neighbors")
-    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(4.5),
+    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(3.6),
                "k-NN", "KNeighborsRegressor",
                "對新 sample，找最近 k 個 train sample，取平均當預測值。\n\n"
                "適合：區域結構強、資料量大、不想假設函數形式。",
                "⚠ 必須先 scaling；維度詛咒 (curse of dimensionality)")
+    s.shapes.add_picture(
+        "diagrams/algo_knn.png",
+        Inches(0.7), Inches(5.75), width=Inches(5.8), height=Inches(1.30))
     code = ('from sklearn.neighbors import KNeighborsRegressor\n\n'
             'knn = KNeighborsRegressor(n_neighbors=5)\n'
             '# 不 scaling 的話 latitude (±90) 會壓過\n'
@@ -819,11 +994,14 @@ def slide_algo_tree(prs):
     s = add_slide_base(prs)
     add_section_label(s, "§4 · Algorithm Zoo · 3/5")
     add_title(s, "Family 3：Tree-based — Decision Tree")
-    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(4.5),
+    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(3.6),
                "Decision Tree", "DecisionTreeRegressor",
                "遞迴把 feature 空間切成 axis-aligned 區塊，每塊預測該區的 mean。\n\n"
                "適合：feature interaction 強、需要可視化 decision path。",
                "⚠ Single tree 容易 overfit；極度 high variance")
+    s.shapes.add_picture(
+        "diagrams/algo_tree.png",
+        Inches(0.7), Inches(5.75), width=Inches(5.8), height=Inches(1.30))
     code = ('from sklearn.tree import DecisionTreeRegressor\n\n'
             'tree = DecisionTreeRegressor(\n'
             '    max_depth=None,        # 不限深度 → overfit\n'
@@ -839,19 +1017,19 @@ def slide_algo_ensemble(prs):
     s = add_slide_base(prs)
     add_section_label(s, "§4 · Algorithm Zoo · 4/5")
     add_title(s, "Family 4：Ensemble — Random Forest & Gradient Boosting")
-    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(4.5),
+    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(3.6),
                "Random Forest", "RandomForestRegressor",
                "Bagging：平行訓練多棵 deep tree（隨機 sample + 隨機 feature），\n"
                "再平均 → 降 variance。",
                "幾乎是 tabular data 的 default 強 baseline")
-    _algo_card(s, Inches(6.8), Inches(2.0), Inches(6.0), Inches(4.5),
+    _algo_card(s, Inches(6.8), Inches(2.0), Inches(6.0), Inches(3.6),
                "Gradient Boosting", "GradientBoostingRegressor",
                "Boosting：序列訓練多棵 shallow tree，\n"
                "每棵學前一棵的 residual → 降 bias。",
                "通常表現更好但比 RF 慢、對 hyperparameter 較敏感")
-    add_text(s, "兩者都比 single tree 強，但走不同路徑解決 bias-variance tradeoff。",
-             Inches(0.7), Inches(6.7), Inches(12), Inches(0.4),
-             size=15, color=TEXT_MUTED, font=FONT_CJK, italic=True)
+    s.shapes.add_picture(
+        "diagrams/algo_ensemble.png",
+        Inches(1.7), Inches(5.75), width=Inches(10.0), height=Inches(1.30))
     return s
 
 
@@ -859,11 +1037,14 @@ def slide_algo_kernel(prs):
     s = add_slide_base(prs)
     add_section_label(s, "§4 · Algorithm Zoo · 5/5")
     add_title(s, "Family 5：Kernel methods — SVR")
-    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(4.5),
+    _algo_card(s, Inches(0.7), Inches(2.0), Inches(5.8), Inches(3.6),
                "Support Vector Regression", "SVR(kernel='rbf')",
                "在 high-dim feature space 找一個 margin-maximizing hyperplane。\n\n"
                "適合：中等資料量 (<10k)、非線性結構、想要 sparse solution。",
                "⚠ 訓練時間 O(n²)–O(n³)，大資料慢；hyperparameter (C, γ) 重要")
+    s.shapes.add_picture(
+        "diagrams/algo_kernel.png",
+        Inches(0.7), Inches(5.75), width=Inches(7.5), height=Inches(1.30))
     code = ('from sklearn.svm import SVR\n\n'
             'svr = SVR(kernel="rbf", C=10, gamma=0.1)\n\n'
             '# 在 housing 16k samples 上會很慢\n'
@@ -1410,6 +1591,7 @@ def build():
 
         slide_section3,
         slide_pipeline_why,
+        slide_pipeline_flow,
         slide_imputation,
         slide_encoding,
         slide_scaling,
@@ -1461,7 +1643,7 @@ def build():
         "# Week 15 — End-to-End Machine Learning · Speaker Notes",
         "",
         "> 自動生成自 `speaker_notes.py`。請編輯該檔，不要直接編輯本檔。",
-        "> 對應的投影片：`week-15-slides.pptx` (48 張)。",
+        "> 對應的投影片：`week-15-slides.pptx` (49 張)。",
         "",
         "---",
         "",
