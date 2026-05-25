@@ -143,6 +143,7 @@ print(pg.mixed_anova(
     data=mixed_df, dv='rt', within='cond', between='age', subject='subject'
 ))
 
+
 cond_order = ['congruent', 'incongruent']
 age_order = ['young', 'old']
 plt.figure(figsize=(7, 4.5))

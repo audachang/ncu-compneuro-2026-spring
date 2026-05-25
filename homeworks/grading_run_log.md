@@ -1,5 +1,31 @@
 # Automated Grading Run Log
 
+## 2026-05-20 (Weekly Grading Run)
+
+### Status: GRADED — AWAITING INSTRUCTOR REVIEW (no upload performed)
+
+**Week 12 (hw_id: 69340)**
+| Student | Score | Notes |
+|---------|-------|-------|
+| 呂杰驛 | 98 | +5 bonus (cache timing + clear cache button); placeholder `?` in A.3 age counts (-1pt), A.4 range filter step (-1pt) |
+| 吳心圓 | 96 | Unfilled `?` in A.3 and A.5 (-2pt), A.4 row-count print granularity (-2pt) |
+| 何官臻 | 100 | Exemplary; bonus +2 (cache timing), full marks on all rubric items |
+
+All three students submitted via GitHub. Submissions downloaded from:
+- https://github.com/Jie-Yi-Lu/HW12_Dataset-Hygiene-Caching-Dashboard
+- https://github.com/SuperCandy611/week-12-hw
+- https://github.com/ireneho3507/week12_hw
+
+Grading report: `homeworks/week12/week12_grading_report.md`
+Config ready: `homeworks/week12/grading_config.json`
+
+**Login note**: `button[data-role="form-submit"]` + `.keepLoginBtn` (not `button[type="submit"]`) — session conflict modal present, must click "保持登入" to proceed.
+**Credential note**: Password in `download_hw.py` (`^%$#2wsx1qaz`) is outdated; `.eeclass_passwd` (`erikchang2026@Bc`) is current.
+
+Next: Instructor review → generate feedback PDFs → `python eeclass_grader.py --week week12 --headed`
+
+---
+
 ## 2026-05-14 (Weekly Grading Run)
 
 ### Status: COMPLETED

@@ -42,9 +42,9 @@ np.random.seed(42)
 # 1. 模擬資料：Stroop within-subject + baseline 對照
 # ---------------------------------------------------------------
 n = 30
-congruent = np.random.normal(450, 60, n)      # within-subject
+congruent = np.random.uniform(450, 60, n)      # within-subject
 incongruent = np.random.normal(520, 80, n)    # within-subject
-baseline = np.full(n, 500)                    # 對照基準值 (between-group 視角)
+baseline = np.random.normal(500, 30, n)       # between-group control sample
 
 # ---------------------------------------------------------------
 # 2. (a) Paired t-test — within-subject design
@@ -75,7 +75,7 @@ save_current_figure('02a_paired_ttest_stroop.png')
 # 2. (b) Independent t-test — between-group design
 # ---------------------------------------------------------------
 print("\n" + "=" * 60)
-print("(b) Independent t-test (congruent vs. baseline):")
+print("(b) Independent t-test (congruent vs. baseline control group):")
 print(pg.ttest(congruent, baseline, paired=False))
 
 plt.figure(figsize=(7, 4.5))
@@ -91,7 +91,7 @@ plt.errorbar(
 )
 plt.xticks([0, 1], ['congruent', 'baseline'])
 plt.ylabel('Reaction time (ms)')
-plt.title('Independent t-test: observed RT vs. baseline group')
+plt.title('Independent t-test: observed RT vs. baseline control group')
 plt.legend(frameon=False)
 save_current_figure('02b_independent_ttest_congruent_baseline.png')
 
