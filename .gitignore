@@ -1,20 +1,47 @@
-
+# Course source folders that are kept out of this repository.
 /textbook/
 /materials/
 /sections/
+/term_project/
+
+# Draft or superseded course folders.
+/week-xx*/
+/week-*_v1/
+
+# Course planning scratch files.
 weekly_contents.md
+*lecture_plan*.md
+*slide-outline.md
+*speaker-notes.*
+
+# Generated documents and LaTeX build artifacts.
 *.pdf
 !syllabus_*.pdf
-*.log
-*.tmp
 *.aux
+*.log
 *.out
-*lecture_plan*.md
+*.tmp
+general/*.html
+general/*_files/
+
+# Python and notebook runtime artifacts.
 __pycache__/
-archive/
 .ipynb_checkpoints/
-/term_project/
-# Homeworks: ignore student submissions and grading, keep assignment specs
+.venv/
+
+# Local agent/tooling state.
+/.claude/worktrees/
+/Context/
+/Instructions/
+.qa*
+
+# PsychoPy demo output.
+/week-06-numpy_and_data_manipulation/demo/
+
+# Archive folders at any level.
+archive/
+
+# Homeworks: ignore student submissions and grading output; keep assignment specs.
 /homeworks/*/submissions/
 /homeworks/*/*.xlsx
 /homeworks/*/*.zip
@@ -25,31 +52,27 @@ archive/
 /homeworks/*/index.html
 /homeworks/hw_*.zip
 /homeworks/hw_list.html
-# Ignore student folders (numeric ID pattern)
+
+# Ignore student folders by numeric ID pattern.
 /homeworks/*/1[0-9][0-9]*/
+
+# Local Claude docs and solution materials may contain credentials, PII, or answers.
+# AGENTS.md is the public course-agent guide.
+CLAUDE.md
 /homeworks/solutions/
 /homeworks/*/solution/
-.claude/worktrees/
-.venv/
-/Context/
-/Instructions/
-/week-06-numpy_and_data_manipulation/demo/
-general/*.html
-general/*_files/
-~$*
-archive/
-# Local grading docs with credentials/PII (homeworks/CLAUDE.md). Root CLAUDE.md
-# is already tracked; gitignore only affects new files, so the public teaching
-# guide is unaffected.
-CLAUDE.md
-# Student feedback HTML/CSS (names + grades)
+
+# Student feedback HTML/CSS generated during grading.
 /homeworks/*/*.html
 /homeworks/*/_feedback.css
-# Debug / dry-run screenshots in repo root
+
+# Debug / dry-run screenshots in repo root.
 debug_*.png
 dry_run_*.png
-# LibreOffice / Office lock files
+
+# Office / LibreOffice lock files.
+~$*
 .~lock.*
+
+# Local credentials.
 .eeclass_passwd
-.qa*
-*slide-outline.md
