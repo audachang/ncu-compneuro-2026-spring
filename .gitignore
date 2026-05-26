@@ -29,6 +29,9 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 
+# Generated model artifacts are too large for normal GitHub commits.
+/week-15-machine_learning_endtoend/my_california_housing_model.pkl
+
 # Local agent/tooling state.
 /.claude/worktrees/
 /Context/
